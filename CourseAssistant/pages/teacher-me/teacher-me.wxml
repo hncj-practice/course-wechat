@@ -1,0 +1,103 @@
+<!--pages/teacher-me/teacher-me.wxml-->
+<view class="root">
+  <view class="head" style="background-image: url(../../images/index.jpg);">
+    <image class="avatar" mode="widthFix" src="../../images/avatar.png"> </image>
+    <view class="text-xl name">
+      吴硕
+    </view>
+
+  </view>
+  <image class="wave" mode="scaleToFill" src="../../images/wave.gif"> </image>
+
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange">10</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-attentionfill"></text> 正在进行</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">1</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-favorfill"></text> 审核中</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">6</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-fork"></text> 已结课</view>
+    </view>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-myfill text-red"></text>
+        <text class="text-grey">我的资料</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-settingsfill text-grey"></text>
+        <text class="text-grey">设置</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">日志</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-creativefill text-orange"></text>
+        <text class="text-grey">Bug测试</text>
+      </button>
+    </view>
+  </view>
+
+
+
+
+
+
+  <!-- 底部tabbar -->
+  <view class="cu-bar tabbar bg-white  shadow foot">
+    <view class="action" bindtap="jumpToIndex">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/01.png"></image>
+      </view>
+      <view class="text-gray">首页</view>
+    </view>
+
+    <view class="action" bindtap="jumpToMsg">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/02.png"></image>
+      </view>
+      <view class="text-gray">消息</view>
+    </view>
+
+    <view class="action" bindtap="jumpToCourse">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/03.png"></image>
+      </view>
+      <view class="text-gray">课程</view>
+    </view>
+
+    <view class="action" bindtap="jumpToMe">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/04_on.png"></image>
+      </view>
+      <view class="text-green">我</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/teacher-index/teacher-index",
+    "pages/teacher-msg/teacher-msg",
+    "pages/teacher-course/teacher-course",
+    "pages/teacher-me/teacher-me"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

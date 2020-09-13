@@ -1,0 +1,40 @@
+/* pages/teacher-me/teacher-me.wxss */
+
+page {
+  /* padding-bottom: 1000px; */
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom) / 2);
+}
+
+.head {
+  position: relative;
+  width: 100%;
+  height: 330rpx;
+  background-size: cover;
+}
+
+.avatar {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+
+.name {
+  position: absolute;
+  left: 50%;
+  top: calc(10% + 160rpx + 25rpx);
+  transform: translateX(-50%);
+  color: #fff;
+}
+
+.wave {
+  position: absolute;
+  top: 235rpx;
+  width: 100%;
+  height: 100rpx;
+  mix-blend-mode: screen;
+  z-index: 1024;
+}

@@ -1,0 +1,69 @@
+<!--pages/teacher-course/teacher-course.wxml-->
+<view class="root">
+
+  <!-- 搜索框 -->
+  <view class="cu-bar bg-grey light search">
+    <view class="search-form radius">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索课程" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <text class="cuIcon-search"></text>
+    </view>
+  </view>
+
+
+
+  <!-- 课程列表 -->
+  <view class="cu-list menu-avatar" style="padding-top:10px;">
+
+    <block wx:for="{{courses}}" wx:key="key" wx:for-item="item">
+      <view class="cu-item" style="margin:0 10px 10px 10px;border-radius:15rpx;">
+        <view class="cu-avatar radius lg" style="background-image:url({{item.url}});"></view>
+        <view class="content">
+          <view class="text-cut">
+            <text class="text-cut">{{item.name}}</text>
+          </view>
+          <view class="text-cut text-sm flex">
+            <text class="text-cut">{{item.number}}人</text>
+          </view>
+        </view>
+        <view class="action">
+          <text class="cuIcon-right"></text>
+        </view>
+      </view>
+    </block>
+
+  </view>
+
+  <!-- 底部tabbar -->
+  <view class="cu-bar tabbar bg-white  shadow foot">
+    <view class="action" bindtap="jumpToIndex">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/01.png"></image>
+      </view>
+      <view class="text-gray">首页</view>
+    </view>
+
+    <view class="action" bindtap="jumpToMsg">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/02.png"></image>
+      </view>
+      <view class="text-gray">消息</view>
+    </view>
+
+    <view class="action" bindtap="jumpToCourse">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/03_on.png"></image>
+      </view>
+      <view class="text-green">课程</view>
+    </view>
+
+    <view class="action" bindtap="jumpToMe">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/04.png"></image>
+      </view>
+      <view class="text-gray">我</view>
+    </view>
+  </view>
+</view>

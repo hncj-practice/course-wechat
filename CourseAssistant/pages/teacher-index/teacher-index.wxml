@@ -1,0 +1,93 @@
+<!--pages/teacher-index/teacher-index.wxml-->
+<view class="root">
+
+  <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper-item wx:for="{{swiperList}}" wx:key="key" class="{{cardCur==index?'cur':''}}">
+      <view class="swiper-item">
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <main>
+    <view class="cu-bar bg-white">
+      <view class="action">
+        <text class="cuIcon-title text-green"></text>
+        <text>常用</text>
+      </view>
+    </view>
+    <view class="line bg-grey light"></view>
+
+    <view class="cu-list menu-avatar" style="margin-bottom:10px">
+      <block wx:for="{{commonly}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item">
+          <view class="cu-avatar radius lg" style="background-image:url({{item.url}});"></view>
+          <view class="content">
+            <view class="text-cut">
+              <text class="text-cut">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="cu-bar bg-white">
+      <view class="action">
+        <text class="cuIcon-title text-green"></text>
+        <text>最近使用</text>
+      </view>
+    </view>
+    <view class="line bg-grey light"></view>
+
+    <view class="cu-list menu-avatar" style="margin-bottom:10px">
+      <block wx:for="{{recently}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item">
+          <view class="cu-avatar radius lg" style="background-image:url({{item.url}});"></view>
+          <view class="content">
+            <view class="text-cut">
+              <text class="text-cut">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+  </main>
+
+
+
+
+
+
+  <!-- 底部tabbar -->
+  <view class="cu-bar tabbar bg-white  shadow foot">
+    <view class="action" bindtap="jumpToIndex">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/01_on.png"></image>
+      </view>
+      <view class="text-green">首页</view>
+    </view>
+
+    <view class="action" bindtap="jumpToMsg">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/03.png"></image>
+      </view>
+      <view class="text-gray">消息</view>
+    </view>
+
+    <view class="action" bindtap="jumpToCourse">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/02.png"></image>
+      </view>
+      <view class="text-gray">课程</view>
+    </view>
+
+    <view class="action" bindtap="jumpToMe">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/04.png"></image>
+      </view>
+      <view class="text-gray">我</view>
+    </view>
+  </view>
+</view>

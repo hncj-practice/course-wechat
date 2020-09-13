@@ -1,0 +1,13 @@
+<!-- pages/home/home.wxml -->
+<!-- <view class="root" style="background-image:url(../../images/index.jpg);background-size:cover"> -->
+<view class="root">
+  <view class="main-btn">
+    <!-- <view class="bg-gradual-blue padding radius text-center shadow-blur" bind:tap="jumpToTeacherHome"> -->
+    <view class="bg-purple padding radius text-center light" bind:tap="jumpToTeacherHome">
+      <text>我是老师</text>
+    </view>
+    <view class="bg-gradual-pink padding radius text-center shadow-blur" bind:tap="jumpToStudentHome">
+      <text>我是学生</text>
+    </view>
+  </view>
+</view>
