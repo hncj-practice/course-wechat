@@ -1,2 +1,19 @@
 <!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+
+<form>
+  <view class="text-center">
+    <view class=" cu-form-group margin-top">
+      <view class="title">账号</view>
+      <input placeholder="Please input Account" value="081417137"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">密码</view>
+      <input type="password" placeholder="Please input password" value="000000"></input>
+    </view>
+  </view>
+
+  <view class="cu-form-group">
+    <button class="cu-btn bg-green shadow" bind:tap="login">登录</button>
+  </view>
+
+</form>

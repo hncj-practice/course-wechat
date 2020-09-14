@@ -1,4 +1,5 @@
 // pages/login/login.js
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -6,6 +7,18 @@ Page({
    */
   data: {
 
+  },
+
+  // 跳转到教师首页
+  login() {
+    var that=this;
+    var url ="https://fengyezhan.xyz/Interface/account/login?username=081417137&password=000000&type=1";
+    util.myAjaxGet(url).then(res=>{
+      that.setData({
+        data: res.data
+      })
+
+    })
   },
 
   /**
