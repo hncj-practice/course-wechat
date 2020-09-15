@@ -5,11 +5,15 @@ function getCurrentPage() {
   return url;
 }
 
-function myAjaxPost(url){
+function myAjaxPost(url, data){
   return new Promise((resolve, reject) => {
     wx.request({
       url: url,
       method: "POST",
+      header:{
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: data,
       success: res => resolve(res)
     })
   })

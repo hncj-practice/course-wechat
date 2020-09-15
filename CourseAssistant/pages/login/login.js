@@ -6,20 +6,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    index: 1,
+    picker: ['请选择账号类型','学生', '教师', '管理员'],
   },
-
-  // 跳转到教师首页
-  login() {
+  /**
+   * 登录操作
+   */
+  loginBox:function(event){
     var that=this;
-    var url ="https://fengyezhan.xyz/Interface/account/login?username=081417137&password=000000&type=1";
-    util.myAjaxGet(url).then(res=>{
-      that.setData({
-        data: res.data
-      })
+    that.setData({
+      username: event.detail.value.username,
+      password: event.detail.value.pwd
+    })
 
+    var url = "https://fengyezhan.xyz/Interface/account/login";
+    var data={
+      username: event.detail.value.username,
+      password: event.detail.value.pwd,
+      type : that.data.index
+    };
+
+    util.myAjaxPost(url, data).then(res => {
+      var d=res.data;
+      console.log(d.code);
+      wx.showToast({
+        title: d.message,
+        icon:'none'
+      })
+      if(res.data.code!=200){
+        return;
+      }
+      that.setData({
+        loginuser: res.data.data
+      })
+      wx.navigateTo({
+        url: '../teacher-index/teacher-index',
+      })
+      
+      
     })
   },
+  PickerChange(e) {
+    console.log(e);
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+
 
   /**
    * 生命周期函数--监听页面加载
