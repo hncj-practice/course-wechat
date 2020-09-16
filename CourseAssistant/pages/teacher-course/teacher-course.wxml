@@ -8,7 +8,7 @@
       <input type="text" placeholder="搜索课程" confirm-type="search"></input>
     </view>
     <view class="action">
-      <text class="cuIcon-search"></text>
+      <text class="cuIcon-search" bindtap="searchcourse"></text>
     </view>
   </view>
 
@@ -19,13 +19,13 @@
 
     <block wx:for="{{courses}}" wx:key="key" wx:for-item="item">
       <view class="cu-item" style="margin:0 10px 10px 10px;border-radius:15rpx;">
-        <view class="cu-avatar radius lg" style="background-image:url({{item.url}});"></view>
+        <view class="cu-avatar radius lg" style="background-image:url({{item.coverimg}});"></view>
         <view class="content">
           <view class="text-cut">
-            <text class="text-cut">{{item.name}}</text>
+            <text class="text-cut">{{item.cname}}</text>
           </view>
           <view class="text-cut text-sm flex">
-            <text class="text-cut">{{item.number}}人</text>
+            <text class="text-cut">{{item.snum}}人</text>
           </view>
         </view>
         <view class="action">

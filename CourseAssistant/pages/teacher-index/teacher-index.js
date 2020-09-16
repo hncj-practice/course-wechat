@@ -1,6 +1,6 @@
 // pages/teacher-index/teacher-index.js
 var util = require('../../utils/util.js');
-
+var app = getApp();
 Page({
 
   /**
@@ -12,23 +12,23 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: '../../images/swiper/01.jpg'
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/01.jpg'
     }, {
       id: 1,
       type: 'image',
-      url: '../../images/swiper/02.jpg'
+        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/02.jpg'
     }, {
       id: 2,
       type: 'image',
-      url: '../../images/swiper/03.jpg'
+        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/03.jpg'
     }, {
       id: 3,
       type: 'image',
-      url: '../../images/swiper/04.jpg'
+        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/04.jpg'
     }, {
       id: 4,
       type: 'image',
-      url: '../../images/swiper/05.png'
+        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/05.png'
     }],
 
     // 常用
@@ -52,6 +52,34 @@ Page({
         url: "../../images/courses/数据可视化.jpg"
       }
     ],
+  },
+
+  /**
+   * 查询当前登录教师所教授的课程
+   */
+  getCourse(){
+    var that=this;
+    var url ="http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
+    var data={
+      condition: app.globalData.loginuser.tno,
+      page:1,
+      num:3,
+      type:1
+    }
+    util.myAjaxPost(url, data).then(res=>{
+      wx.showToast({
+        title: res.data.message,
+        icon:'none'
+      })
+      if(res.data.code!=200){
+        return;
+      }
+      console.log(res.data)
+      that.setData({
+        recently:res.data.data,
+        commonly:res.data.data
+      })
+    })
   },
 
   cardSwiper(e) {
@@ -100,7 +128,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getCourse();
   },
 
   /**

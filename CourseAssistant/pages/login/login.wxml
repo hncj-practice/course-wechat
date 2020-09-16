@@ -10,7 +10,7 @@
       </view>
       <view class=" cu-form-group">
         <view class="title">账号</view>
-        <input type="text" name="username" placeholder="Please input Account" value="081417137"></input>
+        <input type="text" name="username" placeholder="Please input Account" value="888888888"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">密码</view>

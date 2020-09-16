@@ -22,10 +22,10 @@
     <view class="cu-list menu-avatar" style="margin-bottom:10px">
       <block wx:for="{{commonly}}" wx:key="key" wx:for-item="item">
         <view class="cu-item">
-          <view class="cu-avatar radius lg" style="background-image:url({{item.url}});"></view>
+          <view class="cu-avatar radius lg" style="background-image:url({{item.coverimg}});"></view>
           <view class="content">
             <view class="text-cut">
-              <text class="text-cut">{{item.name}}</text>
+              <text class="text-cut">{{item.cname}}</text>
             </view>
           </view>
         </view>
@@ -43,10 +43,10 @@
     <view class="cu-list menu-avatar" style="margin-bottom:10px">
       <block wx:for="{{recently}}" wx:key="key" wx:for-item="item">
         <view class="cu-item">
-          <view class="cu-avatar radius lg" style="background-image:url({{item.url}});"></view>
+          <view class="cu-avatar radius lg" style="background-image:url({{item.coverimg}});"></view>
           <view class="content">
             <view class="text-cut">
-              <text class="text-cut">{{item.name}}</text>
+              <text class="text-cut">{{item.cname}}</text>
             </view>
           </view>
         </view>

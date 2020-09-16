@@ -1,12 +1,13 @@
 // pages/login/login.js
 var util = require('../../utils/util.js');
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    index: 1,
+    index: 2,
     picker: ['请选择账号类型','学生', '教师', '管理员'],
   },
   /**
@@ -36,9 +37,9 @@ Page({
       if(res.data.code!=200){
         return;
       }
-      that.setData({
-        loginuser: res.data.data
-      })
+      app.globalData.loginuser=res.data.data;
+      console.log(app.globalData.loginuser);
+
       wx.navigateTo({
         url: '../teacher-index/teacher-index',
       })

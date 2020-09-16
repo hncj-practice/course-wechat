@@ -1,6 +1,6 @@
 // pages/teacher-course/teacher-course.js
 var util = require('../../utils/util.js');
-
+var app=getApp();
 Page({
 
   /**
@@ -48,6 +48,38 @@ Page({
     ]
   },
 
+  /**
+   * 查询当前登录教师所教授的所有课程
+   */
+  getCourse() {
+    var that = this;
+    var url = "http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
+    var data = {
+      condition: app.globalData.loginuser.tno,
+      type: 1
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      console.log(res.data)
+      that.setData({
+        courses: res.data.data
+      })
+    })
+  },
+
+  /**
+   * 从当前登录教师所教授的所有课程中筛选出需要的
+   */
+  searchcourse(){
+
+  },
+
 
   jumpToIndex() {
     if (util.getCurrentPage() === "pages/teacher-index/teacher-index") {
@@ -89,7 +121,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getCourse();
   },
 
   /**
