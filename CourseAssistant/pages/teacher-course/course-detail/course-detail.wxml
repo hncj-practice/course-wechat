@@ -1,0 +1,7 @@
+<!--pages/teacher-course/course-detail/course-detail.wxml-->
+
+<view>
+  <view>
+    <text>这是课程的详情页面</text>
+  </view>
+</view>

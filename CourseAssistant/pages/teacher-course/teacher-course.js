@@ -8,44 +8,7 @@ Page({
    */
   data: {
 
-    courses: [{
-        name: "Java高级应用",
-        url: "../../images/courses/Java高级应用.png",
-        number: 67
-      }, {
-        name: "数据科学",
-        url: "../../images/courses/数据科学.jpg",
-        number: 67
-      },
-      {
-        name: "云计算技术与应用",
-        url: "../../images/courses/云计算技术与应用.jpg",
-        number: 67
-      },
-      {
-        name: "数据可视化",
-        url: "../../images/courses/数据可视化.jpg",
-        number: 67
-      }, {
-        name: "Java高级应用",
-        url: "../../images/courses/Java高级应用.png",
-        number: 67
-      }, {
-        name: "数据科学",
-        url: "../../images/courses/数据科学.jpg",
-        number: 67
-      },
-      {
-        name: "云计算技术与应用",
-        url: "../../images/courses/云计算技术与应用.jpg",
-        number: 67
-      },
-      {
-        name: "数据可视化",
-        url: "../../images/courses/数据可视化.jpg",
-        number: 67
-      }
-    ]
+    courses: []
   },
 
   /**
@@ -78,6 +41,23 @@ Page({
    */
   searchcourse(){
 
+  },
+
+  /**
+   * 跳转到课程页面
+   */
+  gotocourse() {
+    wx.showToast({
+      title: '跳转到课程页面',
+      icon: 'none'
+    })
+    console.log("跳转到课程页面");
+    wx.navigateTo({
+      url: '../teacher-course/course-detail/course-detail',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
 
 

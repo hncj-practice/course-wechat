@@ -5,7 +5,8 @@
     "pages/teacher-index/teacher-index",
     "pages/teacher-msg/teacher-msg",
     "pages/teacher-course/teacher-course",
-    "pages/teacher-me/teacher-me"
+    "pages/teacher-me/teacher-me",
+    "pages/teacher-course/course-detail/course-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
