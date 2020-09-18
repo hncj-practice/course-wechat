@@ -102,6 +102,13 @@
           "pathName": "pages/home/home",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "student-index",
+          "pathName": "pages/student/student-index/student-index",
+          "query": "",
+          "scene": null
         }
       ]
     }
