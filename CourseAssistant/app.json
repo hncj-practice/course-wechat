@@ -6,13 +6,12 @@
     "pages/teacher/teacher-msg/teacher-msg",
     "pages/teacher/teacher-course/teacher-course",
     "pages/teacher/teacher-me/teacher-me",
-    
     "pages/teacher/teacher-course/course-detail/course-detail",
-
     "pages/student/student-index/student-index",
     "pages/student/student-msg/student-msg",
     "pages/student/student-course/student-course",
-    "pages/student/student-me/student-me"
+    "pages/student/student-me/student-me",
+    "pages/teacher/teacher-me/teacher-data/teacher-data"
   ],
   "window": {
     "backgroundTextStyle": "light",

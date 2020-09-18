@@ -20,6 +20,14 @@ Page({
       url: '../teacher-course/teacher-course?status='+status,
     })
   },
+  /**
+   * 跳转到我的资料页面
+   */
+  jumpToMydata(){
+    wx.navigateTo({
+      url: './teacher-data/teacher-data',
+    })
+  },
 
   jumpToIndex() {
     console.log(util.getCurrentPage());

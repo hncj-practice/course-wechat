@@ -56,7 +56,6 @@ Page({
       if(res.data.code!=200){
         return;
       }
-      console.log(res.data)
 
 
 
@@ -77,7 +76,7 @@ Page({
         }
         else if (item.status == "3"){
           archiveNum += 1;
-          review.push(item)
+          archive.push(item)
         }
       });
       var list={

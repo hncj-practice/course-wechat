@@ -107,6 +107,7 @@ Page({
     var courses=[];
     console.log("status:"+status);
     if(!status){
+      console.log("222");
       courses=app.globalData.courses.allcourses;
     }else if(status=="1"){
       courses=app.globalData.courses.processing;

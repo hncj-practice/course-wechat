@@ -116,6 +116,19 @@
           "pathName": "pages/student/student-me/student-me",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/teacher/teacher-me/teacher-data/teacher-data",
+          "pathName": "pages/teacher/teacher-me/teacher-data/teacher-data",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/teacher/teacher-msg/teacher-msg",
+          "pathName": "pages/teacher/teacher-msg/teacher-msg",
+          "scene": null
         }
       ]
     }
