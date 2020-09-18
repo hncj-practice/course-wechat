@@ -2,11 +2,11 @@
   "pages": [
     "pages/login/login",
     "pages/home/home",
-    "pages/teacher-index/teacher-index",
-    "pages/teacher-msg/teacher-msg",
-    "pages/teacher-course/teacher-course",
-    "pages/teacher-me/teacher-me",
-    "pages/teacher-course/course-detail/course-detail"
+    "pages/teacher/teacher-index/teacher-index",
+    "pages/teacher/teacher-msg/teacher-msg",
+    "pages/teacher/teacher-course/teacher-course",
+    "pages/teacher/teacher-me/teacher-me",
+    "pages/teacher/teacher-course/course-detail/course-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,5 +1,5 @@
 // pages/teacher-msg/teacher-msg.js
-var util = require('../../utils/util.js');
+var util = require('../../../utils/util.js');
 Page({
 
   /**
@@ -10,94 +10,96 @@ Page({
   },
 
   jumpToIndex() {
-    if (util.getCurrentPage() === "pages/teacher-index/teacher-index") {
+    console.log(util.getCurrentPage());
+    if (util.getCurrentPage() === "pages/teacher/teacher-index/teacher-index") {
       return;
     }
     wx.redirectTo({
-      url: '../../pages/teacher-index/teacher-index',
+      url: '../teacher-index/teacher-index',
     })
   },
 
   jumpToMsg() {
-    if (util.getCurrentPage() === "pages/teacher-msg/teacher-msg") {
+    console.log(util.getCurrentPage());
+    if (util.getCurrentPage() === "pages/teacher/teacher-msg/teacher-msg") {
       return;
     }
     wx.redirectTo({
-      url: '../../pages/teacher-msg/teacher-msg',
+      url: '../teacher-msg/teacher-msg',
     })
   },
 
   jumpToCourse() {
-    if (util.getCurrentPage() === "pages/teacher-course/teacher-course") {
+    if (util.getCurrentPage() === "pages/teacher/teacher-course/teacher-course") {
       return;
     }
     wx.redirectTo({
-      url: '../../pages/teacher-course/teacher-course',
+      url: '../teacher-course/teacher-course',
     })
   },
 
   jumpToMe() {
-    if (util.getCurrentPage() === "pages/pages/teacher-me/teacher-me") {
+    if (util.getCurrentPage() === "pages/pages/teacher/teacher-me/teacher-me") {
       return;
     }
     wx.redirectTo({
-      url: '../../pages/teacher-me/teacher-me',
+      url: '../teacher-me/teacher-me',
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

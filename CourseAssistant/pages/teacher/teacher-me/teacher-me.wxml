@@ -1,13 +1,14 @@
 <!--pages/teacher-me/teacher-me.wxml-->
 <view class="root">
-  <view class="head" style="background-image: url(../../images/index.jpg);">
+  <!-- <view class="head" style="background-image: url(../../../images/index.jpg);"> -->
+  <view class="head" style="background-image: url({{bgImage}});">
     <image class="avatar" mode="widthFix" src="{{teacheravatar}}"> </image>
     <view class="text-xl name">
       {{teachername}}
     </view>
 
   </view>
-  <image class="wave" mode="scaleToFill" src="../../images/wave.gif"> </image>
+  <image class="wave" mode="scaleToFill" src="../../../images/wave.gif"> </image>
 
   <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">

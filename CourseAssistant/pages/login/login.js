@@ -41,7 +41,7 @@ Page({
       console.log(app.globalData.loginuser);
 
       wx.navigateTo({
-        url: '../teacher-index/teacher-index',
+        url: '../teacher/teacher-index/teacher-index',
       })
       
       
