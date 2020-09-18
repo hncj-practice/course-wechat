@@ -1,2 +1,40 @@
 <!--pages/student/student-index/student-index.wxml-->
-<text>pages/student/student-index/student-index.wxml</text>
+<view class="root">
+
+
+  index
+
+
+
+
+  <!-- 底部tabbar -->
+  <view class="cu-bar tabbar bg-white  shadow foot">
+    <view class="action" bindtap="jump" data-page="index">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/index_on.png"></image>
+      </view>
+      <view class="text-green">首页</view>
+    </view>
+
+    <view class="action" bindtap="jump" data-page="msg">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/msg.png"></image>
+      </view>
+      <view class="text-gray">消息</view>
+    </view>
+
+    <view class="action" bindtap="jump" data-page="course">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/course.png"></image>
+      </view>
+      <view class="text-gray">课程</view>
+    </view>
+
+    <view class="action" bindtap="jump" data-page="me">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/me.png"></image>
+      </view>
+      <view class="text-gray">我</view>
+    </view>
+  </view>
+</view>
