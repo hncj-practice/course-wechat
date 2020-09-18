@@ -10,6 +10,17 @@ Page({
     bgImage: "https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/index.jpg"
   },
 
+  /**
+   * 跳转到课程页面
+   */
+  jump2Course(event){
+    var status=event.currentTarget.dataset.status;
+    console.log("WWW"+status);
+    wx.navigateTo({
+      url: '../teacher-course/teacher-course?status='+status,
+    })
+  },
+
   jumpToIndex() {
     console.log(util.getCurrentPage());
     if (util.getCurrentPage() === "pages/teacher/teacher-index/teacher-index") {
@@ -51,9 +62,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.courses)
     this.setData({
       teachername: app.globalData.loginuser.name,
-      teacheravatar: app.globalData.loginuser.avatar
+      teacheravatar: app.globalData.loginuser.avatar,
+      courses:{
+        allcourses:app.globalData.courses.allcourses,
+        processing:app.globalData.courses.processing,
+        processingnum:app.globalData.courses.processingnum,
+        review:app.globalData.courses.review,
+        reviewnum:app.globalData.courses.reviewnum,
+        archive:app.globalData.courses.archive,
+        archivenum:app.globalData.courses.archivenum
+      }
     })
   },
 

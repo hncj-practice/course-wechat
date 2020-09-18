@@ -11,18 +11,18 @@
   <image class="wave" mode="scaleToFill" src="../../../images/wave.gif"> </image>
 
   <view class="padding flex text-center text-grey bg-white shadow-warp">
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-orange">10</view>
+    <view class="flex flex-sub flex-direction solid-right" bindtap="jump2Course" data-status="1">
+      <view class="text-xxl text-orange">{{courses.processingnum}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-attentionfill"></text> 正在进行</view>
     </view>
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-blue">1</view>
+    <view class="flex flex-sub flex-direction solid-right" bindtap="jump2Course" data-status="2">
+      <view class="text-xxl text-blue">{{courses.reviewnum}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-favorfill"></text> 审核中</view>
     </view>
-    <view class="flex flex-sub flex-direction">
-      <view class="text-xxl text-green">6</view>
+    <view class="flex flex-sub flex-direction" bindtap="jump2Course" data-status="3">
+      <view class="text-xxl text-green">{{courses.archivenum}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-fork"></text> 已结课</view>
     </view>

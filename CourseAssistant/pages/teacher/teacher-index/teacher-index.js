@@ -46,8 +46,6 @@ Page({
     var url ="http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
     var data={
       condition: app.globalData.loginuser.tno,
-      page:1,
-      num:3,
       type:1
     }
     util.myAjaxPost(url, data).then(res=>{
@@ -59,9 +57,42 @@ Page({
         return;
       }
       console.log(res.data)
+
+
+
+      var courses=res.data.data;
+      //分别代表：进行中、审核中、归档
+      var processingNum = 0,
+        reviewNum = 0,
+        archiveNum = 0;
+      var processing=[],review=[],archive=[];
+      courses.forEach(item => {
+        if (item.status == "1"){
+          processing.push(item)
+          processingNum += 1;
+        }
+        else if (item.status == "2"){
+          reviewNum += 1;
+          review.push(item)
+        }
+        else if (item.status == "3"){
+          archiveNum += 1;
+          review.push(item)
+        }
+      });
+      var list={
+        allcourses:courses,
+        processing:processing,
+        processingnum:processingNum,
+        review:review,
+        reviewnum:reviewNum,
+        archive:archive,
+        archivenum:archiveNum,
+      }
+      app.globalData.courses=list;
+
       that.setData({
-        recently:res.data.data,
-        commonly:res.data.data
+        recently:res.data.data
       })
     })
   },
