@@ -1,2 +1,79 @@
 <!--pages/student/student-me/student-me.wxml-->
-<text>pages/student/student-me/student-me.wxml</text>
+
+<view class="root">
+
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-myfill text-red"></text>
+        <text class="text-grey">我的资料</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-settingsfill text-grey"></text>
+        <text class="text-grey">设置</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">日志</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-creativefill text-orange"></text>
+        <text class="text-grey">Bug测试</text>
+      </button>
+    </view>
+  </view>
+
+
+
+
+
+
+  <!-- 底部tabbar -->
+  <view class="cu-bar tabbar bg-white  shadow foot">
+    <view class="action" bindtap="jump" data-page="index">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/index.png"></image>
+      </view>
+      <view class="text-gray">首页</view>
+    </view>
+
+    <view class="action" bindtap="jump" data-page="msg">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/msg.png"></image>
+      </view>
+      <view class="text-gray">消息</view>
+    </view>
+
+    <view class="action" bindtap="jump" data-page="course">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/course.png"></image>
+      </view>
+      <view class="text-gray">课程</view>
+    </view>
+
+    <view class="action" bindtap="jump" data-page="me">
+      <view class="cuIcon-cu-image">
+        <image src="/images/bar/me_on.png"></image>
+      </view>
+      <view class="text-green">我</view>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,7 @@
 // pages/student/student-me/student-me.js
+
+var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
+
 Page({
 
   /**
@@ -6,6 +9,12 @@ Page({
    */
   data: {
 
+  },
+
+  // tabbar跳转
+  jump(e) {
+    let page = e.currentTarget.dataset.page;
+    PageJumpUtil.jump(false, page);
   },
 
   /**
@@ -62,5 +71,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+
+  // tabbar跳转
+
+
+
 })

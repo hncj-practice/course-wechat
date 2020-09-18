@@ -109,6 +109,13 @@
           "pathName": "pages/student/student-index/student-index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "student-me",
+          "pathName": "pages/student/student-me/student-me",
+          "query": "",
+          "scene": null
         }
       ]
     }
