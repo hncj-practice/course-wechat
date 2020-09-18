@@ -1,32 +1,7 @@
-<!--pages/teacher-me/teacher-me.wxml-->
+<!--pages/student/student-me/student-me.wxml-->
+
 <view class="root">
-  <!-- <view class="head" style="background-image: url(../../../images/index.jpg);"> -->
-  <view class="head" style="background-image: url({{bgImage}});">
-    <image class="avatar" mode="widthFix" src="{{teacheravatar}}"> </image>
-    <view class="text-xl name">
-      {{teachername}}
-    </view>
 
-  </view>
-  <image class="wave" mode="scaleToFill" src="../../../images/wave.gif"> </image>
-
-  <view class="padding flex text-center text-grey bg-white shadow-warp">
-    <view class="flex flex-sub flex-direction solid-right" bindtap="jump2Course" data-status="1">
-      <view class="text-xxl text-orange">{{courses.processingnum}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-attentionfill"></text> 正在进行</view>
-    </view>
-    <view class="flex flex-sub flex-direction solid-right" bindtap="jump2Course" data-status="2">
-      <view class="text-xxl text-blue">{{courses.reviewnum}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-favorfill"></text> 审核中</view>
-    </view>
-    <view class="flex flex-sub flex-direction" bindtap="jump2Course" data-status="3">
-      <view class="text-xxl text-green">{{courses.archivenum}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-fork"></text> 已结课</view>
-    </view>
-  </view>
 
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 
@@ -73,28 +48,28 @@
 
   <!-- 底部tabbar -->
   <view class="cu-bar tabbar bg-white  shadow foot">
-    <view class="action" bindtap="jumpToIndex">
+    <view class="action" bindtap="jump" data-page="index">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/index.png"></image>
       </view>
       <view class="text-gray">首页</view>
     </view>
 
-    <view class="action" bindtap="jumpToMsg">
+    <view class="action" bindtap="jump" data-page="msg">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/msg.png"></image>
       </view>
       <view class="text-gray">消息</view>
     </view>
 
-    <view class="action" bindtap="jumpToCourse">
+    <view class="action" bindtap="jump" data-page="course">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/course.png"></image>
       </view>
       <view class="text-gray">课程</view>
     </view>
 
-    <view class="action" bindtap="jumpToMe">
+    <view class="action" bindtap="jump" data-page="me">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/me_on.png"></image>
       </view>

@@ -9,28 +9,28 @@
   <view class="cu-bar tabbar bg-white  shadow foot">
     <view class="action" bindtap="jumpToIndex">
       <view class="cuIcon-cu-image">
-        <image src="/images/bar/01.png"></image>
+        <image src="/images/bar/index.png"></image>
       </view>
       <view class="text-gray">首页</view>
     </view>
 
     <view class="action" bindtap="jumpToMsg">
       <view class="cuIcon-cu-image">
-        <image src="/images/bar/02_on.png"></image>
+        <image src="/images/bar/msg_on.png"></image>
       </view>
       <view class="text-green">消息</view>
     </view>
 
     <view class="action" bindtap="jumpToCourse">
       <view class="cuIcon-cu-image">
-        <image src="/images/bar/03.png"></image>
+        <image src="/images/bar/course.png"></image>
       </view>
       <view class="text-gray">课程</view>
     </view>
 
     <view class="action" bindtap="jumpToMe">
       <view class="cuIcon-cu-image">
-        <image src="/images/bar/04.png"></image>
+        <image src="/images/bar/me.png"></image>
       </view>
       <view class="text-gray">我</view>
     </view>
