@@ -131,6 +131,12 @@
           "pathName": "pages/teacher/teacher-msg/teacher-msg",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/teacher/teacher-course/course-detail/course-detail",
+          "pathName": "pages/teacher/teacher-course/course-detail/course-detail",
+          "scene": null
         }
       ]
     }
