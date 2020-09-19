@@ -49,10 +49,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      teachername: app.globalData.loginuser.name,
-      teacheravatar: app.globalData.loginuser.avatar,
-    })
+    try{
+      var loginuser=wx.getStorageSync('loginuser');
+      console.log(loginuser)
+      if(loginuser){
+        this.setData({
+          teachername: loginuser.name,
+          teacheravatar: loginuser.avatar,
+        })
+      }else{
+        wx.showToast({
+          title: '未登录，请登录后重试',
+          icon:'none',
+          duration:3000
+        })
+        
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        },3000);
+        
+      }
+    }catch(e){}
+    
+    
     if (app.globalData.courses) {
       console.log(app.globalData.courses)
       this.setData({

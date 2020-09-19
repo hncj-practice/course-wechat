@@ -46,13 +46,41 @@ Page({
   },
 
   /**
+   * 判断当前用户是否登录
+   */
+  isLogin(){
+    try{
+      var loginuser=wx.getStorageSync('loginuser');
+      console.log(loginuser)
+      if(loginuser){
+        this.setData({
+          tno: loginuser.tno
+        })
+      }else{
+        wx.showToast({
+          title: '未登录，请登录后重试',
+          icon:'none',
+          duration:3000
+        })
+        
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        },3000);
+        
+      }
+    }catch(e){}
+  },
+
+  /**
    * 查询当前登录教师所教授的课程
    */
   getCourse() {
     var that = this;
     var url = "http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
     var data = {
-      condition: app.globalData.loginuser.tno,
+      condition: that.data.tno,
       type: 1
     }
     util.myAjaxPost(url, data).then(res => {
@@ -107,14 +135,15 @@ Page({
   /**
    * 跳转到课程页面
    */
-  gotocourse() {
+  gotocourse(event) {
+    var courseid=event.currentTarget.dataset.courseid;
     wx.showToast({
       title: '跳转到课程页面',
       icon: 'none'
     })
     console.log("跳转到课程页面");
     wx.navigateTo({
-      url: '../teacher-course/course-detail/course-detail',
+      url: '../teacher-course/course-detail/course-detail?courseid='+courseid,
       success: function (res) {},
       fail: function (res) {},
       complete: function (res) {},
@@ -131,6 +160,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.isLogin();
     this.getCourse();
   },
 

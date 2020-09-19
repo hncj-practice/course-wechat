@@ -8,50 +8,57 @@ Page({
    */
   data: {
     index: 2,
-    picker: ['请选择账号类型','学生', '教师', '管理员'],
+    picker: ['请选择账号类型', '学生', '教师', '管理员'],
   },
   /**
    * 登录操作
    */
-  loginBox:function(event){
-    var that=this;
+  loginBox: function (event) {
+    var that = this;
     that.setData({
       username: event.detail.value.username,
       password: event.detail.value.pwd
     })
 
     var url = "https://fengyezhan.xyz/Interface/account/login";
-    var data={
+    var data = {
       username: event.detail.value.username,
       password: event.detail.value.pwd,
-      type : that.data.index
+      type: that.data.index
     };
 
     util.myAjaxPost(url, data).then(res => {
-      var d=res.data;
+      var d = res.data;
       console.log(d.code);
       wx.showToast({
         title: d.message,
-        icon:'none'
+        icon: 'none'
       })
-      if(res.data.code!=200){
+      if (res.data.code != 200) {
         return;
       }
-      app.globalData.loginuser=res.data.data;
-      console.log(app.globalData.loginuser);
 
-      if(this.data.index==1){//跳转到学生页面
+      // app.globalData.loginuser = res.data.data;
+
+      //将登录信息保存到缓存
+      wx.setStorage({
+        data: res.data.data,
+        key: 'loginuser',
+      })
+      // console.log(app.globalData.loginuser);
+
+      if (this.data.index == 1) { //跳转到学生页面
         wx.redirectTo({
           url: '../student/student-index/student-index',
         })
-      }else if(this.data.index==2){//跳转到教师界面
+      } else if (this.data.index == 2) { //跳转到教师界面
         wx.redirectTo({
           url: '../teacher/teacher-index/teacher-index',
         })
       }
-      
-      
-      
+
+
+
     })
   },
   PickerChange(e) {

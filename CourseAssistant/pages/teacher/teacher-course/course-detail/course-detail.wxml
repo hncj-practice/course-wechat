@@ -3,9 +3,9 @@
 <view class="cu-list menu sm-border card-menu margin-top">
   <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
     <view class="cu-item arrow">
-      <view class="content">
+      <view class="content text-left">
         <text class="cuIcon-btn text-blue"></text>
-        <text class="text-grey text-center">{{item.chaptername}}</text>
+        <text class="text-grey">{{item.chaptername}}</text>
       </view>
     </view>
   </block>

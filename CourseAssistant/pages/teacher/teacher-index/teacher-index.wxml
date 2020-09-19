@@ -21,7 +21,7 @@
 
     <view class="cu-list menu-avatar" style="margin-bottom:10px">
       <block wx:for="{{recently}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item" bindtap="gotocourse">
+        <view class="cu-item" bindtap="gotocourse" data-courseid="{{item.cid}}">
           <view class="cu-avatar radius lg" style="background-image:url({{item.coverimg}});"></view>
           <view class="content">
             <view class="text-cut">
