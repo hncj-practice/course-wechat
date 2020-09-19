@@ -1,0 +1,72 @@
+<view class="cu-list menu sm-border card-menu margin-top">
+  <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-btn text-red"></text>
+        <text class="text-grey">学号</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">{{teacherinfo.sno}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-profile text-orange"></text>
+        <text class="text-grey">姓名</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">{{teacherinfo.name}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-github text-yellow"></text>
+        <text class="text-grey">性别</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">{{teacherinfo.sex=='f'?'女':'男'}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-loading2 text-green"></text>
+        <text class="text-grey">邮箱</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">{{teacherinfo.email}}</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-crownfill text-yellow"></text>
+        <text class="text-grey">状态</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">{{teacherinfo.status=='1'?'已激活':'未激活'}}</text>
+      </view>
+    </view>
+    
+
+
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-grey">标签</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-orange light">C</view>
+        <view class="cu-tag round bg-olive light">JAVA</view>
+        <view class="cu-tag round bg-blue light">小程序</view>
+        <view class="cu-tag round bg-purple light">计算机</view>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-text text-pink"></text>
+        <text class="text-grey">文本</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">这个人很懒，什么都没有留下！！！</text>
+      </view>
+    </view>
+    
+  </view>

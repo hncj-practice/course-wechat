@@ -1,7 +1,5 @@
-// pages/student/student-me/student-me.js
-
-var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
-
+// pages/student/student-me/student-data/student-data.js
+var app=getApp();
 Page({
 
   /**
@@ -10,25 +8,14 @@ Page({
   data: {
 
   },
-  /**
-   * 跳转到我的资料页面
-   */
-  jumpToMydata() {
-    wx.navigateTo({
-      url: './student-data/student-data',
-    })
-  },
-  // tabbar跳转
-  jump(e) {
-    let page = e.currentTarget.dataset.page;
-    PageJumpUtil.jump(false, page);
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      teacherinfo:app.globalData.loginuser
+    })
   },
 
   /**
@@ -78,11 +65,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-
-  // tabbar跳转
-
-
-
+  }
 })

@@ -11,30 +11,6 @@ Page({
     courses: []
   },
 
-  /**
-   * 查询当前登录教师所教授的所有课程
-   */
-  getCourse() {
-    var that = this;
-    var url = "http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
-    var data = {
-      condition: app.globalData.loginuser.tno,
-      type: 1
-    }
-    util.myAjaxPost(url, data).then(res => {
-      wx.showToast({
-        title: res.data.message,
-        icon: 'none'
-      })
-      if (res.data.code != 200) {
-        return;
-      }
-      console.log(res.data)
-      that.setData({
-        courses: res.data.data
-      })
-    })
-  },
 
   /**
    * 从当前登录教师所教授的所有课程中筛选出需要的
@@ -106,16 +82,21 @@ Page({
     var status = options.status;
     var courses=[];
     console.log("status:"+status);
-    if(!status){
-      console.log("222");
-      courses=app.globalData.courses.allcourses;
-    }else if(status=="1"){
-      courses=app.globalData.courses.processing;
-    }else if(status=="2"){
-      courses=app.globalData.courses.review;
-    }else if(status=="3"){
-      courses=app.globalData.courses.archive;
+    if(app.globalData.courses){
+      if(!status){
+        console.log("222");
+        courses=app.globalData.courses.allcourses;
+      }else if(status=="1"){
+        courses=app.globalData.courses.processing;
+      }else if(status=="2"){
+        courses=app.globalData.courses.review;
+      }else if(status=="3"){
+        courses=app.globalData.courses.archive;
+      }
+    }else{
+      courses=[]
     }
+    
     this.setData({
       courses: courses,
     })

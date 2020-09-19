@@ -2,8 +2,27 @@
 <view class="root">
 
 
-  course
+  <!-- 课程列表 -->
+  <view class="cu-list menu-avatar" style="padding-top:10px;">
 
+    <block wx:for="{{courses}}" wx:key="key" wx:for-item="item">
+      <view class="cu-item" bindtap="gotocourse" style="margin:0 10px 10px 10px;border-radius:15rpx;">
+        <view class="cu-avatar radius lg" style="background-image:url({{item.coverimg}});"></view>
+        <view class="content">
+          <view class="text-cut">
+            <text class="text-cut">{{item.cname}}</text>
+          </view>
+          <view class="text-cut text-sm flex">
+            <text class="text-cut">{{item.snum}}人</text>
+          </view>
+        </view>
+        <view class="action">
+          <text class="cuIcon-right"></text>
+        </view>
+      </view>
+    </block>
+
+  </view>
 
   <!-- 底部tabbar -->
   <view class="cu-bar tabbar bg-white  shadow foot">

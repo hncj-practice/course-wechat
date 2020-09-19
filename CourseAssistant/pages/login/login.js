@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index: 2,
+    index: 1,
     picker: ['请选择账号类型','学生', '教师', '管理员'],
   },
   /**
@@ -40,9 +40,16 @@ Page({
       app.globalData.loginuser=res.data.data;
       console.log(app.globalData.loginuser);
 
-      wx.navigateTo({
-        url: '../teacher/teacher-index/teacher-index',
-      })
+      if(this.data.index==1){//跳转到学生页面
+        wx.redirectTo({
+          url: '../student/student-index/student-index',
+        })
+      }else if(this.data.index==2){//跳转到教师界面
+        wx.redirectTo({
+          url: '../teacher/teacher-index/teacher-index',
+        })
+      }
+      
       
       
     })

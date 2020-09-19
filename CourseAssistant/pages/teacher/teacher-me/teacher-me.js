@@ -18,6 +18,13 @@ Page({
     console.log("WWW"+status);
     wx.navigateTo({
       url: '../teacher-course/teacher-course?status='+status,
+      success: (result) => {
+        console.log(result)
+      },
+      fail: (res) => {
+        console.log(res)},
+      complete: (res) => {
+        console.log(res)},
     })
   },
   /**
@@ -70,20 +77,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.courses)
     this.setData({
       teachername: app.globalData.loginuser.name,
       teacheravatar: app.globalData.loginuser.avatar,
-      courses:{
-        allcourses:app.globalData.courses.allcourses,
-        processing:app.globalData.courses.processing,
-        processingnum:app.globalData.courses.processingnum,
-        review:app.globalData.courses.review,
-        reviewnum:app.globalData.courses.reviewnum,
-        archive:app.globalData.courses.archive,
-        archivenum:app.globalData.courses.archivenum
-      }
     })
+    if(app.globalData.courses){
+      console.log(app.globalData.courses)
+      this.setData({
+        courses:{
+          allcourses:app.globalData.courses.allcourses,
+          processing:app.globalData.courses.processing,
+          processingnum:app.globalData.courses.processingnum,
+          review:app.globalData.courses.review,
+          reviewnum:app.globalData.courses.reviewnum,
+          archive:app.globalData.courses.archive,
+          archivenum:app.globalData.courses.archivenum
+        }
+      })
+    }else{
+      this.setData({
+        courses:{
+          allcourses:[],
+          processing:[],
+          processingnum:0,
+          review:[],
+          reviewnum:0,
+          archive:[],
+          archivenum:0
+        }
+      })
+    }
+    
   },
 
   /**

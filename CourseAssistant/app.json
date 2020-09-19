@@ -11,7 +11,8 @@
     "pages/student/student-msg/student-msg",
     "pages/student/student-course/student-course",
     "pages/student/student-me/student-me",
-    "pages/teacher/teacher-me/teacher-data/teacher-data"
+    "pages/teacher/teacher-me/teacher-data/teacher-data",
+    "pages/student/student-me/student-data/student-data"
   ],
   "window": {
     "backgroundTextStyle": "light",

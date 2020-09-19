@@ -89,12 +89,14 @@ Page({
         archivenum:archiveNum,
       }
       app.globalData.courses=list;
+      console.log(app.globalData.courses)
 
       that.setData({
         recently:res.data.data
       })
     })
   },
+  
   /**
    * 跳转到课程页面
    */
