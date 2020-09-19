@@ -1,12 +1,30 @@
 // pages/teacher-course/course-detail/course-detail.js
-var util=require("../../../../utils/util.js");
-var app=getApp();
+var util = require("../../../../utils/util.js");
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    // 当前选中页面
+    TabCur: 0,
+    scrollLeft: 0,
+    tab: [
+      "章节",
+      "试卷",
+      "话题"
+    ]
+
+  },
+
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+
+    console.log('当前页面：' + this.data.tab[this.data.TabCur]);
 
   },
 
@@ -14,21 +32,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var courseid=options.courseid;
-    console.log('courseid:'+courseid);
-    
-    var url='https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
-    var data={
-      courseid:courseid
+    var that = this;
+    var courseid = options.courseid;
+    console.log('courseid:' + courseid);
+
+    var url = 'https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
+    var data = {
+      courseid: courseid
     }
-    util.myAjaxPost(url,data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       console.log(res.data)
-      if(res.data.code!=200){
+      if (res.data.code != 200) {
         return
       }
       that.setData({
-        chapters:res.data.data
+        chapters: res.data.data
       })
     })
   },

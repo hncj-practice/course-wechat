@@ -1,13 +1,37 @@
 <!--pages/teacher-course/course-detail/course-detail.wxml-->
 
-<view class="cu-list menu sm-border card-menu margin-top">
-  <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
-    <view class="cu-item arrow">
-      <view class="content">
-        <text class="cuIcon-btn text-blue"></text>
-        <text class="text-grey text-center">{{item.chaptername}}</text>
-      </view>
+<view class="root">
+
+  <!-- 导航栏 -->
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tab.length}}" wx:key="key" bindtap="tabSelect"
+      data-id="{{index}}">
+      {{tab[index]}}
     </view>
-  </block>
+  </scroll-view>
+
+  <!-- 章节 -->
+  <view class="cu-list menu sm-border card-menu margin-top" wx:if="{{TabCur==0}}">
+    <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+      <view class="cu-item arrow">
+        <view class="content">
+          <text class="cuIcon-btn text-blue"></text>
+          <text class="text-grey text-center">{{item.chaptername}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 试卷 -->
+  <view wx:if="{{TabCur==1}}">
+    试卷
+  </view>
+
+  <!-- 话题 -->
+  <view wx:if="{{TabCur==2}}">
+    资料
+  </view>
+
+  <!-- 资料 -->
 
 </view>
