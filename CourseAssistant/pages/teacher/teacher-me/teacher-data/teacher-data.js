@@ -8,15 +8,39 @@ Page({
   data: {
 
   },
+  /**
+   * 判断当前用户是否登录
+   */
+  isLogin(){
+    try{
+      var loginuser=wx.getStorageSync('loginuser');
+      console.log(loginuser)
+      if(loginuser){
+        this.setData({
+          teacherinfo: loginuser
+        })
+      }else{
+        wx.showToast({
+          title: '未登录，请登录后重试',
+          icon:'none',
+          duration:3000
+        })
+        
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        },3000);
+        
+      }
+    }catch(e){}
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    this.setData({
-      teacherinfo:app.globalData.loginuser
-    })
+    this.isLogin();
   },
 
   /**

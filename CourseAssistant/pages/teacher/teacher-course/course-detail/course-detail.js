@@ -1,12 +1,106 @@
 // pages/teacher-course/course-detail/course-detail.js
-var util=require("../../../../utils/util.js");
-var app=getApp();
+var util = require("../../../../utils/util.js");
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    // 当前选中页面
+    TabCur: 0,
+    scrollLeft: 0,
+    tab: [
+      "章节",
+      "试卷",
+      "资料",
+      "话题"
+    ]
+  },
+
+  /**
+   * 获取本页面需要的所有数据
+   * @param {} options 
+   */
+  getData(options){
+    var that = this;
+    var courseid = options.courseid;
+    console.log('courseid:' + courseid);
+
+    //获取该课程的章节信息
+    var chapter_url = 'https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
+    var chapter_data = {
+      courseid: courseid
+    }
+    util.myAjaxPost(chapter_url, chapter_data).then(res => {
+      console.log(res.data)
+      if (res.data.code != 200) {
+        return
+      }
+      that.setData({
+        chapters: res.data.data
+      })
+    });
+
+    //获取该课程的试卷信息
+    var paper_url = 'https://fengyezhan.xyz/Interface/paper/getpaperbycourseid';
+    var paper_data = {
+      courseid: courseid
+    }
+    util.myAjaxPost(paper_url, paper_data).then(res => {
+      console.log(res.data)
+      if (res.data.code != 200) {
+        return
+      }
+      that.setData({
+        papers: res.data.data
+      })
+    });
+
+    //获取该课程的资料信息
+    var data_url = 'https://fengyezhan.xyz/Interface/data/getdatabycourseid';
+    var data_data = {
+      courseid: courseid
+    }
+    util.myAjaxPost(data_url, data_data).then(res => {
+      console.log(res.data)
+      if (res.data.code != 200) {
+        return
+      }
+      that.setData({
+        datas: res.data.data
+      })
+    });
+
+    //获取该课程的话题信息
+    var topic_url = 'https://fengyezhan.xyz/Interface/topic/gettopicbycid';
+    var topic_data = {
+      courseid: courseid
+    }
+    util.myAjaxPost(topic_url, topic_data).then(res => {
+      console.log(res.data)
+      if (res.data.code != 200) {
+        return
+      }
+      that.setData({
+        topics: res.data.data
+      })
+    });
+  },
+  jumpToPaper(event){
+    var paperid=event.currentTarget.dataset.paperid;
+    wx.navigateTo({
+      url: './teacher-paper/teacher-paper?paperid='+paperid,
+    })
+  },
+
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+
+    console.log('当前页面：' + this.data.tab[this.data.TabCur]);
 
   },
 
@@ -14,23 +108,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var courseid=options.courseid;
-    console.log('courseid:'+courseid);
-    
-    var url='https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
-    var data={
-      courseid:courseid
-    }
-    util.myAjaxPost(url,data).then(res=>{
-      console.log(res.data)
-      if(res.data.code!=200){
-        return
-      }
-      that.setData({
-        chapters:res.data.data
-      })
-    })
+    this.getData(options);
   },
 
   /**

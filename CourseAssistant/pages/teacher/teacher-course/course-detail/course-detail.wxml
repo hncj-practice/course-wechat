@@ -1,13 +1,71 @@
 <!--pages/teacher-course/course-detail/course-detail.wxml-->
 
-<view class="cu-list menu sm-border card-menu margin-top">
-  <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
-    <view class="cu-item arrow">
-      <view class="content text-left">
-        <text class="cuIcon-btn text-blue"></text>
-        <text class="text-grey">{{item.chaptername}}</text>
-      </view>
-    </view>
-  </block>
+<view class="root">
 
+  <!-- 导航栏 -->
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tab.length}}" wx:key="key" bindtap="tabSelect"
+      data-id="{{index}}">
+      {{tab[index]}}
+    </view>
+  </scroll-view>
+
+  <!-- 章节 -->
+  <view wx:if="{{TabCur==0}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-btn text-blue"></text>
+            <text class="text-grey text-center">{{item.chaptername}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+  <!-- 试卷 -->
+  <view wx:if="{{TabCur==1}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{papers}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow" bindtap="jumpToPaper" data-paperid="{{item.paperid}}">
+          <view class="content">
+            <text class="cuIcon-formfill text-green"></text>
+            <text class="text-grey text-center">{{item.papername}}</text>
+          </view>
+        </view>
+
+
+      </block>
+    </view>
+  </view>
+
+  <!-- 资料 -->
+  <view wx:if="{{TabCur==2}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-file text-green"></text>
+            <text class="text-grey text-center">{{item.dataname}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 话题 -->
+  <view wx:if="{{TabCur==3}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{topics}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-communityfill text-green"></text>
+            <text class="text-grey text-center">{{item.topictitle}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
 </view>

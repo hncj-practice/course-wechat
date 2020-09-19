@@ -1,0 +1,8 @@
+<!--pages/teacher/teacher-course/course-detail/teacher-paper/teacher-paper.wxml-->
+<view>
+  <block wx:for="{{choice}}" wx:key="key" wx:for-item="item">
+    <text>{{item.question}}</text>
+    <text>{{item.panswer}}</text>
+  </block>
+  
+</view>
