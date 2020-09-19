@@ -26,16 +26,17 @@ Page({
   },
 
   /**
-   * 跳转到课程页面
+   * 跳转到课程详情页面
    */
-  gotocourse() {
+  goToDetailCourse(event) {
+    var courseid=event.currentTarget.dataset.courseid;
     wx.showToast({
       title: '跳转到课程页面',
       icon: 'none'
     })
     console.log("跳转到课程页面");
     wx.navigateTo({
-      url: '../teacher-course/course-detail/course-detail',
+      url: '../teacher-course/course-detail/course-detail?courseid='+courseid,
       success: function (res) {},
       fail: function (res) {},
       complete: function (res) {},

@@ -1,4 +1,6 @@
 // pages/teacher-course/course-detail/course-detail.js
+var util=require("../../../../utils/util.js");
+var app=getApp();
 Page({
 
   /**
@@ -12,7 +14,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    var courseid=options.courseid;
+    console.log('courseid:'+courseid);
+    
+    var url='https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
+    var data={
+      courseid:courseid
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      console.log(res.data)
+      if(res.data.code!=200){
+        return
+      }
+      that.setData({
+        chapters:res.data.data
+      })
+    })
   },
 
   /**

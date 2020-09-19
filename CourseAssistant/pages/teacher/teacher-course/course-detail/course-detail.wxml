@@ -1,7 +1,13 @@
 <!--pages/teacher-course/course-detail/course-detail.wxml-->
 
-<view>
-  <view>
-    <text>这是课程的详情页面</text>
-  </view>
+<view class="cu-list menu sm-border card-menu margin-top">
+  <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-btn text-blue"></text>
+        <text class="text-grey text-center">{{item.chaptername}}</text>
+      </view>
+    </view>
+  </block>
+
 </view>
