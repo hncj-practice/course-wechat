@@ -3,8 +3,12 @@
 <view class="root">
 
   <view class="cu-list menu-avatar">
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{4}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{4}}" wx:key="key"
+      bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
+      data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg"
+        style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);">
+      </view>
       <view class="content">
         <view class="text-grey">文晓港</view>
         <view class="text-gray text-sm">
@@ -25,28 +29,28 @@
 
   <!-- 底部tabbar -->
   <view class="cu-bar tabbar bg-white  shadow foot">
-    <view class="action" bindtap="jumpToIndex">
+    <view class="action" bindtap="jump" data-page="index">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/index.png"></image>
       </view>
       <view class="text-gray">首页</view>
     </view>
 
-    <view class="action" bindtap="jumpToMsg">
+    <view class="action" bindtap="jump" data-page="msg">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/msg_on.png"></image>
       </view>
       <view class="text-green">消息</view>
     </view>
 
-    <view class="action" bindtap="jumpToCourse">
+    <view class="action" bindtap="jump" data-page="course">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/course.png"></image>
       </view>
       <view class="text-gray">课程</view>
     </view>
 
-    <view class="action" bindtap="jumpToMe">
+    <view class="action" bindtap="jump" data-page="me">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/me.png"></image>
       </view>

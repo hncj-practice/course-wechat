@@ -1,5 +1,6 @@
 // pages/teacher-index/teacher-index.js
 var util = require('../../../utils/util.js');
+var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
 var app = getApp();
 Page({
 
@@ -16,19 +17,19 @@ Page({
     }, {
       id: 1,
       type: 'image',
-        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/02.jpg'
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/02.jpg'
     }, {
       id: 2,
       type: 'image',
-        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/03.jpg'
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/03.jpg'
     }, {
       id: 3,
       type: 'image',
-        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/04.jpg'
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/04.jpg'
     }, {
       id: 4,
       type: 'image',
-        url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/05.png'
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/05.png'
     }],
 
     // 常用
@@ -38,79 +39,85 @@ Page({
     recently: [],
   },
 
+  // tabbar跳转
+  jump(e) {
+    let page = e.currentTarget.dataset.page;
+    PageJumpUtil.jump(true, page);
+  },
+
   /**
    * 查询当前登录教师所教授的课程
    */
-  getCourse(){
-    var that=this;
-    var url ="http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
-    var data={
+  getCourse() {
+    var that = this;
+    var url = "http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
+    var data = {
       condition: app.globalData.loginuser.tno,
-      type:1
+      type: 1
     }
-    util.myAjaxPost(url, data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
-        icon:'none'
+        icon: 'none'
       })
-      if(res.data.code!=200){
+      if (res.data.code != 200) {
         return;
       }
 
 
 
-      var courses=res.data.data;
+      var courses = res.data.data;
       //分别代表：进行中、审核中、归档
       var processingNum = 0,
         reviewNum = 0,
         archiveNum = 0;
-      var processing=[],review=[],archive=[];
+      var processing = [],
+        review = [],
+        archive = [];
       courses.forEach(item => {
-        if (item.status == "1"){
+        if (item.status == "1") {
           processing.push(item)
           processingNum += 1;
-        }
-        else if (item.status == "2"){
+        } else if (item.status == "2") {
           reviewNum += 1;
           review.push(item)
-        }
-        else if (item.status == "3"){
+        } else if (item.status == "3") {
           archiveNum += 1;
           archive.push(item)
         }
       });
-      var list={
-        allcourses:courses,
-        processing:processing,
-        processingnum:processingNum,
-        review:review,
-        reviewnum:reviewNum,
-        archive:archive,
-        archivenum:archiveNum,
+      var list = {
+        allcourses: courses,
+        processing: processing,
+        processingnum: processingNum,
+        review: review,
+        reviewnum: reviewNum,
+        archive: archive,
+        archivenum: archiveNum,
       }
-      app.globalData.courses=list;
+      app.globalData.courses = list;
       console.log(app.globalData.courses)
 
       that.setData({
-        recently:res.data.data
+        recently: res.data.data
       })
     })
   },
-  
+
   /**
    * 跳转到课程页面
    */
-  gotocourse(){
+  gotocourse() {
     wx.showToast({
       title: '跳转到课程页面',
-      icon:'none'
+      icon: 'none'
     })
     console.log("跳转到课程页面");
     wx.navigateTo({
       url: '../teacher-course/course-detail/course-detail',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+      success: function (res) {},
+      fail: function (res) {},
+      complete: function (res) {},
     })
   },
 
@@ -120,97 +127,59 @@ Page({
     })
   },
 
-  jumpToIndex() {
-    console.log(util.getCurrentPage());
-    if (util.getCurrentPage() === "pages/teacher/teacher-index/teacher-index") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-index/teacher-index',
-    })
-  },
-
-  jumpToMsg() {
-    console.log(util.getCurrentPage());
-    if (util.getCurrentPage() === "pages/teacher/teacher-msg/teacher-msg") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-msg/teacher-msg',
-    })
-  },
-
-  jumpToCourse() {
-    if (util.getCurrentPage() === "pages/teacher/teacher-course/teacher-course") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-course/teacher-course',
-    })
-  },
-
-  jumpToMe() {
-    if (util.getCurrentPage() === "pages/pages/teacher/teacher-me/teacher-me") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-me/teacher-me',
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.getCourse();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -38,28 +38,28 @@
 
   <!-- 底部tabbar -->
   <view class="cu-bar tabbar bg-white  shadow foot">
-    <view class="action" bindtap="jumpToIndex">
+    <view class="action" bindtap="jump" data-page="index">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/index.png"></image>
       </view>
       <view class="text-gray">首页</view>
     </view>
 
-    <view class="action" bindtap="jumpToMsg">
+    <view class="action" bindtap="jump" data-page="msg">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/msg.png"></image>
       </view>
       <view class="text-gray">消息</view>
     </view>
 
-    <view class="action" bindtap="jumpToCourse">
+    <view class="action" bindtap="jump" data-page="course">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/course_on.png"></image>
       </view>
       <view class="text-green">课程</view>
     </view>
 
-    <view class="action" bindtap="jumpToMe">
+    <view class="action" bindtap="jump" data-page="me">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/me.png"></image>
       </view>

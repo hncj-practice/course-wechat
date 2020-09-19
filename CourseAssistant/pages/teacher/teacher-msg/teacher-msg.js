@@ -1,5 +1,6 @@
 // pages/teacher-msg/teacher-msg.js
 var util = require('../../../utils/util.js');
+var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
 Page({
 
   /**
@@ -8,6 +9,13 @@ Page({
   data: {
 
   },
+
+  // tabbar跳转
+  jump(e) {
+    let page = e.currentTarget.dataset.page;
+    PageJumpUtil.jump(true, page);
+  },
+
   // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({
@@ -22,7 +30,7 @@ Page({
   },
   // ListTouch计算滚动
   ListTouchEnd(e) {
-    if (this.data.ListTouchDirection =='left'){
+    if (this.data.ListTouchDirection == 'left') {
       this.setData({
         modalName: e.currentTarget.dataset.target
       })
@@ -33,44 +41,6 @@ Page({
     }
     this.setData({
       ListTouchDirection: null
-    })
-  },
-
-  jumpToIndex() {
-    console.log(util.getCurrentPage());
-    if (util.getCurrentPage() === "pages/teacher/teacher-index/teacher-index") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-index/teacher-index',
-    })
-  },
-
-  jumpToMsg() {
-    console.log(util.getCurrentPage());
-    if (util.getCurrentPage() === "pages/teacher/teacher-msg/teacher-msg") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-msg/teacher-msg',
-    })
-  },
-
-  jumpToCourse() {
-    if (util.getCurrentPage() === "pages/teacher/teacher-course/teacher-course") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-course/teacher-course',
-    })
-  },
-
-  jumpToMe() {
-    if (util.getCurrentPage() === "pages/pages/teacher/teacher-me/teacher-me") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-me/teacher-me',
     })
   },
 

@@ -1,5 +1,6 @@
 // pages/teacher-course/teacher-course.js
 var util = require('../../../utils/util.js');
+var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
 var app = getApp();
 Page({
 
@@ -11,6 +12,11 @@ Page({
     courses: []
   },
 
+  // tabbar跳转
+  jump(e) {
+    let page = e.currentTarget.dataset.page;
+    PageJumpUtil.jump(true, page);
+  },
 
   /**
    * 从当前登录教师所教授的所有课程中筛选出需要的
@@ -37,73 +43,36 @@ Page({
   },
 
 
-  jumpToIndex() {
-    console.log(util.getCurrentPage());
-    if (util.getCurrentPage() === "pages/teacher/teacher-index/teacher-index") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-index/teacher-index',
-    })
-  },
-
-  jumpToMsg() {
-    console.log(util.getCurrentPage());
-    if (util.getCurrentPage() === "pages/teacher/teacher-msg/teacher-msg") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-msg/teacher-msg',
-    })
-  },
-
-  jumpToCourse() {
-    if (util.getCurrentPage() === "pages/teacher/teacher-course/teacher-course") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-course/teacher-course',
-    })
-  },
-
-  jumpToMe() {
-    if (util.getCurrentPage() === "pages/pages/teacher/teacher-me/teacher-me") {
-      return;
-    }
-    wx.redirectTo({
-      url: '../teacher-me/teacher-me',
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var status = options.status;
-    var courses=[];
-    console.log("status:"+status);
-    if(app.globalData.courses){
-      if(!status){
+    var courses = [];
+    console.log("status:" + status);
+    if (app.globalData.courses) {
+      if (!status) {
         console.log("222");
-        courses=app.globalData.courses.allcourses;
-      }else if(status=="1"){
-        courses=app.globalData.courses.processing;
-      }else if(status=="2"){
-        courses=app.globalData.courses.review;
-      }else if(status=="3"){
-        courses=app.globalData.courses.archive;
+        courses = app.globalData.courses.allcourses;
+      } else if (status == "1") {
+        courses = app.globalData.courses.processing;
+      } else if (status == "2") {
+        courses = app.globalData.courses.review;
+      } else if (status == "3") {
+        courses = app.globalData.courses.archive;
       }
-    }else{
-      courses=[]
+    } else {
+      courses = []
     }
-    
+
     this.setData({
       courses: courses,
     })
-    
+
     // this.getCourse();
 
-    
+
   },
 
   /**

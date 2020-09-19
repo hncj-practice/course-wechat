@@ -84,9 +84,9 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 2,
           "name": "teacher-me",
-          "pathName": "pages/teacher-me/teacher-me",
+          "pathName": "pages/teacher/teacher-me/teacher-me",
           "query": "",
           "scene": null
         },
