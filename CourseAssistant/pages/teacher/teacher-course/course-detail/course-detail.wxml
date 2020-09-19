@@ -11,27 +11,60 @@
   </scroll-view>
 
   <!-- 章节 -->
-  <view class="cu-list menu sm-border card-menu margin-top" wx:if="{{TabCur==0}}">
-    <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
-      <view class="cu-item arrow">
-        <view class="content">
-          <text class="cuIcon-btn text-blue"></text>
-          <text class="text-grey text-center">{{item.chaptername}}</text>
+  <view wx:if="{{TabCur==0}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-btn text-blue"></text>
+            <text class="text-grey text-center">{{item.chaptername}}</text>
+          </view>
         </view>
-      </view>
-    </block>
+      </block>
+    </view>
   </view>
+
 
   <!-- 试卷 -->
   <view wx:if="{{TabCur==1}}">
-    试卷
-  </view>
-
-  <!-- 话题 -->
-  <view wx:if="{{TabCur==2}}">
-    资料
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-formfill text-green"></text>
+            <text class="text-grey text-center">{{item.chaptername}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
   </view>
 
   <!-- 资料 -->
+  <view wx:if="{{TabCur==2}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-file text-green"></text>
+            <text class="text-grey text-center">{{item.chaptername}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 话题 -->
+  <view wx:if="{{TabCur==3}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow">
+          <view class="content">
+            <text class="cuIcon-communityfill text-green"></text>
+            <text class="text-grey text-center">{{item.chaptername}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
 
 </view>
