@@ -1,0 +1,99 @@
+<!--pages/teacher/teacher-course/course-detail/teacher-question/teacher-question.wxml-->
+
+<view class="root">
+
+
+  <!-- 
+  <radio-group class="cu-list menu sm-border  margin-top">
+    <view class="cu-form-group" style="text-align:center">
+      <view class="title">1.题目奥术大师客服电话卡萨丁副经理看的撒飞机阿拉山口</view>
+    </view>
+    <view class="cu-form-group">
+      <radio class="blue radio"></radio>
+      <view class="title">A.单选操作</view>
+    </view>
+    <view class="cu-form-group">
+      <radio class="blue radio"></radio>
+      <view class="title">B.定义样式</view>
+    </view>
+    <view class="cu-form-group">
+      <radio class="blue radio"></radio>
+      <view class="title">C.定义颜色</view>
+    </view>
+    <view class="cu-form-group">
+      <radio class="blue radio"></radio>
+      <view class="title">D.定义颜色</view>
+    </view>
+
+  </radio-group> -->
+
+
+  <!-- 选择 -->
+  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="xz">
+    <view class="action">
+      <text class="cuIcon-titles text-blue"></text>
+      选择题
+    </view>
+    <view wx:if="{{showXZ==true}}" class="action">
+      <text class="cuIcon-unfold text-gray"></text>
+    </view>
+    <view wx:if="{{showXZ==false}}" class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  <view wx:if="{{showXZ==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-text text-yellow"></text>
+        <text class="text-grey text-center">item.dataname</text>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 判断 -->
+  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="pd">
+    <view class="action">
+      <text class="cuIcon-titles text-blue"></text>
+      判断题
+    </view>
+    <view wx:if="{{showPD==true}}" class="action">
+      <text class="cuIcon-unfold text-gray"></text>
+    </view>
+    <view wx:if="{{showPD==false}}" class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+
+  <view wx:if="{{showPD==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-text text-yellow"></text>
+        <text class="text-grey text-center">item.dataname</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 填空 -->
+  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="tk">
+    <view class="action">
+      <text class="cuIcon-titles text-blue"></text>
+      填空题
+    </view>
+    <view wx:if="{{showTK==true}}" class="action">
+      <text class="cuIcon-unfold text-gray"></text>
+    </view>
+    <view wx:if="{{showTK==false}}" class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  <view wx:if="{{showTK==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-text text-yellow"></text>
+        <text class="text-grey text-center">item.dataname</text>
+      </view>
+    </view>
+  </view>
+
+</view>

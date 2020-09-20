@@ -13,7 +13,8 @@
     "pages/student/student-me/student-me",
     "pages/teacher/teacher-me/teacher-data/teacher-data",
     "pages/student/student-me/student-data/student-data",
-    "pages/teacher/teacher-course/course-detail/teacher-paper/teacher-paper"
+    "pages/teacher/teacher-course/course-detail/teacher-paper/teacher-paper",
+    "pages/teacher/teacher-course/course-detail/teacher-question/teacher-question"
   ],
   "window": {
     "backgroundTextStyle": "light",
