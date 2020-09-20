@@ -14,7 +14,7 @@
   <view wx:if="{{TabCur==0}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow">
+        <view class="cu-item arrow" bindtap="jumpToChapter" data-chapterid="{{item.chapterid}}">
           <view class="content">
             <text class="cuIcon-btn text-blue"></text>
             <text class="text-grey text-center">{{item.chaptername}}</text>
@@ -61,7 +61,7 @@
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow">
+        <view class="cu-item arrow" bindtap="jumpToData" data-datalink="{{item.datalink}}">
           <view class="content">
             <text class="cuIcon-text text-yellow"></text>
             <text class="text-grey text-center">{{item.dataname}}</text>
@@ -75,7 +75,7 @@
   <view wx:if="{{TabCur==3}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{topics}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow">
+        <view class="cu-item arrow" bindtap="jumpToTopic" data-topicid="{{item.topicid}}">
           <view class="content">
             <text class="cuIcon-communityfill text-blue"></text>
             <text class="text-grey text-center">{{item.topictitle}}</text>

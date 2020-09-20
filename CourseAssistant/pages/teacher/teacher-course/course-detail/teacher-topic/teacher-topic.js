@@ -1,5 +1,6 @@
-// pages/teacher/teacher-me/teacher-data/teacher-data.js\
-var app=getApp()
+// pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic.js
+var util=require("../../../../../utils/util.js");
+var app=getApp();
 Page({
 
   /**
@@ -8,41 +9,31 @@ Page({
   data: {
 
   },
-  /**
-   * 判断当前用户是否登录
-   */
-  isLogin(){
-    try{
-      var loginuser=wx.getStorageSync('loginuser');
-      console.log(loginuser)
-      if(loginuser){
-        this.setData({
-          teacherinfo: loginuser
-        })
-      }else{
-        wx.showToast({
-          title: '未登录，请登录后重试',
-          icon:'none',
-          duration:3000
-        })
-        
-        setTimeout(function(){
-          wx.navigateTo({
-            url: '../../login/login',
-          })
-        },3000);
-        
+  getTopicDetail(options){
+    var topicid=options.topicid;
+    var url="https://123.56.156.212/Interface/comment/getcommentbytopicid";
+    var data={
+      topicid:topicid
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
       }
-    }catch(e){}
+
+      this.setData({
+        comments:res.data.data
+      })
+    })
   },
-
-  
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.isLogin();
+    this.getTopicDetail(options);
   },
 
   /**

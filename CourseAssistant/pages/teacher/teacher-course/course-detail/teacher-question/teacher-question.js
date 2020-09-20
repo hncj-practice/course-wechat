@@ -1,4 +1,6 @@
 // pages/teacher/teacher-course/course-detail/teacher-question/teacher-question.js
+var util=require("../../../../../utils/util.js");
+var app=getApp();
 Page({
 
   /**
@@ -8,6 +10,42 @@ Page({
     showXZ: false,
     showPD: false,
     showTK: false
+  },
+
+  getChapterDetail(options){
+    var chapterid=options.chapterid;
+    var url="https://123.56.156.212/Interface/problem/getproblembychapterid";
+    var data={
+      chapterid:chapterid
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+
+      var data=res.data.data;
+      var choice=[],fill=[],judge=[];
+      data.forEach(item => {
+        if(item.ptype=="1"){//选择题
+          choice.push(item);
+        }else if(item.ptype=="2"){//填空
+          fill.push(item);
+        }else if(item.ptype=="3"){//判断
+          judge.push(fill);
+        }
+      });
+
+      this.setData({
+        problems:res.data.data,
+        choice:choice,
+        fill:fill,
+        judge:judge
+      })
+    })
   },
 
 
@@ -37,7 +75,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getChapterDetail(options);
   },
 
   /**

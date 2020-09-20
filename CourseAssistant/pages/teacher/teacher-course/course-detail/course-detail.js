@@ -93,6 +93,24 @@ Page({
       url: './teacher-paper/teacher-paper?paperid='+paperid,
     })
   },
+  jumpToChapter(event){
+    var chapterid=event.currentTarget.dataset.chapterid;
+    wx.navigateTo({
+      url: './teacher-question/teacher-question?chapterid='+chapterid,
+    })
+  },
+  jumpToTopic(event){
+    var topicid=event.currentTarget.dataset.topicid;
+    wx.navigateTo({
+      url: './teacher-topic/teacher-topic?topicid='+topicid,
+    })
+  },
+  jumpToData(event){
+    var datalink=event.currentTarget.dataset.datalink;
+    wx.navigateTo({
+      url: './teacher-data/teacher-data?datalink='+datalink,
+    })
+  },
 
   tabSelect(e) {
     this.setData({
