@@ -1,1 +1,23 @@
 /* pages/teacher-course/course-detail/course-detail.wxss */
+
+.paper {
+  padding-top: 15rpx !important;
+  padding-bottom: 15rpx !important;
+}
+
+.paper .icon {
+  height: 45rpx !important;
+  width: 45rpx !important;
+}
+
+.paper .text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx !important;
+}
+
+.paper .desc {
+  display: flex;
+  justify-content: space-between;
+}
+

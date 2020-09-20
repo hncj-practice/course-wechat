@@ -28,16 +28,32 @@
   <!-- 试卷 -->
   <view wx:if="{{TabCur==1}}">
     <view class="cu-list menu sm-border card-menu margin-top">
-      <block wx:for="{{papers}}" wx:key="key" wx:for-item="item">
+
+      <!-- <block wx:for="{{papers}}" wx:key="key" wx:for-item="item">
         <view class="cu-item arrow" bindtap="jumpToPaper" data-paperid="{{item.paperid}}">
           <view class="content">
             <text class="cuIcon-formfill text-green"></text>
             <text class="text-grey text-center">{{item.papername}}</text>
           </view>
         </view>
+      </block> -->
 
+      <block wx:for="{{papers}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow paper" bindtap="jumpToPaper" data-paperid="{{item.paperid}}">
+          <!-- <text class="icon"></text> -->
+          <image class="icon" src="../../../../images/icon/paper.png"></image>
+          <view class="content text">
+            <text class="text-grey text-left text-lg">{{item.papername}}</text>
 
+            <view class="desc">
+              <text class="text-grey text-left text-sm"> 09-19 14:00 ~ 09-19 15:00 </text>
+              <text class="text-gray text-sm"> 已发布 </text>
+            </view>
+
+          </view>
+        </view>
       </block>
+
     </view>
   </view>
 
@@ -47,7 +63,7 @@
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
         <view class="cu-item arrow">
           <view class="content">
-            <text class="cuIcon-file text-green"></text>
+            <text class="cuIcon-text text-yellow"></text>
             <text class="text-grey text-center">{{item.dataname}}</text>
           </view>
         </view>
@@ -61,7 +77,7 @@
       <block wx:for="{{topics}}" wx:key="key" wx:for-item="item">
         <view class="cu-item arrow">
           <view class="content">
-            <text class="cuIcon-communityfill text-green"></text>
+            <text class="cuIcon-communityfill text-blue"></text>
             <text class="text-grey text-center">{{item.topictitle}}</text>
           </view>
         </view>
