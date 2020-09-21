@@ -38,7 +38,7 @@ Page({
         }else if(item.ptype=="2"){//填空
           fill.push(item);
         }else if(item.ptype=="3"){//判断
-          judge.push(fill);
+          judge.push(item);
         }
       });
 
