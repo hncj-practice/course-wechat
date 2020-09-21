@@ -81,20 +81,20 @@
   <view wx:if="{{showPD==true}}" class="cu-list menu margin-top margin-bottom">
     <block wx:for="{{judge}}" wx:key="key" wx:for-item="item">
       <view class=" question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">{{item.question.question}}
-      </text>
-      <!-- 选项 -->
-      <block wx:for="{{item.question.options}}" wx:key="key" wx:for-item="opt">
-        <text class="text-black text-df opts">{{opt}}</text>
-      </block>
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{item.question.question}}
+        </text>
+        <!-- 选项 -->
+        <block wx:for="{{item.question.options}}" wx:key="key" wx:for-item="opt">
+          <text class="text-black text-df opts">{{opt}}</text>
+        </block>
 
-      <!-- 答案 -->
-      <text class="text-gray text-df answer">答案：{{item.panswer}}</text>
-      <view class="line"></view>
+        <!-- 答案 -->
+        <text class="text-gray text-df answer">答案：{{item.panswer}}</text>
+        <view class="line"></view>
+      </view>
+    </block>
+
   </view>
-  </block>
-
-</view>
 
 </view>

@@ -1,26 +1,29 @@
 // pages/teacher/teacher-course/course-detail/teacher-paper/teacher-paper.js
-var util=require("../../../../../utils/util.js");
-var app=getApp();
+var util = require("../../../../../utils/util.js");
+var questionUtil=require("../../../../../utils/questionUtil.js");
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    showXZ: false,
+    showPD: false,
+    showTK: false
   },
 
   /**
    * 获取试卷详情信息
    * @param {*} options 
    */
-  getPaperDetail(options){
-    var paperid=options.paperid;
-    var url="https://fengyezhan.xyz/Interface/problem/getproblembypaperid";
-    var data={
-      paperid:paperid
+  getPaperDetail(options) {
+    var paperid = options.paperid;
+    var url = "https://fengyezhan.xyz/Interface/problem/getproblembypaperid";
+    var data = {
+      paperid: paperid
     }
-    util.myAjaxPost(url,data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
         icon: 'none'
@@ -28,27 +31,51 @@ Page({
       if (res.data.code != 200) {
         return;
       }
-      var data=res.data.data;
-      var choice=[],fill=[],judge=[];
+      var data = res.data.data;
+      var choice = [],
+        fill = [],
+        judge = [];
       data.forEach(item => {
-        if(item.ptype=="1"){//选择题
+        if (item.ptype == "1") { //选择题
+          item.question = questionUtil.question(item.question);
           choice.push(item);
-        }else if(item.ptype=="2"){//填空
+        } else if (item.ptype == "2") { //填空
           fill.push(item);
-        }else if(item.ptype=="3"){//判断
+        } else if (item.ptype == "3") { //判断
+          item.question = questionUtil.question(item.question);
           judge.push(fill);
         }
       });
 
       this.setData({
-        problems:res.data.data,
-        choice:choice,
-        fill:fill,
-        judge:judge
+        problems: res.data.data,
+        choice: choice,
+        fill: fill,
+        judge: judge
       })
     })
   },
-
+  // 展开/关闭折叠菜单
+  trigger(e) {
+    let q = e.currentTarget.dataset.q;
+    switch (q) {
+      case "xz":
+        this.setData({
+          showXZ: !this.data.showXZ
+        })
+        break;
+      case "pd":
+        this.setData({
+          showPD: !this.data.showPD
+        })
+        break;
+      case "tk":
+        this.setData({
+          showTK: !this.data.showTK
+        })
+        break;
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
