@@ -121,6 +121,10 @@ Page({
       })
       return;
     }
+    wx.showToast({
+      title: datalink,
+      icon:'none'
+    })
     const downloadTask=wx.downloadFile({
       url: datalink,
       success(res){
@@ -128,6 +132,11 @@ Page({
         if(datatype==2){//文档
           wx.openDocument({
             filePath: res.tempFilePath,
+            success(res){
+              wx.showToast({
+                title: '打开成功',
+              })
+            },
             fail(res){
               wx.showToast({
                 title: '文档打开失败',
@@ -135,6 +144,12 @@ Page({
             }
           })
         }
+      },
+      fail(res){
+        wx.showToast({
+          title: '文档下载失败',
+          icon:'none'
+        })
       }
     })
     downloadTask.onProgressUpdate((res)=>{
