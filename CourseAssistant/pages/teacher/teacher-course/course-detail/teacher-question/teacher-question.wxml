@@ -2,32 +2,6 @@
 
 <view class="root">
 
-
-  <!-- 
-  <radio-group class="cu-list menu sm-border  margin-top">
-    <view class="cu-form-group" style="text-align:center">
-      <view class="title">1.题目奥术大师客服电话卡萨丁副经理看的撒飞机阿拉山口</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">A.单选操作</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">B.定义样式</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">C.定义颜色</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">D.定义颜色</view>
-    </view>
-
-  </radio-group> -->
-
-
   <!-- 选择 -->
   <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="xz">
     <view class="action">
@@ -41,13 +15,23 @@
       <text class="cuIcon-right text-gray"></text>
     </view>
   </view>
-  <view wx:if="{{showXZ==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
-    <view class="cu-item">
-      <view class="content">
-        <text class="cuIcon-text text-yellow"></text>
-        <text class="text-grey text-center">item.dataname</text>
-      </view>
+
+  <view wx:if="{{showXZ==true}}" class="cu-list menu margin-top margin-bottom">
+
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">1.阿斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四
+      </text>
+      <!-- 选项 -->
+      <text class="text-black text-df opts">A.SSSS</text>
+      <text class="text-black text-df opts">A.SSSS</text>
+      <text class="text-black text-df opts">A.SSSS</text>
+      <text class="text-black text-df opts">A.SSSS</text>
+      <!-- 答案 -->
+      <text class="text-gray text-df">答案：A</text>
+      <view class="line"></view>
     </view>
+
   </view>
 
 
@@ -65,13 +49,20 @@
     </view>
   </view>
 
-  <view wx:if="{{showPD==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
-    <view class="cu-item">
-      <view class="content">
-        <text class="cuIcon-text text-yellow"></text>
-        <text class="text-grey text-center">item.dataname</text>
-      </view>
+  <view wx:if="{{showPD==true}}" class="cu-list menu margin-top margin-bottom">
+
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">1.阿斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四
+      </text>
+      <!-- 选项 -->
+      <text class="text-black text-df opts">A.正确</text>
+      <text class="text-black text-df opts">B.错误</text>
+      <!-- 答案 -->
+      <text class="text-gray text-df answer">答案：A</text>
+      <view class="line"></view>
     </view>
+
   </view>
 
   <!-- 填空 -->
@@ -87,13 +78,18 @@
       <text class="cuIcon-right text-gray"></text>
     </view>
   </view>
-  <view wx:if="{{showTK==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
-    <view class="cu-item">
-      <view class="content">
-        <text class="cuIcon-text text-yellow"></text>
-        <text class="text-grey text-center">item.dataname</text>
-      </view>
+
+  <view wx:if="{{showTK==true}}" class="cu-list menu margin-top margin-bottom">
+
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">1.阿斯达阿斯达阿斯大四的阿斯____斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四
+      </text>
+      <!-- 答案 -->
+      <text class="text-gray text-df">答案：[0,1)</text>
+      <view class="line"></view>
     </view>
+
   </view>
 
 </view>

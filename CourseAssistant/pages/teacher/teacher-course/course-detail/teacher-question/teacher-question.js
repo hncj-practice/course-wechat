@@ -49,9 +49,9 @@ Page({
   },
 
 
+  // 展开/关闭折叠菜单
   trigger(e) {
     let q = e.currentTarget.dataset.q;
-    console.log(q);
     switch (q) {
       case "xz":
         this.setData({
