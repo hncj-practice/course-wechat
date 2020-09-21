@@ -5,7 +5,7 @@
         <text class="text-grey">学号</text>
       </view>
       <view class="action">
-        <text class="text-grey text-sm">{{teacherinfo.sno}}</text>
+        <text class="text-grey text-sm">{{loginuser.sno}}</text>
       </view>
     </view>
     <view class="cu-item">
@@ -14,7 +14,7 @@
         <text class="text-grey">姓名</text>
       </view>
       <view class="action">
-        <text class="text-grey text-sm">{{teacherinfo.name}}</text>
+        <text class="text-grey text-sm">{{loginuser.name}}</text>
       </view>
     </view>
     <view class="cu-item">
@@ -23,7 +23,7 @@
         <text class="text-grey">性别</text>
       </view>
       <view class="action">
-        <text class="text-grey text-sm">{{teacherinfo.sex=='f'?'女':'男'}}</text>
+        <text class="text-grey text-sm">{{loginuser.sex=='f'?'女':'男'}}</text>
       </view>
     </view>
     <view class="cu-item">
@@ -32,7 +32,7 @@
         <text class="text-grey">邮箱</text>
       </view>
       <view class="action">
-        <text class="text-grey text-sm">{{teacherinfo.email}}</text>
+        <text class="text-grey text-sm">{{loginuser.email}}</text>
       </view>
     </view>
     <view class="cu-item">
@@ -41,7 +41,7 @@
         <text class="text-grey">状态</text>
       </view>
       <view class="action">
-        <text class="text-grey text-sm">{{teacherinfo.status=='1'?'已激活':'未激活'}}</text>
+        <text class="text-grey text-sm">{{loginuser.status=='1'?'已激活':'未激活'}}</text>
       </view>
     </view>
     
@@ -62,7 +62,7 @@
     <view class="cu-item">
       <view class="content">
         <text class="cuIcon-text text-pink"></text>
-        <text class="text-grey">文本</text>
+        <text class="text-grey">签名</text>
       </view>
       <view class="action">
         <text class="text-grey text-sm">这个人很懒，什么都没有留下！！！</text>

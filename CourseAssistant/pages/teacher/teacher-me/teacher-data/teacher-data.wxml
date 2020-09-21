@@ -62,7 +62,7 @@
     <view class="cu-item">
       <view class="content">
         <text class="cuIcon-text text-pink"></text>
-        <text class="text-grey">文本</text>
+        <text class="text-grey">签名</text>
       </view>
       <view class="action">
         <text class="text-grey text-sm">这个人很懒，什么都没有留下！！！</text>

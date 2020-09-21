@@ -37,7 +37,7 @@
       </navigator>
     </view>
 
-    <view class="cu-item arrow">
+    <view class="cu-item arrow" bindtap="jumpToSetting">
       <navigator class="content" url="/pages/about/log/log" hover-class="none">
         <text class="cuIcon-settingsfill text-grey"></text>
         <text class="text-grey">设置</text>

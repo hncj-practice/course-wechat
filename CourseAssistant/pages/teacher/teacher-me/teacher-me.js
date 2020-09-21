@@ -44,6 +44,11 @@ Page({
       url: './teacher-data/teacher-data',
     })
   },
+  jumpToSetting(){
+    wx.navigateTo({
+      url: './teacher-setting/teacher-setting',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

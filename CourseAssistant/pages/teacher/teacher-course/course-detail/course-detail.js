@@ -105,10 +105,40 @@ Page({
       url: './teacher-topic/teacher-topic?topicid='+topicid,
     })
   },
-  jumpToData(event){
+  downloadData(event){
+    var that=this;
     var datalink=event.currentTarget.dataset.datalink;
-    wx.navigateTo({
-      url: './teacher-data/teacher-data?datalink='+datalink,
+    console.log(datalink);
+    wx.showToast({
+      title: '开始下载',
+      icon:'loading'
+    })
+    const downloadTask=wx.downloadFile({
+      url: datalink,
+      success(res){
+        console.log(res);
+        that.setData({
+          videoPath:res.tempFilePath,
+          imagePath:res.tempFilePath
+        })
+        
+        wx.showToast({
+          title: '下载完成',
+          icon:'none'
+        })
+        wx.openDocument({
+          filePath: res.tempFilePath,
+        })
+      }
+    })
+    downloadTask.onProgressUpdate((res)=>{
+      wx.showToast({
+        title: "已完成"+res.progress+"%",
+        icon:'none'
+      })
+      console.log("下载进度",res.progress);
+      console.log("已经下载的数据长度",res.totalBytesWritten);
+      console.log("预期需要下载的数据总长度",res.totalBytesExpectedToWrite);
     })
   },
 

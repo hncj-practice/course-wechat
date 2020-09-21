@@ -60,11 +60,17 @@
   <!-- 资料 -->
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
+
+      <image wx:if="{{imagePath}}" src="{{imagePath}}"></image>
+      <video wx:if="{{videoPath}}" src="{{videoPath}}"></video>
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow" bindtap="jumpToData" data-datalink="{{item.datalink}}">
+        <view class="cu-item" bindtap="downloadData" data-datalink="{{item.datalink}}">
           <view class="content">
-            <text class="cuIcon-text text-yellow"></text>
-            <text class="text-grey text-center">{{item.dataname}}</text>
+            <text class="cuIcon-pulldown text-green"></text>
+            <text class="text-grey">{{item.dataname}}</text>
+          </view>
+          <view class="action">
+            <text class="cuIcon-down lg text-grey">下载</text>
           </view>
         </view>
       </block>

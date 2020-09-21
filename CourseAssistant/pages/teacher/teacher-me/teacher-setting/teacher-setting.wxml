@@ -1,0 +1,21 @@
+<view class="cu-list menu sm-border card-menu margin-top">
+  <view class="cu-item">
+    <view class="content">
+      <text class="cuIcon-btn text-green"></text>
+      <text class="text-grey">修改密码</text>
+    </view>
+  </view>
+  <view class="cu-item">
+    <view class="content">
+      <text class="cuIcon-profile text-blue"></text>
+      <text class="text-grey">关于</text>
+    </view>
+  </view>
+  <view class="cu-item" bindtap="logout">
+    <view class="content">
+      <text class="cuIcon-roundclosefill text-red"></text>
+      <text class="text-grey">退出登录</text>
+    </view>
+  </view>
+
+</view>
