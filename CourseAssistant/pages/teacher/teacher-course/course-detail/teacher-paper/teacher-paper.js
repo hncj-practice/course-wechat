@@ -16,7 +16,7 @@ Page({
    */
   getPaperDetail(options){
     var paperid=options.paperid;
-    var url="https://123.56.156.212/Interface/problem/getproblembypaperid";
+    var url="https://fengyezhan.xyz/Interface/problem/getproblembypaperid";
     var data={
       paperid:paperid
     }

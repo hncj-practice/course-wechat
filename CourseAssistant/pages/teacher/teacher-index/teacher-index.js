@@ -78,7 +78,7 @@ Page({
    */
   getCourse() {
     var that = this;
-    var url = "http://123.56.156.212/Interface/course/getcoursebytnoorcoursename";
+    var url = "https://fengyezhan.xyz/Interface/course/getcoursebytnoorcoursename";
     var data = {
       condition: that.data.tno,
       type: 1

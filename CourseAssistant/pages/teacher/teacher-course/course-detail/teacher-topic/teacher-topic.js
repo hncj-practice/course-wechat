@@ -11,7 +11,7 @@ Page({
   },
   getTopicDetail(options){
     var topicid=options.topicid;
-    var url="https://123.56.156.212/Interface/comment/getcommentbytopicid";
+    var url="https://fengyezhan.xyz/Interface/comment/getcommentbytopicid";
     var data={
       topicid:topicid
     }

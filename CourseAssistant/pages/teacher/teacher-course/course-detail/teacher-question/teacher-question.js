@@ -16,7 +16,7 @@ Page({
   
   getChapterDetail(options){
     var chapterid=options.chapterid;
-    var url="https://123.56.156.212/Interface/problem/getproblembychapterid";
+    var url="https://fengyezhan.xyz/Interface/problem/getproblembychapterid";
     var data={
       chapterid:chapterid
     }

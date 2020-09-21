@@ -108,37 +108,64 @@ Page({
   downloadData(event){
     var that=this;
     var datalink=event.currentTarget.dataset.datalink;
-    console.log(datalink);
-    wx.showToast({
-      title: '开始下载',
-      icon:'loading'
-    })
+    var datatype=event.currentTarget.dataset.datatype;
+    console.log(datalink,datatype);
+    if(datatype==1){//图片
+      that.setData({
+        imagePath:datalink
+      })
+      return;
+    }else if(datatype==3){//视频
+      that.setData({
+        videoPath:datalink
+      })
+      return;
+    }
     const downloadTask=wx.downloadFile({
       url: datalink,
       success(res){
         console.log(res);
-        that.setData({
-          videoPath:res.tempFilePath,
-          imagePath:res.tempFilePath
-        })
-        
-        wx.showToast({
-          title: '下载完成',
-          icon:'none'
-        })
-        wx.openDocument({
-          filePath: res.tempFilePath,
-        })
+        if(datatype==2){//文档
+          wx.openDocument({
+            filePath: res.tempFilePath,
+            fail(res){
+              wx.showToast({
+                title: '文档打开失败',
+              })
+            }
+          })
+        }
       }
     })
     downloadTask.onProgressUpdate((res)=>{
       wx.showToast({
-        title: "已完成"+res.progress+"%",
+        title: "正在加载"+res.progress+"%",
         icon:'none'
       })
-      console.log("下载进度",res.progress);
-      console.log("已经下载的数据长度",res.totalBytesWritten);
-      console.log("预期需要下载的数据总长度",res.totalBytesExpectedToWrite);
+      // console.log("下载进度",res.progress);
+      // console.log("已经下载的数据长度",res.totalBytesWritten);
+      // console.log("预期需要下载的数据总长度",res.totalBytesExpectedToWrite);
+    })
+  },
+  /**
+   * 实现图片预览
+   */
+  previewImg: function (event) {
+    var img = this.data.imagePath;
+    var imgs=[img,]
+    wx.previewImage({
+      current: img,
+      urls:imgs,
+    })
+  },
+
+  /**
+   * 隐藏图片
+   */
+  hideModel() {
+    this.setData({
+      imagePath: null,
+      videoPath:null
     })
   },
 

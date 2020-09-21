@@ -15,7 +15,6 @@
     "pages/student/student-me/student-data/student-data",
     "pages/teacher/teacher-course/course-detail/teacher-paper/teacher-paper",
     "pages/teacher/teacher-course/course-detail/teacher-question/teacher-question",
-    "pages/teacher/teacher-course/course-detail/teacher-data/teacher-data",
     "pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic",
     "pages/teacher/teacher-me/teacher-setting/teacher-setting"
   ],

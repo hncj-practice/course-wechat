@@ -60,20 +60,50 @@
   <!-- 资料 -->
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
-
-      <image wx:if="{{imagePath}}" src="{{imagePath}}"></image>
-      <video wx:if="{{videoPath}}" src="{{videoPath}}"></video>
+      <!-- <image wx:if="{{imagePath}}" src="{{imagePath}}" class=""></image> -->
+      <!-- <video wx:if="{{videoPath}}" src="{{videoPath}}"></video> -->
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item" bindtap="downloadData" data-datalink="{{item.datalink}}">
+        <view class="cu-item" bindtap="downloadData" data-datalink="{{item.datalink}}"
+          data-datatype="{{item.datatype}}">
           <view class="content">
-            <text class="cuIcon-pulldown text-green"></text>
+            <text
+              class="{{item.datatype==3?'cuIcon-video':''}} {{item.datatype==2?'cuIcon-form':''}} {{item.datatype==1?'cuIcon-pic':''}} text-blue"></text>
             <text class="text-grey">{{item.dataname}}</text>
           </view>
-          <view class="action">
-            <text class="cuIcon-down lg text-grey">下载</text>
-          </view>
+          <!-- <view class="action">
+            <text class="cuIcon-down lg text-grey">打开</text>
+          </view> -->
         </view>
       </block>
+    </view>
+    <!-- 资料图片 -->
+    <view class="cu-modal {{imagePath?'show':''}}">
+      <view class="cu-dialog">
+        <!-- <view class="bg-img"
+          style="background-image: url({{imagePath}});height:225px;"> -->
+        <view class="bg-img" style="height:225px;">
+          <image src="{{imagePath}}" catchtap="previewImg"></image>
+          <view class="cu-bar justify-end text-white">
+            <view class="action" bindtap="hideModel">
+              <text class="cuIcon-close "></text>
+            </view>
+          </view>
+        </view>
+        <view class="cu-bar bg-white">
+          <view class="action margin-0 flex-sub  solid-left" bindtap="hideModel">关闭</view>
+        </view>
+      </view>
+    </view>
+    <!-- 资料视频 -->
+    <view class="cu-modal {{videoPath?'show':''}}">
+      <view class="cu-dialog bg-grey">
+        <view class="bg-img" style="height:225px;">
+          <video style="margin-top:10px;" src="{{videoPath}}"></video>
+        </view>
+        <view class="cu-bar bg-white">
+          <view class="action margin-0 flex-sub  solid-left" bindtap="hideModel">关闭</view>
+        </view>
+      </view>
     </view>
   </view>
 
