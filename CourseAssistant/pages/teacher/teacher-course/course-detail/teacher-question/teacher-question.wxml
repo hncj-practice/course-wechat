@@ -47,16 +47,18 @@
     </view>
   </view>
 
+  <!-- 循环生成填空题 -->
   <view wx:if="{{showTK==true}}" class="cu-list menu margin-top margin-bottom">
-
-    <view class="question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">1.阿斯达阿斯达阿斯大四的阿斯____斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四
-      </text>
-      <!-- 答案 -->
-      <text class="text-gray text-df">答案：[0,1)</text>
-      <view class="line"></view>
-    </view>
+    <block wx:for="{{fill}}" wx:key="key" wx:for-item="item">
+      <view class="question">
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{item.question}}
+        </text>
+        <!-- 答案 -->
+        <text class="text-gray text-df">答案：{{item.panswer}}</text>
+        <view class="line"></view>
+      </view>
+    </block>
 
   </view>
 

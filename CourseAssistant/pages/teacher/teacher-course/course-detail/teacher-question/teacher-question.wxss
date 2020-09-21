@@ -15,7 +15,7 @@
 .question .line {
   margin: 0 auto;
   margin-top: 20rpx;
-  width: 80%;
+  width: 100%;
   height: 1px;
   background: #f4f4f4;
 }
