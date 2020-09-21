@@ -2,32 +2,6 @@
 
 <view class="root">
 
-
-  <!-- 
-  <radio-group class="cu-list menu sm-border  margin-top">
-    <view class="cu-form-group" style="text-align:center">
-      <view class="title">1.题目奥术大师客服电话卡萨丁副经理看的撒飞机阿拉山口</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">A.单选操作</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">B.定义样式</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">C.定义颜色</view>
-    </view>
-    <view class="cu-form-group">
-      <radio class="blue radio"></radio>
-      <view class="title">D.定义颜色</view>
-    </view>
-
-  </radio-group> -->
-
-
   <!-- 选择 -->
   <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="xz">
     <view class="action">
@@ -41,13 +15,51 @@
       <text class="cuIcon-right text-gray"></text>
     </view>
   </view>
-  <view wx:if="{{showXZ==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
-    <view class="cu-item">
-      <view class="content">
-        <text class="cuIcon-text text-yellow"></text>
-        <text class="text-grey text-center">item.dataname</text>
+  <!-- 循环生成选择题 -->
+  <view wx:if="{{showXZ==true}}" class="cu-list menu margin-top margin-bottom">
+    <block wx:for="{{choice}}" wx:key="key" wx:for-item="item">
+      <view class="question">
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{item.question.question}}
+        </text>
+        <!-- 选项 -->
+        <block wx:for="{{item.question.options}}" wx:key="key" wx:for-item="opt">
+          <text class="text-black text-df opts">{{opt}}</text>
+        </block>
+        <!-- 答案 -->
+        <text class="text-gray text-df">答案：{{item.panswer}}</text>
+        <view class="line"></view>
       </view>
+    </block>
+  </view>
+
+  <!-- 填空 -->
+  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="tk">
+    <view class="action">
+      <text class="cuIcon-titles text-blue"></text>
+      填空题
     </view>
+    <view wx:if="{{showTK==true}}" class="action">
+      <text class="cuIcon-unfold text-gray"></text>
+    </view>
+    <view wx:if="{{showTK==false}}" class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+
+  <!-- 循环生成填空题 -->
+  <view wx:if="{{showTK==true}}" class="cu-list menu margin-top margin-bottom">
+    <block wx:for="{{fill}}" wx:key="key" wx:for-item="item">
+      <view class="question">
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{item.question}}
+        </text>
+        <!-- 答案 -->
+        <text class="text-gray text-df">答案：{{item.panswer}}</text>
+        <view class="line"></view>
+      </view>
+    </block>
+
   </view>
 
 
@@ -65,35 +77,20 @@
     </view>
   </view>
 
-  <view wx:if="{{showPD==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
-    <view class="cu-item">
-      <view class="content">
-        <text class="cuIcon-text text-yellow"></text>
-        <text class="text-grey text-center">item.dataname</text>
-      </view>
-    </view>
-  </view>
+  <view wx:if="{{showPD==true}}" class="cu-list menu margin-top margin-bottom">
 
-  <!-- 填空 -->
-  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="tk">
-    <view class="action">
-      <text class="cuIcon-titles text-blue"></text>
-      填空题
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">1.阿斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四的阿斯斯达阿斯达阿斯大四
+      </text>
+      <!-- 选项 -->
+      <text class="text-black text-df opts">A.正确</text>
+      <text class="text-black text-df opts">B.错误</text>
+      <!-- 答案 -->
+      <text class="text-gray text-df answer">答案：A</text>
+      <view class="line"></view>
     </view>
-    <view wx:if="{{showTK==true}}" class="action">
-      <text class="cuIcon-unfold text-gray"></text>
-    </view>
-    <view wx:if="{{showTK==false}}" class="action">
-      <text class="cuIcon-right text-gray"></text>
-    </view>
-  </view>
-  <view wx:if="{{showTK==true}}" class="cu-list menu sm-border card-menu margin-top margin-bottom">
-    <view class="cu-item">
-      <view class="content">
-        <text class="cuIcon-text text-yellow"></text>
-        <text class="text-grey text-center">item.dataname</text>
-      </view>
-    </view>
+
   </view>
 
 </view>
