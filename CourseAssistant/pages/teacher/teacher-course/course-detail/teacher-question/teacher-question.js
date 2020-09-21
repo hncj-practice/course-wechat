@@ -1,5 +1,6 @@
 // pages/teacher/teacher-course/course-detail/teacher-question/teacher-question.js
 var util=require("../../../../../utils/util.js");
+var questionUtil=require("../../../../../utils/questionUtil.js");
 var app=getApp();
 Page({
 
@@ -12,6 +13,7 @@ Page({
     showTK: false
   },
 
+  
   getChapterDetail(options){
     var chapterid=options.chapterid;
     var url="https://123.56.156.212/Interface/problem/getproblembychapterid";
@@ -31,6 +33,7 @@ Page({
       var choice=[],fill=[],judge=[];
       data.forEach(item => {
         if(item.ptype=="1"){//选择题
+          item.question = questionUtil.question(item.question);
           choice.push(item);
         }else if(item.ptype=="2"){//填空
           fill.push(item);
