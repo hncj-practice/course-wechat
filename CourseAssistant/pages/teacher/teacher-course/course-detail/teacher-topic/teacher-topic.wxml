@@ -1,1 +1,31 @@
-话题
+<view class="root">
+
+
+  <view class="cu-bar bg-white solid-bottom margin-bottom topic-title">
+    <view class="action">
+      <text class="cuIcon-communityfill text-blue"></text>
+      <text class="text-black text-lg">关联规则中可信度规则可信吗？</text>
+    </view>
+  </view>
+
+  <block wx:for="{{comments}}" wx:for-item="item">
+
+    <view class="bg-white topic-item">
+      <view class="left">
+        <image class="avatar" src="../../../../../images/index.jpg" alt=""></image>
+      </view>
+      <view class="right">
+        <view class="info">
+          <view class="text-black text-lg name">{{item.sno}}</view>
+          <view class="text-gray time">{{item.commenttime}}</view>
+        </view>
+        <view class="content">
+          <text class="text-black text-lg">{{item.commentcontent}}</text>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+
+</view>
