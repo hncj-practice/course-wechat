@@ -11,8 +11,11 @@ Page({
   /**
    * 退出登录
    */
-  logout(){
-    wx.redirectTo({
+  logout() {
+    // wx.redirectTo({
+    //   url: '../../../login/login',
+    // });
+    wx.reLaunch({
       url: '../../../login/login',
     })
   },
