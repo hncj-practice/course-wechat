@@ -102,10 +102,10 @@ Page({
       url: './teacher-question/teacher-question?chapterid=' + chapterid,
     })
   },
-  jumpToTopic(event) {
-    var topicid = event.currentTarget.dataset.topicid;
+  jumpToTopic(event) { 
+    var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
-      url: './teacher-topic/teacher-topic?topicid=' + topicid,
+      url: './teacher-topic/teacher-topic?topicid=' + topic.topicid+'&title='+topic.topictitle+'&content='+topic.topiccontent,
     })
   },
   downloadData(event) {

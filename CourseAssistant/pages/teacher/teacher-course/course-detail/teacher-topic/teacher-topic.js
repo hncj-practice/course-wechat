@@ -12,6 +12,12 @@ Page({
   
   getTopicDetail(options) {
     var topicid = options.topicid;
+    var title=options.title;
+    var content=options.content;
+    this.setData({
+      title:title,
+      content:content
+    })
     var url = "https://fengyezhan.xyz/Interface/comment/getcommentbytopicid";
     var data = {
       topicid: topicid

@@ -4,7 +4,12 @@
   <view class="cu-bar bg-white solid-bottom margin-bottom topic-title">
     <view class="action">
       <text class="cuIcon-communityfill text-blue"></text>
-      <text class="text-black text-lg">关联规则中可信度规则可信吗？</text>
+      <text class="text-black text-lg">{{title}}</text>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-bottom topic-title">
+    <view class="action">
+      <text class="text-black text-lg">{{content}}</text>
     </view>
   </view>
 
@@ -12,11 +17,11 @@
 
     <view class="bg-white topic-item">
       <view class="left">
-        <image class="avatar" src="../../../../../images/index.jpg" alt=""></image>
+        <image class="avatar" src="{{item.savatar}}" alt=""></image>
       </view>
       <view class="right">
         <view class="info">
-          <view class="text-black text-lg name">{{item.sno}}</view>
+          <view class="text-black text-lg name">{{item.sname}}</view>
           <view class="text-gray time">{{item.commenttime}}</view>
         </view>
         <view class="content">
