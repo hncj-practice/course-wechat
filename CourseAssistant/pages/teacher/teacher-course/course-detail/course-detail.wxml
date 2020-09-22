@@ -103,11 +103,6 @@
   <!-- 话题 -->
   <view wx:if="{{TabCur==3}}">
 
-
-    <view class="action">
-      <button class="round bg-blue margin-top" bindtap="showOrhidenModel" data-type="4">新建话题</button>
-    </view>
-
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{topics}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
         <view class="cu-item arrow" bindtap="jumpToTopic" bindlongpress="longPressTopic" data-topic="{{item}}">
@@ -120,6 +115,10 @@
           </view>
         </view>
       </block>
+    </view>
+
+    <view class="action">
+      <button class="round bg-blue margin-top" bindtap="showOrhidenModel" data-type="4">新建话题</button>
     </view>
 
     <!-- 添加话题dialog -->

@@ -28,22 +28,12 @@ Page({
     currData: 0
   },
 
-  /**
-   * 获取本页面需要的所有数据
-   * @param {} options 
-   */
-  getData(options) {
-    var that = this;
-    var courseid = options.courseid;
-    console.log('courseid:' + courseid);
-    this.setData({
-      courseid: courseid
-    })
-
+  getChapter(){
     //获取该课程的章节信息
+    var that=this;
     var chapter_url = 'https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
     var chapter_data = {
-      courseid: courseid
+      courseid: that.data.courseid
     }
     util.myAjaxPost(chapter_url, chapter_data).then(res => {
       console.log(res.data)
@@ -54,11 +44,13 @@ Page({
         chapters: res.data.data
       })
     });
-
+  },
+  getPaper(){
+    var that=this;
     //获取该课程的试卷信息
     var paper_url = 'https://fengyezhan.xyz/Interface/paper/getpaperbycourseid';
     var paper_data = {
-      courseid: courseid
+      courseid: that.data.courseid
     }
     util.myAjaxPost(paper_url, paper_data).then(res => {
       console.log(res.data)
@@ -69,11 +61,13 @@ Page({
         papers: res.data.data
       })
     });
-
+  },
+  getData(){
+    var that=this;
     //获取该课程的资料信息
     var data_url = 'https://fengyezhan.xyz/Interface/data/getdatabycourseid';
     var data_data = {
-      courseid: courseid
+      courseid: that.data.courseid
     }
     util.myAjaxPost(data_url, data_data).then(res => {
       console.log(res.data)
@@ -84,11 +78,13 @@ Page({
         datas: res.data.data
       })
     });
-
+  },
+  getTopic(){
+    var that=this;
     //获取该课程的话题信息
     var topic_url = 'https://fengyezhan.xyz/Interface/topic/gettopicbycid';
     var topic_data = {
-      courseid: courseid
+      courseid: that.data.courseid
     }
     util.myAjaxPost(topic_url, topic_data).then(res => {
       console.log(res.data)
@@ -99,6 +95,29 @@ Page({
         topics: res.data.data
       })
     });
+  },
+
+  /**
+   * 获取本页面需要的所有数据
+   * @param {} options 
+   */
+  getAllData(options) {
+    var that = this;
+    var courseid = options.courseid;
+    console.log('courseid:' + courseid);
+    this.setData({
+      courseid: courseid
+    })
+
+    //获取该课程的章节信息
+    this.getChapter();
+
+    this.getPaper();
+
+    this.getData();
+
+    this.getTopic();
+    
   },
 
   jumpToPaper(event) {
@@ -311,12 +330,12 @@ Page({
     var courseid = parseInt(this.data.courseid);
     var time = new Date().getTime();
     var loginuser = that.data.loginuser;
-    var url = "http://localhost:8080/Interface_war/topic/addtopic";
+    var url = "https://fengyezhan.xyz/Interface/topic/addtopic";
     var data = {
       user: loginuser.tno,
       pwd: loginuser.pwd,
       courseid: courseid,
-      topictitle: time,
+      topictitle: title,
       topiccontent: content,
       committime: time,
       topicstatus: 0
@@ -333,7 +352,8 @@ Page({
       if (res.data.code != 200) {
         return;
       }
-      this.getData(event);
+      //更新数据
+      this.getTopic();
 
 
     })
@@ -458,7 +478,7 @@ Page({
    */
   onLoad: function (options) {
     this.isLogin();
-    this.getData(options);
+    this.getAllData(options);
   },
 
   /**
