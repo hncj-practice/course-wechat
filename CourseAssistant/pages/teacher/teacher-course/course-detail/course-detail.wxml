@@ -38,7 +38,8 @@
 
             <view class="desc" catchtap="releasePaper" data-paperidx="{{index}}">
               <text class="text-grey text-left text-sm"> 09-19 14:00 ~ 09-19 15:00 </text>
-              <text class="text-gray text-sm"> {{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}} {{item.status==2?'已结束':''}} </text>
+              <text class="text-gray text-sm"> {{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}}
+                {{item.status==2?'已结束':''}} </text>
             </view>
 
           </view>
@@ -51,8 +52,6 @@
   <!-- 资料 -->
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
-      <!-- <image wx:if="{{imagePath}}" src="{{imagePath}}" class=""></image> -->
-      <!-- <video wx:if="{{videoPath}}" src="{{videoPath}}"></video> -->
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
         <view class="cu-item" bindtap="downloadData" data-datalink="{{item.datalink}}"
           data-datatype="{{item.datatype}}">
@@ -101,14 +100,42 @@
   <!-- 话题 -->
   <view wx:if="{{TabCur==3}}">
     <view class="cu-list menu sm-border card-menu margin-top">
-      <block wx:for="{{topics}}" wx:key="key" wx:for-item="item">
+      <block wx:for="{{topics}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
         <view class="cu-item arrow" bindtap="jumpToTopic" data-topic="{{item}}">
           <view class="content">
             <text class="cuIcon-communityfill text-blue"></text>
             <text class="text-grey text-center">{{item.topictitle}}</text>
           </view>
+          <view class="desc" catchtap="releaseTopic" data-idx="{{idx}}">
+            <text class="text-gray text-sm"> {{item.topicstatus==0?'待发布':'已发布'}}</text>
+          </view>
         </view>
       </block>
+
+      <view class="action">
+        <button class="round bg-blue margin-top" bindtap="showOrhidenModel" data-type="4">添加话题</button>
+      </view>
+    </view>
+
+    <!-- 添加话题dialog -->
+    <view class="cu-modal {{addTopic?'show':''}}">
+      <view class="cu-dialog">
+        <view class="bg-img" style="height:230px;">
+          <form bindsubmit="addTopic">
+            <view class="cu-form-group margin-top">
+              <view class="title">标题</view>
+              <input name="title" placeholder="两字短标题"></input>
+            </view>
+            <view class="cu-form-group align-start">
+              <view class="title">内容</view>
+              <textarea name="content" maxlength="-1" placeholder="多行文本输入框"></textarea>
+            </view>
+            <view class="action">
+              <button class="round bg-blue margin-top" form-type="submit">添加</button>
+            </view>
+          </form>
+        </view>
+      </view>
     </view>
   </view>
 </view>

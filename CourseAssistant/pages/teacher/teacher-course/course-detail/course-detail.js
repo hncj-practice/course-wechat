@@ -15,7 +15,11 @@ Page({
       "试卷",
       "资料",
       "话题"
-    ]
+    ],
+    addChapter: false,
+    addPaper: false,
+    addData: false,
+    addTopic: false
   },
 
   /**
@@ -102,10 +106,10 @@ Page({
       url: './teacher-question/teacher-question?chapterid=' + chapterid,
     })
   },
-  jumpToTopic(event) { 
+  jumpToTopic(event) {
     var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
-      url: './teacher-topic/teacher-topic?topicid=' + topic.topicid+'&title='+topic.topictitle+'&content='+topic.topiccontent,
+      url: './teacher-topic/teacher-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent,
     })
   },
   downloadData(event) {
@@ -184,21 +188,21 @@ Page({
     var paperidx = event.currentTarget.dataset.paperidx;
     var courseid = that.data.courseid;
     var papers = that.data.papers;
-    if(papers[paperidx].status==1){
+    if (papers[paperidx].status == 1) {
       wx.showToast({
         title: '该试卷已发布,请勿重复发布',
-        icon:'none'
+        icon: 'none'
       })
       return;
-    }else if(papers[paperidx].status==2){
+    } else if (papers[paperidx].status == 2) {
       wx.showToast({
         title: '该试卷已结束,不允许发布',
-        icon:'none'
+        icon: 'none'
       })
       return;
     }
 
-    var url = "http://fengyezhan.xyz/Interface/paper/releasepaper";
+    var url = "https://fengyezhan.xyz/Interface/paper/releasepaper";
     var data = {
       paperid: papers[paperidx].paperid,
       courseid: courseid
@@ -219,15 +223,146 @@ Page({
     })
 
   },
+  /**
+   * 添加话题
+   */
+  addTopic(event){
+    var that = this;
+    var title=event.detail.value.title;
+    var content=event.detail.value.content;
+    var courseid= parseInt(this.data.courseid) ;
+    var time=new Date().getTime();
+    var loginuser=that.data.loginuser;
+    var url="http://localhost:8080/Interface_war/topic/addtopic";
+    var data={
+      user:loginuser.tno,
+      pwd:loginuser.pwd,
+      courseid:courseid,
+      topictitle:time,
+      topiccontent:content,
+      committime:time,
+      topicstatus:0
+    }
+    console.log(data)
+    util.myAjaxPost(url,data).then(res=>{
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      that.setData({
+        addTopic:!that.data.addTopic
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      this.getData(event);
+
+      
+    })
+  },
+  /**
+   * 发布话题
+   */
+  releaseTopic(event) {
+    var that = this;
+    var loginuser = that.data.loginuser;
+    var idx = event.currentTarget.dataset.idx;
+    var topics = that.data.topics;
+    // console.log(topics);
+    // console.log(idx)
+    if (topics[idx].topicstatus == 1) {
+      wx.showToast({
+        title: '该话题已发布,请勿重复发布',
+        icon: 'none'
+      })
+      return;
+    }
+
+    var url = "http://fengyezhan.xyz/Interface/topic/updatetopic";
+    var data = {
+      user: loginuser.tno,
+      pwd: loginuser.pwd,
+      topicid: topics[idx].topicid,
+      status: 1
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+
+      topics[idx].topicstatus = 1;
+      that.setData({
+        topics: topics
+      })
+    })
+
+  },
+
 
   /**
-   * 隐藏图片
+   * 显示或隐藏界面
+   */
+  showOrhidenModel(event) {
+    var type = event.currentTarget.dataset.type;
+    if (type == 1) {
+      this.setData({
+        addChapter: !this.data.addChapter
+      })
+    } else if (type == 2) {
+      this.setData({
+        addPaper: !this.data.addPaper
+      })
+    } else if (type == 3) {
+      this.setData({
+        addData: !this.data.addData
+      })
+    } else if (type == 4) {
+      this.setData({
+        addTopic: !this.data.addTopic
+      })
+    }
+
+  },
+  /**
+   * 隐藏界面
    */
   hideModel() {
     this.setData({
       imagePath: null,
       videoPath: null
     })
+  },
+
+  /**
+   * 获取登录用户信息
+   */
+  isLogin() {
+    try {
+      var loginuser = wx.getStorageSync('loginuser');
+      console.log(loginuser)
+      if (loginuser) {
+        this.setData({
+          loginuser: loginuser
+        })
+      } else {
+        wx.showToast({
+          title: '未登录，请登录后重试',
+          icon: 'none',
+          duration: 3000
+        })
+
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        }, 3000);
+
+      }
+    } catch (e) {}
   },
 
   tabSelect(e) {
@@ -244,6 +379,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.isLogin();
     this.getData(options);
   },
 
