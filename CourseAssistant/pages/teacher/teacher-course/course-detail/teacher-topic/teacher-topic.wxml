@@ -13,7 +13,7 @@
     </view>
   </view>
 
-  <block wx:for="{{comments}}" wx:for-item="item">
+  <block wx:for="{{comments}}" wx:key="key" wx:for-item="item">
 
     <view class="bg-white topic-item">
       <view class="left">

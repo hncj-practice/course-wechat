@@ -18,7 +18,7 @@
       <view class="cuIcon-cu-image">
         <image src="/images/bar/msg_on.png"></image>
       </view>
-      <view class="text-green">消息</view>
+      <view class="text-green">通知</view>
     </view>
 
     <view class="action" bindtap="jump" data-page="course">

@@ -94,24 +94,52 @@ Page({
       })
     });
   },
+
   jumpToPaper(event) {
     var paperid = event.currentTarget.dataset.paperid;
     wx.navigateTo({
       url: './teacher-paper/teacher-paper?paperid=' + paperid,
     })
   },
+
   jumpToChapter(event) {
     var chapterid = event.currentTarget.dataset.chapterid;
     wx.navigateTo({
       url: './teacher-question/teacher-question?chapterid=' + chapterid,
     })
   },
+
   jumpToTopic(event) {
     var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
       url: './teacher-topic/teacher-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent,
     })
   },
+
+  // 长按章节
+  longPressChapter(e) {
+    console.log('长按章节');
+  },
+
+  // 长按试卷
+  longPressPaper(e) {
+    console.log('长按试卷');
+  },
+
+  // 长按资料
+  longPressData(e) {
+    let id = e.currentTarget.dataset.id;
+    console.log('长按资料 ' + id);
+  },
+
+  // 长按话题
+  longPressTopic(e) {
+    let item = e.currentTarget.dataset.topic;
+    // 弹出模态框
+
+    console.log(item);
+  },
+
   downloadData(event) {
     var that = this;
     var datalink = event.currentTarget.dataset.datalink;
@@ -226,38 +254,38 @@ Page({
   /**
    * 添加话题
    */
-  addTopic(event){
+  addTopic(event) {
     var that = this;
-    var title=event.detail.value.title;
-    var content=event.detail.value.content;
-    var courseid= parseInt(this.data.courseid) ;
-    var time=new Date().getTime();
-    var loginuser=that.data.loginuser;
-    var url="http://localhost:8080/Interface_war/topic/addtopic";
-    var data={
-      user:loginuser.tno,
-      pwd:loginuser.pwd,
-      courseid:courseid,
-      topictitle:time,
-      topiccontent:content,
-      committime:time,
-      topicstatus:0
+    var title = event.detail.value.title;
+    var content = event.detail.value.content;
+    var courseid = parseInt(this.data.courseid);
+    var time = new Date().getTime();
+    var loginuser = that.data.loginuser;
+    var url = "http://localhost:8080/Interface_war/topic/addtopic";
+    var data = {
+      user: loginuser.tno,
+      pwd: loginuser.pwd,
+      courseid: courseid,
+      topictitle: time,
+      topiccontent: content,
+      committime: time,
+      topicstatus: 0
     }
     console.log(data)
-    util.myAjaxPost(url,data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
         icon: 'none'
       })
       that.setData({
-        addTopic:!that.data.addTopic
+        addTopic: !that.data.addTopic
       })
       if (res.data.code != 200) {
         return;
       }
       this.getData(event);
 
-      
+
     })
   },
   /**

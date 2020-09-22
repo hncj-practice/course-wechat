@@ -14,7 +14,7 @@
   <view wx:if="{{TabCur==0}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow" bindtap="jumpToChapter" data-chapterid="{{item.chapterid}}">
+        <view class="cu-item arrow" bindtap="jumpToChapter" bindlongpress="longPressChapter" data-chapterid="{{item.chapterid}}">
           <view class="content">
             <text class="cuIcon-btn text-blue"></text>
             <text class="text-grey text-center">{{item.chaptername}}</text>
@@ -30,7 +30,7 @@
     <view class="cu-list menu sm-border card-menu margin-top">
 
       <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-        <view class="cu-item arrow paper" catchtap="jumpToPaper" data-paperid="{{item.paperid}}">
+        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper" data-paperid="{{item.paperid}}">
           <!-- <text class="icon"></text> -->
           <image class="icon" src="../../../../images/icon/paper.png"></image>
           <view class="content text">
@@ -53,7 +53,7 @@
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item" bindtap="downloadData" data-datalink="{{item.datalink}}"
+        <view class="cu-item" bindtap="downloadData" bindlongpress="longPressData" data-id="{{item.dataid}}" data-datalink="{{item.datalink}}"
           data-datatype="{{item.datatype}}">
           <view class="content">
             <text
@@ -99,9 +99,15 @@
 
   <!-- 话题 -->
   <view wx:if="{{TabCur==3}}">
+
+
+    <view class="action">
+      <button class="round bg-blue margin-top" bindtap="showOrhidenModel" data-type="4">新建话题</button>
+    </view>
+
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{topics}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
-        <view class="cu-item arrow" bindtap="jumpToTopic" data-topic="{{item}}">
+        <view class="cu-item arrow" bindtap="jumpToTopic" bindlongpress="longPressTopic" data-topic="{{item}}">
           <view class="content">
             <text class="cuIcon-communityfill text-blue"></text>
             <text class="text-grey text-center">{{item.topictitle}}</text>
@@ -111,10 +117,6 @@
           </view>
         </view>
       </block>
-
-      <view class="action">
-        <button class="round bg-blue margin-top" bindtap="showOrhidenModel" data-type="4">添加话题</button>
-      </view>
     </view>
 
     <!-- 添加话题dialog -->
@@ -137,5 +139,7 @@
         </view>
       </view>
     </view>
+
+
   </view>
 </view>
