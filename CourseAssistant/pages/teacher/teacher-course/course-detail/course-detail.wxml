@@ -29,25 +29,16 @@
   <view wx:if="{{TabCur==1}}">
     <view class="cu-list menu sm-border card-menu margin-top">
 
-      <!-- <block wx:for="{{papers}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow" bindtap="jumpToPaper" data-paperid="{{item.paperid}}">
-          <view class="content">
-            <text class="cuIcon-formfill text-green"></text>
-            <text class="text-grey text-center">{{item.papername}}</text>
-          </view>
-        </view>
-      </block> -->
-
-      <block wx:for="{{papers}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow paper" bindtap="jumpToPaper" data-paperid="{{item.paperid}}">
+      <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
+        <view class="cu-item arrow paper" catchtap="jumpToPaper" data-paperid="{{item.paperid}}">
           <!-- <text class="icon"></text> -->
           <image class="icon" src="../../../../images/icon/paper.png"></image>
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>
 
-            <view class="desc">
+            <view class="desc" catchtap="releasePaper" data-paperidx="{{index}}">
               <text class="text-grey text-left text-sm"> 09-19 14:00 ~ 09-19 15:00 </text>
-              <text class="text-gray text-sm"> 已发布 </text>
+              <text class="text-gray text-sm"> {{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}} {{item.status==2?'已结束':''}} </text>
             </view>
 
           </view>

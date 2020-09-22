@@ -22,10 +22,13 @@ Page({
    * 获取本页面需要的所有数据
    * @param {} options 
    */
-  getData(options){
+  getData(options) {
     var that = this;
     var courseid = options.courseid;
     console.log('courseid:' + courseid);
+    this.setData({
+      courseid: courseid
+    })
 
     //获取该课程的章节信息
     var chapter_url = 'https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
@@ -87,57 +90,57 @@ Page({
       })
     });
   },
-  jumpToPaper(event){
-    var paperid=event.currentTarget.dataset.paperid;
+  jumpToPaper(event) {
+    var paperid = event.currentTarget.dataset.paperid;
     wx.navigateTo({
-      url: './teacher-paper/teacher-paper?paperid='+paperid,
+      url: './teacher-paper/teacher-paper?paperid=' + paperid,
     })
   },
-  jumpToChapter(event){
-    var chapterid=event.currentTarget.dataset.chapterid;
+  jumpToChapter(event) {
+    var chapterid = event.currentTarget.dataset.chapterid;
     wx.navigateTo({
-      url: './teacher-question/teacher-question?chapterid='+chapterid,
+      url: './teacher-question/teacher-question?chapterid=' + chapterid,
     })
   },
-  jumpToTopic(event){
-    var topicid=event.currentTarget.dataset.topicid;
+  jumpToTopic(event) {
+    var topicid = event.currentTarget.dataset.topicid;
     wx.navigateTo({
-      url: './teacher-topic/teacher-topic?topicid='+topicid,
+      url: './teacher-topic/teacher-topic?topicid=' + topicid,
     })
   },
-  downloadData(event){
-    var that=this;
-    var datalink=event.currentTarget.dataset.datalink;
-    var datatype=event.currentTarget.dataset.datatype;
-    console.log(datalink,datatype);
-    if(datatype==1){//图片
+  downloadData(event) {
+    var that = this;
+    var datalink = event.currentTarget.dataset.datalink;
+    var datatype = event.currentTarget.dataset.datatype;
+    console.log(datalink, datatype);
+    if (datatype == 1) { //图片
       that.setData({
-        imagePath:datalink
+        imagePath: datalink
       })
       return;
-    }else if(datatype==3){//视频
+    } else if (datatype == 3) { //视频
       that.setData({
-        videoPath:datalink
+        videoPath: datalink
       })
       return;
     }
     wx.showToast({
       title: datalink,
-      icon:'none'
+      icon: 'none'
     })
-    const downloadTask=wx.downloadFile({
+    const downloadTask = wx.downloadFile({
       url: datalink,
-      success(res){
+      success(res) {
         console.log(res);
-        if(datatype==2){//文档
+        if (datatype == 2) { //文档
           wx.openDocument({
             filePath: res.tempFilePath,
-            success(res){
+            success(res) {
               wx.showToast({
                 title: '打开成功',
               })
             },
-            fail(res){
+            fail(res) {
               wx.showToast({
                 title: '文档打开失败',
               })
@@ -145,17 +148,17 @@ Page({
           })
         }
       },
-      fail(res){
+      fail(res) {
         wx.showToast({
           title: '文档下载失败',
-          icon:'none'
+          icon: 'none'
         })
       }
     })
-    downloadTask.onProgressUpdate((res)=>{
+    downloadTask.onProgressUpdate((res) => {
       wx.showToast({
-        title: "正在加载"+res.progress+"%",
-        icon:'none'
+        title: "正在加载" + res.progress + "%",
+        icon: 'none'
       })
       // console.log("下载进度",res.progress);
       // console.log("已经下载的数据长度",res.totalBytesWritten);
@@ -167,11 +170,54 @@ Page({
    */
   previewImg: function (event) {
     var img = this.data.imagePath;
-    var imgs=[img,]
+    var imgs = [img, ]
     wx.previewImage({
       current: img,
-      urls:imgs,
+      urls: imgs,
     })
+  },
+  /**
+   * 发布试卷
+   */
+  releasePaper(event) {
+    var that = this;
+    var paperidx = event.currentTarget.dataset.paperidx;
+    var courseid = that.data.courseid;
+    var papers = that.data.papers;
+    if(papers[paperidx].status==1){
+      wx.showToast({
+        title: '该试卷已发布,请勿重复发布',
+        icon:'none'
+      })
+      return;
+    }else if(papers[paperidx].status==2){
+      wx.showToast({
+        title: '该试卷已结束,不允许发布',
+        icon:'none'
+      })
+      return;
+    }
+
+    var url = "http://fengyezhan.xyz/Interface/paper/releasepaper";
+    var data = {
+      paperid: papers[paperidx].paperid,
+      courseid: courseid
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+
+      papers[paperidx].status = 1;
+      that.setData({
+        papers: papers
+      })
+    })
+
   },
 
   /**
@@ -180,7 +226,7 @@ Page({
   hideModel() {
     this.setData({
       imagePath: null,
-      videoPath:null
+      videoPath: null
     })
   },
 
