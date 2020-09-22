@@ -1,6 +1,6 @@
 // pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic.js
-var util=require("../../../../../utils/util.js");
-var app=getApp();
+var util = require("../../../../../utils/util.js");
+var app = getApp();
 Page({
 
   /**
@@ -9,13 +9,14 @@ Page({
   data: {
 
   },
-  getTopicDetail(options){
-    var topicid=options.topicid;
-    var url="https://fengyezhan.xyz/Interface/comment/getcommentbytopicid";
-    var data={
-      topicid:topicid
+  
+  getTopicDetail(options) {
+    var topicid = options.topicid;
+    var url = "https://fengyezhan.xyz/Interface/comment/getcommentbytopicid";
+    var data = {
+      topicid: topicid
     }
-    util.myAjaxPost(url,data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
         icon: 'none'
@@ -25,7 +26,7 @@ Page({
       }
 
       this.setData({
-        comments:res.data.data
+        comments: res.data.data
       })
     })
   },

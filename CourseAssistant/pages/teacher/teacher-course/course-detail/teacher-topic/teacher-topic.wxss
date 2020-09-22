@@ -1,1 +1,44 @@
 /* pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic.wxss */
+
+
+.topic-title {
+  padding: 15rpx 0;
+}
+
+
+.topic-item {
+  margin-bottom: 15rpx;
+  padding: 15rpx;
+
+  display: flex;
+}
+
+.topic-item .left .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 14rpx;
+}
+
+.topic-item .right {
+  /* background: pink; */
+  margin-left: 15rpx;
+}
+
+.topic-item .right .info {
+  position: relative;
+  height: 80rpx;
+}
+
+.topic-item .right .info .name {
+  position: absolute;
+  top: 5rpx;
+}
+
+.topic-item .right .info .time {
+  position: absolute;
+  bottom: 0;
+}
+
+.topic-item .right .content {
+  margin-top: 15rpx;
+}
