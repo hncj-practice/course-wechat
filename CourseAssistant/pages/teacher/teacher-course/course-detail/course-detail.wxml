@@ -14,7 +14,8 @@
   <view wx:if="{{TabCur==0}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item arrow" bindtap="jumpToChapter" bindlongpress="longPressChapter" data-chapterid="{{item.chapterid}}">
+        <view class="cu-item arrow" bindtap="jumpToChapter" bindlongpress="longPressChapter"
+          data-chapterid="{{item.chapterid}}">
           <view class="content">
             <text class="cuIcon-btn text-blue"></text>
             <text class="text-grey text-center">{{item.chaptername}}</text>
@@ -30,7 +31,8 @@
     <view class="cu-list menu sm-border card-menu margin-top">
 
       <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper" data-paperid="{{item.paperid}}">
+        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper"
+          data-paperid="{{item.paperid}}">
           <!-- <text class="icon"></text> -->
           <image class="icon" src="../../../../images/icon/paper.png"></image>
           <view class="content text">
@@ -53,8 +55,8 @@
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item" bindtap="downloadData" bindlongpress="longPressData" data-id="{{item.dataid}}" data-datalink="{{item.datalink}}"
-          data-datatype="{{item.datatype}}">
+        <view class="cu-item" bindtap="downloadData" bindlongpress="longPressData" data-id="{{item.dataid}}"
+          data-datalink="{{item.datalink}}" data-datatype="{{item.datatype}}">
           <view class="content">
             <text
               class="{{item.datatype==3?'cuIcon-video':''}} {{item.datatype==2?'cuIcon-form':''}} {{item.datatype==1?'cuIcon-pic':''}} text-blue"></text>
@@ -96,6 +98,7 @@
       </view>
     </view>
   </view>
+
 
   <!-- 话题 -->
   <view wx:if="{{TabCur==3}}">
@@ -139,7 +142,65 @@
         </view>
       </view>
     </view>
-
-
   </view>
+
+
+
+  <!--模态框------------------------------------------------------------------------------------------>
+
+  <!-- 长按章节模态框 -->
+  <view class="cu-modal bottom-modal {{modalName=='chapter'?'show':''}}" bindtap="hideWsModel">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-blue">章节操作</view>
+      </view>
+      <view>
+        <button bindtap="">修改</button>
+        <button bindtap="">删除</button>
+        <button bindtap="hideWsModel">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 长按试卷模态框 -->
+  <view class="cu-modal bottom-modal {{modalName=='paper'?'show':''}}" bindtap="hideWsModel">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-green">试卷操作</view>
+      </view>
+      <view>
+        <button bindtap="">修改</button>
+        <button bindtap="">删除</button>
+        <button bindtap="hideWsModel">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 长按资料模态框 -->
+  <view class="cu-modal bottom-modal {{modalName=='data'?'show':''}}" bindtap="hideWsModel">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-red">确认删除该资料？</view>
+      </view>
+      <view>
+        <button bindtap="hideWsModel">取消</button>
+        <button bindtap="deleteData">确认</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 长按话题模态框 -->
+  <view class="cu-modal bottom-modal {{modalName=='topic'?'show':''}}" bindtap="hideWsModel">
+    <view class="cu-dialog" catchtap>
+      <view class="cu-bar bg-white">
+        <view class="action text-blue">话题操作</view>
+      </view>
+      <view>
+        <button bindtap="">修改</button>
+        <button bindtap="">删除</button>
+        <button bindtap="hideWsModel">取消</button>
+      </view>
+    </view>
+  </view>
+
 </view>

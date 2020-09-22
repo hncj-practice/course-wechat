@@ -19,7 +19,13 @@ Page({
     addChapter: false,
     addPaper: false,
     addData: false,
-    addTopic: false
+    addTopic: false,
+
+    modalName: null,
+
+
+    // 当前选择的资料
+    currData: 0
   },
 
   /**
@@ -116,28 +122,72 @@ Page({
     })
   },
 
+
+  // 显示模态框
+  showWsModel(name) {
+    this.setData({
+      modalName: name
+    });
+  },
+
+  // 隐藏模态框
+  hideWsModel() {
+    this.setData({
+      modalName: null,
+      currData: 0
+    });
+  },
+
   // 长按章节
   longPressChapter(e) {
-    console.log('长按章节');
+
+
+    let id = e.currentTarget.dataset.id;
+    // console.log('长按资料 ' + id);
+    this.setData({
+      currData: id
+    });
+    // 弹出对话框
+    this.showWsModel('chapter');
+
   },
 
   // 长按试卷
   longPressPaper(e) {
-    console.log('长按试卷');
+    this.showWsModel('paper');
   },
 
   // 长按资料
   longPressData(e) {
     let id = e.currentTarget.dataset.id;
-    console.log('长按资料 ' + id);
+    // console.log('长按资料 ' + id);
+    this.setData({
+      currData: id
+    });
+    // 弹出对话框确认删除
+    this.showWsModel('data');
+  },
+
+  // 删除资料
+  deleteData() {
+    let id = this.data.currData;
+    if (!id) {
+      return;
+    }
+    console.log('删除资料' + id);
+    // 调用接口删除
+
+    // 刷新页面
+
+    // 隐藏掉模态框
+    this.hideWsModel();
   },
 
   // 长按话题
   longPressTopic(e) {
     let item = e.currentTarget.dataset.topic;
     // 弹出模态框
-
-    console.log(item);
+    this.showWsModel('topic');
   },
 
   downloadData(event) {
