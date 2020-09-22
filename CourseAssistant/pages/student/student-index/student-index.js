@@ -1,97 +1,126 @@
 // pages/student/student-index/student-index.js
 
 var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
-var util=require('../../../utils/util.js')
-var app=getApp();
+var util = require('../../../utils/util.js')
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    cardCur: 0,
+    // 轮播图
+    swiperList: [{
+      id: 0,
+      type: 'image',
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/01.jpg'
+    }, {
+      id: 1,
+      type: 'image',
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/02.jpg'
+    }, {
+      id: 2,
+      type: 'image',
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/03.jpg'
+    }, {
+      id: 3,
+      type: 'image',
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/04.jpg'
+    }, {
+      id: 4,
+      type: 'image',
+      url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/05.png'
+    }],
   },
-/**
+  /**
    * 判断当前用户是否登录
    */
-  isLogin(){
-    try{
-      var loginuser=wx.getStorageSync('loginuser');
+  isLogin() {
+    try {
+      var loginuser = wx.getStorageSync('loginuser');
       console.log(loginuser)
-      if(loginuser){
+      if (loginuser) {
         this.setData({
           sno: loginuser.sno
         })
-      }else{
+      } else {
         wx.showToast({
           title: '未登录，请登录后重试',
-          icon:'none',
-          duration:3000
+          icon: 'none',
+          duration: 3000
         })
-        
-        setTimeout(function(){
+
+        setTimeout(function () {
           wx.navigateTo({
             url: '../../login/login',
           })
-        },3000);
-        
+        }, 3000);
+
       }
-    }catch(e){}
+    } catch (e) {}
   },
   /**
    * 查询当前登录学生所学习的所有课程
    */
-  getCourse(){
-    var that=this;
-    var url ="https://fengyezhan.xyz/Interface/course/getcoursebysno";
-    var data={
+  getCourse() {
+    var that = this;
+    var url = "https://fengyezhan.xyz/Interface/course/getcoursebysno";
+    var data = {
       studentid: this.data.sno,
-      semesterid:1
+      semesterid: 1
     }
-    util.myAjaxPost(url, data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
-        icon:'none'
+        icon: 'none'
       })
-      if(res.data.code!=200){
+      if (res.data.code != 200) {
         return;
       }
 
-      var courses=res.data.data;
+      var courses = res.data.data;
       //分别代表：进行中、审核中、归档
       var processingNum = 0,
         reviewNum = 0,
         archiveNum = 0;
-      var processing=[],review=[],archive=[];
+      var processing = [],
+        review = [],
+        archive = [];
       courses.forEach(item => {
-        if (item.status == "1"){
+        if (item.status == "1") {
           processing.push(item)
           processingNum += 1;
-        }
-        else if (item.status == "2"){
+        } else if (item.status == "2") {
           reviewNum += 1;
           review.push(item)
-        }
-        else if (item.status == "3"){
+        } else if (item.status == "3") {
           archiveNum += 1;
           archive.push(item)
         }
       });
-      var list={
-        allcourses:courses,
-        processing:processing,
-        processingnum:processingNum,
-        review:review,
-        reviewnum:reviewNum,
-        archive:archive,
-        archivenum:archiveNum,
+      var list = {
+        allcourses: courses,
+        processing: processing,
+        processingnum: processingNum,
+        review: review,
+        reviewnum: reviewNum,
+        archive: archive,
+        archivenum: archiveNum,
       }
-      app.globalData.courses=list;
+      app.globalData.courses = list;
       console.log(app.globalData.courses)
 
       that.setData({
-        recently:res.data.data
+        recently: res.data.data
       })
+    })
+  },
+
+  // 轮播图切换
+  cardSwiper(e) {
+    this.setData({
+      cardCur: e.detail.current
     })
   },
 
@@ -104,7 +133,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.isLogin();
     this.getCourse();
   },
@@ -112,49 +141,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
