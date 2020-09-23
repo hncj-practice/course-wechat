@@ -25,12 +25,18 @@ Page({
 
 
     // 当前选择的资料
-    currData: 0
+    currData: 0,
+
+
+    startdate:"2020-09-25",
+    starttime:"12:05",
+    enddate:"2020-09-25",
+    endtime:"12:05"
   },
 
-  getChapter(){
+  getChapter() {
     //获取该课程的章节信息
-    var that=this;
+    var that = this;
     var chapter_url = 'https://fengyezhan.xyz/Interface/chapter/getchapterbycourseid';
     var chapter_data = {
       courseid: that.data.courseid
@@ -45,8 +51,8 @@ Page({
       })
     });
   },
-  getPaper(){
-    var that=this;
+  getPaper() {
+    var that = this;
     //获取该课程的试卷信息
     var paper_url = 'https://fengyezhan.xyz/Interface/paper/getpaperbycourseid';
     var paper_data = {
@@ -62,8 +68,8 @@ Page({
       })
     });
   },
-  getData(){
-    var that=this;
+  getData() {
+    var that = this;
     //获取该课程的资料信息
     var data_url = 'https://fengyezhan.xyz/Interface/data/getdatabycourseid';
     var data_data = {
@@ -79,8 +85,8 @@ Page({
       })
     });
   },
-  getTopic(){
-    var that=this;
+  getTopic() {
+    var that = this;
     //获取该课程的话题信息
     var topic_url = 'https://fengyezhan.xyz/Interface/topic/gettopicbycid';
     var topic_data = {
@@ -97,10 +103,7 @@ Page({
     });
   },
 
-  /**
-   * 获取本页面需要的所有数据
-   * @param {} options 
-   */
+  //获取本页面需要的所有数据
   getAllData(options) {
     var that = this;
     var courseid = options.courseid;
@@ -117,7 +120,7 @@ Page({
     this.getData();
 
     this.getTopic();
-    
+
   },
 
   jumpToPaper(event) {
@@ -205,8 +208,41 @@ Page({
   // 长按话题
   longPressTopic(e) {
     let item = e.currentTarget.dataset.topic;
+    this.setData({
+      currTopic: item.topicid
+    })
     // 弹出模态框
     this.showWsModel('topic');
+  },
+
+  //删除话题
+  deleteTopic() {
+    var that = this;
+    var id = that.data.currTopic;
+    if (!id) {
+      return;
+    }
+    console.log('删除资料' + id);
+    // 调用接口删除
+    var url = "https://fengyezhan.xyz/Interface/topic/deltopic";
+    var data = {
+      user: that.data.loginuser.tno,
+      pwd: that.data.loginuser.pwd,
+      topicid: id
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      // 刷新页面
+      that.getTopic();
+    })
+    // 隐藏掉模态框
+    that.hideWsModel();
   },
 
   downloadData(event) {
@@ -320,44 +356,7 @@ Page({
     })
 
   },
-  /**
-   * 添加话题
-   */
-  addTopic(event) {
-    var that = this;
-    var title = event.detail.value.title;
-    var content = event.detail.value.content;
-    var courseid = parseInt(this.data.courseid);
-    var time = new Date().getTime();
-    var loginuser = that.data.loginuser;
-    var url = "https://fengyezhan.xyz/Interface/topic/addtopic";
-    var data = {
-      user: loginuser.tno,
-      pwd: loginuser.pwd,
-      courseid: courseid,
-      topictitle: title,
-      topiccontent: content,
-      committime: time,
-      topicstatus: 0
-    }
-    console.log(data)
-    util.myAjaxPost(url, data).then(res => {
-      wx.showToast({
-        title: res.data.message,
-        icon: 'none'
-      })
-      that.setData({
-        addTopic: !that.data.addTopic
-      })
-      if (res.data.code != 200) {
-        return;
-      }
-      //更新数据
-      this.getTopic();
-
-
-    })
-  },
+  
   /**
    * 发布话题
    */
@@ -400,30 +399,265 @@ Page({
 
   },
 
-
-  /**
-   * 显示或隐藏界面
-   */
-  showOrhidenModel(event) {
+  //显示或隐藏添加章节模态框
+  showOrHidenAddChapter(event) {
     var type = event.currentTarget.dataset.type;
-    if (type == 1) {
-      this.setData({
-        addChapter: !this.data.addChapter
-      })
-    } else if (type == 2) {
-      this.setData({
-        addPaper: !this.data.addPaper
-      })
-    } else if (type == 3) {
-      this.setData({
-        addData: !this.data.addData
-      })
-    } else if (type == 4) {
-      this.setData({
-        addTopic: !this.data.addTopic
-      })
+    this.setData({
+      addChapter: !this.data.addChapter,
+      addOrModifytype: type
+    })
+    this.hideWsModel();
+  },
+  //显示或隐藏添加试卷模态框
+  showOrHidenAddPaper(event) {
+    var type = event.currentTarget.dataset.type;
+    this.setData({
+      addPaper: !this.data.addPaper,
+      addOrModifytype: type
+    })
+    this.hideWsModel();
+  },
+  //显示或隐藏添加资料模态框
+  showOrHidenAddData(event) {
+    var type = event.currentTarget.dataset.type;
+    this.setData({
+      addData: !this.data.addData,
+      addOrModifytype: type
+    })
+    this.hideWsModel();
+  },
+  //显示或隐藏添加话题模态框
+  showOrHidenAddTopic(event) {
+    var type = event.currentTarget.dataset.type;
+    this.setData({
+      addTopic: !this.data.addTopic,
+      addOrModifytype: type
+    })
+    this.hideWsModel();
+  },
+  //添加或修改章节
+  addOrModifyChapter(event) {
+    var that = this;
+    var type = event.currentTarget.dataset.type;
+
+    var title = event.detail.value.title;
+    var content = event.detail.value.content;
+    var time = new Date().getTime();
+    var loginuser = that.data.loginuser;
+    var url = "";
+    var data = {}
+    if (type == 1) { //添加话题
+      var courseid = parseInt(this.data.courseid);
+      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        courseid: courseid,
+        topictitle: title,
+        topiccontent: content,
+        committime: time,
+        topicstatus: 0
+      }
+    } else if (type == 2) { //修改话题
+      var topicid = that.data.currTopic;
+      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        topicid: topicid,
+        title: title,
+        content: content,
+        committime: time,
+        status: 0
+      }
     }
 
+
+    console.log(data)
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      that.setData({
+        addTopic: !that.data.addTopic
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      //更新数据
+      this.getTopic();
+
+
+    })
+  },
+  //添加或修改试卷
+  addOrModifyPaper(event) {
+    var that = this;
+    var type = event.currentTarget.dataset.type;
+
+    var title = event.detail.value.title;
+    var content = event.detail.value.content;
+    var time = new Date().getTime();
+    var loginuser = that.data.loginuser;
+    var url = "";
+    var data = {}
+    if (type == 1) { //添加话题
+      var courseid = parseInt(this.data.courseid);
+      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        courseid: courseid,
+        topictitle: title,
+        topiccontent: content,
+        committime: time,
+        topicstatus: 0
+      }
+    } else if (type == 2) { //修改话题
+      var topicid = that.data.currTopic;
+      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        topicid: topicid,
+        title: title,
+        content: content,
+        committime: time,
+        status: 0
+      }
+    }
+
+
+    console.log(data)
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      that.setData({
+        addTopic: !that.data.addTopic
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      //更新数据
+      this.getTopic();
+
+
+    })
+  },
+  //添加或修改资料
+  addOrModifyData(event) {
+    var that = this;
+    var type = event.currentTarget.dataset.type;
+
+    var title = event.detail.value.title;
+    var content = event.detail.value.content;
+    var time = new Date().getTime();
+    var loginuser = that.data.loginuser;
+    var url = "";
+    var data = {}
+    if (type == 1) { //添加话题
+      var courseid = parseInt(this.data.courseid);
+      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        courseid: courseid,
+        topictitle: title,
+        topiccontent: content,
+        committime: time,
+        topicstatus: 0
+      }
+    } else if (type == 2) { //修改话题
+      var topicid = that.data.currTopic;
+      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        topicid: topicid,
+        title: title,
+        content: content,
+        committime: time,
+        status: 0
+      }
+    }
+
+
+    console.log(data)
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      that.setData({
+        addTopic: !that.data.addTopic
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      //更新数据
+      this.getTopic();
+
+
+    })
+  },
+  //添加或修改话题
+  addOrModifyTopic(event) {
+    var that = this;
+    var type = event.currentTarget.dataset.type;
+
+    var title = event.detail.value.title;
+    var content = event.detail.value.content;
+    var time = new Date().getTime();
+    var loginuser = that.data.loginuser;
+    var url = "";
+    var data = {}
+    if (type == 1) { //添加话题
+      var courseid = parseInt(this.data.courseid);
+      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        courseid: courseid,
+        topictitle: title,
+        topiccontent: content,
+        committime: time,
+        topicstatus: 0
+      }
+    } else if (type == 2) { //修改话题
+      var topicid = that.data.currTopic;
+      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        topicid: topicid,
+        title: title,
+        content: content,
+        committime: time,
+        status: 0
+      }
+    }
+
+
+    console.log(data)
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      that.setData({
+        addTopic: !that.data.addTopic
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      //更新数据
+      this.getTopic();
+
+
+    })
   },
   /**
    * 隐藏界面

@@ -23,6 +23,36 @@
         </view>
       </block>
     </view>
+    <view class="action">
+      <button class="round bg-blue margin-top" bindtap="showOrHidenAddChapter" data-type="1">新建章节</button>
+    </view>
+
+    <!-- 添加章节dialog -->
+    <view class="cu-modal {{addChapter?'show':''}}">
+      <view class="cu-dialog">
+        <view class="bg-img">
+          <view class="cu-bar justify-end text-black">
+            <view class="action" bindtap="showOrHidenAddChapter" data-type="1">
+              <text class="cuIcon-close "></text>
+            </view>
+          </view>
+          <!-- type为1代表添加话题，为2代表修改话题 -->
+          <scroll-view scroll-y="true" style="height:150px;">
+            <form bindsubmit="addOrModifyChapter" data-type="{{addOrModifytype}}">
+              <view class="cu-form-group margin-top">
+                <view class="title">章节名</view>
+                <input name="chaptername" placeholder="两字短标题"></input>
+              </view>
+              <view class="action">
+                <button class="round bg-blue margin-top margin-bottom"
+                  form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
+              </view>
+            </form>
+          </scroll-view>
+
+        </view>
+      </view>
+    </view>
   </view>
 
 
@@ -49,6 +79,76 @@
       </block>
 
     </view>
+
+    <view class="action">
+      <button class="round bg-blue margin-top" bindtap="showOrHidenAddPaper" data-type="1">新建试卷</button>
+    </view>
+
+    <!-- 添加试卷dialog -->
+    <view class="cu-modal {{addPaper?'show':''}}">
+      <view class="cu-dialog">
+        <view class="bg-img">
+          <view class="cu-bar justify-end text-black">
+            <view class="action" bindtap="showOrHidenAddPaper" data-type="1">
+              <text class="cuIcon-close "></text>
+            </view>
+          </view>
+          <!-- type为1代表添加话题，为2代表修改话题 -->
+
+          <scroll-view scroll-y="true" style="height:300px;">
+            <form bindsubmit="addOrModifyPaper" data-type="{{addOrModifytype}}">
+              <view class="cu-form-group margin-top">
+                <view class="title">试卷名称</view>
+                <input name="papername" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group margin-top">
+                <view class="title">选择题分值</view>
+                <input name="papername" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group margin-top">
+                <view class="title">判断题分值</view>
+                <input name="papername" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group margin-top">
+                <view class="title">填空题分值</view>
+                <input name="papername" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">开始时间</view>
+                <picker mode="date" value="{{startdate}}" start="09:00" end="21:01" bindchange="TimeChange">
+                  <view class="picker">
+                    {{startdate}}
+                  </view>
+                </picker>
+                <picker mode="time" value="{{starttime}}" start="09:00" end="21:01" bindchange="TimeChange">
+                  <view class="picker">
+                    {{starttime}}
+                  </view>
+                </picker>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">结束时间</view>
+                <picker mode="date" value="{{enddate}}" bindchange="TimeChange">
+                  <view class="picker">
+                    {{enddate}}
+                  </view>
+                </picker>
+                <picker mode="time" value="{{endtime}}" bindchange="TimeChange">
+                  <view class="picker">
+                    {{endtime}}
+                  </view>
+                </picker>
+              </view>
+              <view class="action">
+                <button class="round bg-blue margin-top margin-bottom" form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
+              </view>
+            </form>
+          </scroll-view>
+
+        </view>
+      </view>
+    </view>
+
   </view>
 
   <!-- 资料 -->
@@ -68,6 +168,49 @@
         </view>
       </block>
     </view>
+
+    <view class="action">
+      <button class="round bg-blue margin-top" bindtap="showOrHidenAddData" data-type="1">新建资料</button>
+    </view>
+
+    <!-- 添加资料dialog -->
+    <view class="cu-modal {{addData?'show':''}}">
+      <view class="cu-dialog">
+
+        <view class="bg-img">
+          <view class="cu-bar justify-end text-black">
+            <view class="action" bindtap="showOrHidenAddData" data-type="1">
+              <text class="cuIcon-close "></text>
+            </view>
+          </view>
+          <!-- type为1代表添加话题，为2代表修改话题 -->
+          <scroll-view scroll-y="true" style="height:300px;">
+            <form bindsubmit="addOrModifyData" data-type="{{addOrModifytype}}">
+
+              <view class="cu-form-group margin-top">
+                <view class="title">资料名称</view>
+                <input name="title" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group align-start">
+                <view class="title">资料链接</view>
+                <textarea name="content" maxlength="-1" placeholder="多行文本输入框"></textarea>
+              </view>
+              <view class="cu-form-group margin-top">
+                <view class="title">资料类型</view>
+                <input name="papername" placeholder="两字短标题"></input>
+              </view>
+              <view class="action">
+                <button class="round bg-blue margin-top margin-bottom"
+                  form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
+              </view>
+
+            </form>
+          </scroll-view>
+
+        </view>
+      </view>
+    </view>
+
     <!-- 资料图片 -->
     <view class="cu-modal {{imagePath?'show':''}}">
       <view class="cu-dialog">
@@ -118,14 +261,15 @@
     </view>
 
     <view class="action">
-      <button class="round bg-blue margin-top" bindtap="showOrhidenModel" data-type="4">新建话题</button>
+      <button class="round bg-blue margin-top" bindtap="showOrHidenAddTopic" data-type="1">新建话题</button>
     </view>
 
     <!-- 添加话题dialog -->
     <view class="cu-modal {{addTopic?'show':''}}">
       <view class="cu-dialog">
         <view class="bg-img" style="height:230px;">
-          <form bindsubmit="addTopic">
+          <!-- type为1代表添加话题，为2代表修改话题 -->
+          <form bindsubmit="addOrModifyTopic" data-type="{{addOrModifytype}}">
             <view class="cu-form-group margin-top">
               <view class="title">标题</view>
               <input name="title" placeholder="两字短标题"></input>
@@ -135,7 +279,7 @@
               <textarea name="content" maxlength="-1" placeholder="多行文本输入框"></textarea>
             </view>
             <view class="action">
-              <button class="round bg-blue margin-top" form-type="submit">添加</button>
+              <button class="round bg-blue margin-top" form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
             </view>
           </form>
         </view>
@@ -195,8 +339,8 @@
         <view class="action text-blue">话题操作</view>
       </view>
       <view>
-        <button bindtap="">修改</button>
-        <button bindtap="">删除</button>
+        <button bindtap="showOrHidenAddTopic" data-type="2">修改</button>
+        <button bindtap="deleteTopic">删除</button>
         <button bindtap="hideWsModel">取消</button>
       </view>
     </view>
