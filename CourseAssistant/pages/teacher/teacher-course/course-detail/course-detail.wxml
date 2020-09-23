@@ -68,9 +68,10 @@
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>
 
-            <view class="desc" catchtap="releasePaper" data-paperidx="{{index}}">
+            <view class="desc">
               <text class="text-grey text-left text-sm"> 09-19 14:00 ~ 09-19 15:00 </text>
-              <text class="text-gray text-sm"> {{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}}
+              <text class="text-gray text-sm" catchtap="releasePaper" data-paperidx="{{index}}">
+                {{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}}
                 {{item.status==2?'已结束':''}} </text>
             </view>
 
@@ -140,7 +141,8 @@
                 </picker>
               </view>
               <view class="action">
-                <button class="round bg-blue margin-top margin-bottom" form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
+                <button class="round bg-blue margin-top margin-bottom"
+                  form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
               </view>
             </form>
           </scroll-view>
@@ -268,20 +270,28 @@
     <view class="cu-modal {{addTopic?'show':''}}">
       <view class="cu-dialog">
         <view class="bg-img" style="height:230px;">
-          <!-- type为1代表添加话题，为2代表修改话题 -->
-          <form bindsubmit="addOrModifyTopic" data-type="{{addOrModifytype}}">
-            <view class="cu-form-group margin-top">
-              <view class="title">标题</view>
-              <input name="title" placeholder="两字短标题"></input>
+          <view class="cu-bar justify-end text-black">
+            <view class="action" bindtap="showOrHidenAddTopic" data-type="1">
+              <text class="cuIcon-close "></text>
             </view>
-            <view class="cu-form-group align-start">
-              <view class="title">内容</view>
-              <textarea name="content" maxlength="-1" placeholder="多行文本输入框"></textarea>
-            </view>
-            <view class="action">
-              <button class="round bg-blue margin-top" form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
-            </view>
-          </form>
+          </view>
+          <scroll-view scroll-y="true" style="height:230px;">
+            <!-- type为1代表添加话题，为2代表修改话题 -->
+            <form bindsubmit="addOrModifyTopic" data-type="{{addOrModifytype}}">
+              <view class="cu-form-group margin-top">
+                <view class="title">标题</view>
+                <input name="title" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group align-start">
+                <view class="title">内容</view>
+                <textarea name="content" maxlength="-1" placeholder="多行文本输入框"></textarea>
+              </view>
+              <view class="action">
+                <button class="round bg-blue margin-top" form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
+              </view>
+            </form>
+          </scroll-view>
+
         </view>
       </view>
     </view>
@@ -299,7 +309,7 @@
       </view>
       <view>
         <button bindtap="">修改</button>
-        <button bindtap="">删除</button>
+        <button bindtap="deleteChapter">删除</button>
         <button bindtap="hideWsModel">取消</button>
       </view>
     </view>
@@ -313,7 +323,7 @@
       </view>
       <view>
         <button bindtap="">修改</button>
-        <button bindtap="">删除</button>
+        <button bindtap="deletePaper">删除</button>
         <button bindtap="hideWsModel">取消</button>
       </view>
     </view>

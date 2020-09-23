@@ -24,8 +24,14 @@ Page({
     modalName: null,
 
 
+    // 当前选择的章节
+    currChapter: 0,
+    // 当前选择的试卷
+    currPaper: 0,
     // 当前选择的资料
     currData: 0,
+    // 当前选择的话题
+    currTopic: 0,
 
 
     startdate:"2020-09-25",
@@ -162,21 +168,83 @@ Page({
 
   // 长按章节
   longPressChapter(e) {
-
-
-    let id = e.currentTarget.dataset.id;
+    let id = e.currentTarget.dataset.chapterid;
     // console.log('长按资料 ' + id);
     this.setData({
-      currData: id
+      currChapter: id
     });
     // 弹出对话框
     this.showWsModel('chapter');
 
   },
+  // 删除章节
+  deleteChapter() {
+    var that=this;
+    let id = that.data.currChapter;
+    if (!id) {
+      return;
+    }
+    console.log('删除章节' + id);
+    var url = "https://fengyezhan.xyz/Interface/chapter/delchapter";
+    var data = {
+      user: that.data.loginuser.tno,
+      pwd: that.data.loginuser.pwd,
+      chapterid: id
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      // 刷新页面
+      that.getChapter();
+    })
+
+    // 隐藏掉模态框
+    that.hideWsModel();
+  },
 
   // 长按试卷
   longPressPaper(e) {
+    let id = e.currentTarget.dataset.paperid;
+    // console.log('长按资料 ' + id);
+    this.setData({
+      currPaper: id
+    });
     this.showWsModel('paper');
+  },
+
+  // 删除试卷
+  deletePaper() {
+    var that=this;
+    let id = that.data.currPaper;
+    if (!id) {
+      return;
+    }
+    console.log('删除试卷' + id);
+    var url = "https://fengyezhan.xyz/Interface/paper/delpaper";
+    var data = {
+      user: that.data.loginuser.tno,
+      pwd: that.data.loginuser.pwd,
+      paperid: id
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      // 刷新页面
+      that.getPaper();
+    })
+
+    // 隐藏掉模态框
+    that.hideWsModel();
   },
 
   // 长按资料
@@ -192,17 +260,32 @@ Page({
 
   // 删除资料
   deleteData() {
-    let id = this.data.currData;
+    var that=this;
+    let id = that.data.currData;
     if (!id) {
       return;
     }
     console.log('删除资料' + id);
-    // 调用接口删除
-
-    // 刷新页面
+    var url = "https://fengyezhan.xyz/Interface/data/deldata";
+    var data = {
+      user: that.data.loginuser.tno,
+      pwd: that.data.loginuser.pwd,
+      dataid: id
+    }
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      // 刷新页面
+      that.getData();
+    })
 
     // 隐藏掉模态框
-    this.hideWsModel();
+    that.hideWsModel();
   },
 
   // 长按话题
@@ -245,6 +328,7 @@ Page({
     that.hideWsModel();
   },
 
+  //打开资料
   downloadData(event) {
     var that = this;
     var datalink = event.currentTarget.dataset.datalink;
@@ -302,9 +386,7 @@ Page({
       // console.log("预期需要下载的数据总长度",res.totalBytesExpectedToWrite);
     })
   },
-  /**
-   * 实现图片预览
-   */
+  //实现图片预览
   previewImg: function (event) {
     var img = this.data.imagePath;
     var imgs = [img, ]
@@ -313,9 +395,7 @@ Page({
       urls: imgs,
     })
   },
-  /**
-   * 发布试卷
-   */
+  //发布试卷
   releasePaper(event) {
     var that = this;
     var paperidx = event.currentTarget.dataset.paperidx;
@@ -357,16 +437,12 @@ Page({
 
   },
   
-  /**
-   * 发布话题
-   */
+  //发布话题
   releaseTopic(event) {
     var that = this;
     var loginuser = that.data.loginuser;
     var idx = event.currentTarget.dataset.idx;
     var topics = that.data.topics;
-    // console.log(topics);
-    // console.log(idx)
     if (topics[idx].topicstatus == 1) {
       wx.showToast({
         title: '该话题已发布,请勿重复发布',
@@ -659,9 +735,7 @@ Page({
 
     })
   },
-  /**
-   * 隐藏界面
-   */
+  //隐藏界面
   hideModel() {
     this.setData({
       imagePath: null,
@@ -669,9 +743,7 @@ Page({
     })
   },
 
-  /**
-   * 获取登录用户信息
-   */
+  //获取登录用户信息
   isLogin() {
     try {
       var loginuser = wx.getStorageSync('loginuser');
