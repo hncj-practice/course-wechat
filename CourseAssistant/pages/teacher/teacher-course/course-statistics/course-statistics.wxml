@@ -1,0 +1,49 @@
+<!--pages/teacher/teacher-course/course-statistics/course-statistics.wxml-->
+<view class="root">
+
+  <!-- 顶部导航 -->
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tab.length}}" wx:key="key" bindtap="tabSelect"
+      data-id="{{index}}">
+      {{tab[index]}}
+    </view>
+  </scroll-view>
+
+
+
+  <!-- 进度统计 -->
+  <view wx:if="{{TabCur==0}}">
+    <view class="table">
+      <view class="tr bg-w text-sm">
+        <view class="th">学号</view>
+        <view class="th">姓名</view>
+        <view class="th">试卷完成数</view>
+        <view class="th">讨论完成数</view>
+        <view class="th ">分数</view>
+      </view>
+
+      <block wx:for="{{listData}}" wx:key="key">
+
+        <view class="tr bg-g text-sm" wx:if="{{index % 2 == 0}}">
+          <text class="td">{{item.sno}}</text>
+          <view class="td">{{item.sname}}</view>
+          <view class="td">{{item.paper}}</view>
+          <view class="td">{{item.topic}}</view>
+          <view class="td">{{item.score}}</view>
+        </view>
+
+        <view class="tr bg-w text-sm" wx:else>
+          <text class="td">{{item.sno}}</text>
+          <view class="td">{{item.sname}}</view>
+          <view class="td">{{item.paper}}</view>
+          <view class="td">{{item.topic}}</view>
+          <view class="td">{{item.score}}</view>
+        </view>
+
+      </block>
+    </view>
+  </view>
+
+
+
+</view>
