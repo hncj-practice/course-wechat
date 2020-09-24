@@ -98,19 +98,19 @@
 
           <scroll-view scroll-y="true" style="height:300px;">
             <form bindsubmit="addOrModifyPaper" data-type="{{addOrModifytype}}">
-              <view class="cu-form-group margin-top">
+              <view class="cu-form-group">
                 <view class="title">试卷名称</view>
                 <input name="papername" placeholder="两字短标题"></input>
               </view>
-              <view class="cu-form-group margin-top">
+              <view class="cu-form-group">
                 <view class="title">选择题分值</view>
                 <input name="papername" placeholder="两字短标题"></input>
               </view>
-              <view class="cu-form-group margin-top">
+              <view class="cu-form-group">
                 <view class="title">判断题分值</view>
                 <input name="papername" placeholder="两字短标题"></input>
               </view>
-              <view class="cu-form-group margin-top">
+              <view class="cu-form-group">
                 <view class="title">填空题分值</view>
                 <input name="papername" placeholder="两字短标题"></input>
               </view>
@@ -308,7 +308,7 @@
         <view class="action text-blue">章节操作</view>
       </view>
       <view>
-        <button bindtap="">修改</button>
+        <button bindtap="showOrHidenAddChapter" data-type="2">修改</button>
         <button bindtap="deleteChapter">删除</button>
         <button bindtap="hideWsModel">取消</button>
       </view>
@@ -322,7 +322,7 @@
         <view class="action text-green">试卷操作</view>
       </view>
       <view>
-        <button bindtap="">修改</button>
+        <button bindtap="showOrHidenAddPaper" data-type="2">修改</button>
         <button bindtap="deletePaper">删除</button>
         <button bindtap="hideWsModel">取消</button>
       </view>

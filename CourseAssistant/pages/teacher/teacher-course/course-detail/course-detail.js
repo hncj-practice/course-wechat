@@ -35,9 +35,9 @@ Page({
 
 
     startdate:"2020-09-25",
-    starttime:"12:05",
+    starttime:"08:00",
     enddate:"2020-09-25",
-    endtime:"12:05"
+    endtime:"12:00"
   },
 
   getChapter() {
@@ -515,40 +515,20 @@ Page({
   addOrModifyChapter(event) {
     var that = this;
     var type = event.currentTarget.dataset.type;
-
-    var title = event.detail.value.title;
-    var content = event.detail.value.content;
-    var time = new Date().getTime();
     var loginuser = that.data.loginuser;
+    var chaptername = event.detail.value.chaptername;
     var url = "";
-    var data = {}
-    if (type == 1) { //添加话题
-      var courseid = parseInt(this.data.courseid);
-      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
-      data = {
-        user: loginuser.tno,
-        pwd: loginuser.pwd,
-        courseid: courseid,
-        topictitle: title,
-        topiccontent: content,
-        committime: time,
-        topicstatus: 0
-      }
-    } else if (type == 2) { //修改话题
-      var topicid = that.data.currTopic;
-      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
-      data = {
-        user: loginuser.tno,
-        pwd: loginuser.pwd,
-        topicid: topicid,
-        title: title,
-        content: content,
-        committime: time,
-        status: 0
-      }
+    var data = {
+      user: loginuser.tno,
+      pwd: loginuser.pwd,
+      chapterid: that.data.currChapter,
+      name:chaptername
     }
-
-
+    if (type == 1) { //添加章节
+      url = "https://fengyezhan.xyz/Interface/chapter/addchapter";
+    } else if (type == 2) { //修改章节
+      url = "https://fengyezhan.xyz/Interface/chapter/updatechapter";
+    }
     console.log(data)
     util.myAjaxPost(url, data).then(res => {
       wx.showToast({
@@ -556,14 +536,13 @@ Page({
         icon: 'none'
       })
       that.setData({
-        addTopic: !that.data.addTopic
+        addChapter: !that.data.addChapter
       })
       if (res.data.code != 200) {
         return;
       }
       //更新数据
-      this.getTopic();
-
+      this.getChapter();
 
     })
   },
