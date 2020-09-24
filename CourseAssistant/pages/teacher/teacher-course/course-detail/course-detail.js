@@ -515,19 +515,27 @@ Page({
   addOrModifyChapter(event) {
     var that = this;
     var type = event.currentTarget.dataset.type;
+    var courseid=this.data.courseid;
     var loginuser = that.data.loginuser;
     var chaptername = event.detail.value.chaptername;
     var url = "";
-    var data = {
-      user: loginuser.tno,
-      pwd: loginuser.pwd,
-      chapterid: that.data.currChapter,
-      name:chaptername
-    }
+    var data ={}
     if (type == 1) { //添加章节
-      url = "https://fengyezhan.xyz/Interface/chapter/addchapter";
+      url = "http://localhost:8080/Interface_war/chapter/addchapter";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        courseid: courseid,
+        chaptername:chaptername
+      }
     } else if (type == 2) { //修改章节
       url = "https://fengyezhan.xyz/Interface/chapter/updatechapter";
+      data = {
+        user: loginuser.tno,
+        pwd: loginuser.pwd,
+        chapterid: that.data.currChapter,
+        chaptername:chaptername
+      }
     }
     console.log(data)
     util.myAjaxPost(url, data).then(res => {
@@ -551,35 +559,60 @@ Page({
     var that = this;
     var type = event.currentTarget.dataset.type;
 
-    var title = event.detail.value.title;
-    var content = event.detail.value.content;
-    var time = new Date().getTime();
-    var loginuser = that.data.loginuser;
+    //获取登陆教师账号密码
+    var loginuser=that.data.loginuser;
+    //获取试卷名称
+    var papername=event.detail.value.papername;
+    //获取选择、判断、填空分值
+    var choice=event.detail.value.choice;
+    var judge=event.detail.value.judge;
+    var fill=event.detail.value.fill;
+
+    //获取时间并转换为时间戳
+    var startdate=that.data.startdate;
+    var starttime=that.data.starttime;
+    var enddate=that.data.enddate;
+    var endtime=that.data.endtime;
+
+    var st=startdate+" "+starttime;
+    var et=enddate+" "+endtime;
+
+    var st1=new Date(st).getTime();
+    var et1=new Date(et).getTime();
+    
+
     var url = "";
     var data = {}
-    if (type == 1) { //添加话题
-      var courseid = parseInt(this.data.courseid);
-      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
+    if (type == 1) { //添加试卷
+      //获取课程编号
+      var courseid=that.data.courseid;
+      url = "https://fengyezhan.xyz/Interface/paper/addpaper";
       data = {
         user: loginuser.tno,
         pwd: loginuser.pwd,
         courseid: courseid,
-        topictitle: title,
-        topiccontent: content,
-        committime: time,
-        topicstatus: 0
+        papername: papername,
+        choicepoints: choice,
+        judgepoints: judge,
+        fillpoints: fill,
+        starttime:st1,
+        endtime:et1,
+        status:0
       }
-    } else if (type == 2) { //修改话题
-      var topicid = that.data.currTopic;
-      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
+    } else if (type == 2) { //修改试卷
+      var paperid = that.data.currPaper;
+      url = "http://localhost:8080/Interface_war/paper/updatepaper";
       data = {
         user: loginuser.tno,
         pwd: loginuser.pwd,
-        topicid: topicid,
-        title: title,
-        content: content,
-        committime: time,
-        status: 0
+        paperid: paperid,
+        name: papername,
+        choice: choice,
+        judge: judge,
+        fill: fill,
+        starttime:st1,
+        endtime:et1,
+        status:0
       }
     }
 
@@ -591,13 +624,13 @@ Page({
         icon: 'none'
       })
       that.setData({
-        addTopic: !that.data.addTopic
+        addPaper: !that.data.addPaper
       })
       if (res.data.code != 200) {
         return;
       }
       //更新数据
-      this.getTopic();
+      this.getPaper();
 
 
     })
@@ -607,35 +640,37 @@ Page({
     var that = this;
     var type = event.currentTarget.dataset.type;
 
-    var title = event.detail.value.title;
-    var content = event.detail.value.content;
-    var time = new Date().getTime();
+    //获取登录教师账号密码
     var loginuser = that.data.loginuser;
+    //获得资料名称、资料链接、资料类型
+    var dataname=event.detail.value.dataname;
+    var datalink=event.detail.value.datalink;
+    var datatype=event.detail.value.datatype;
+
     var url = "";
     var data = {}
-    if (type == 1) { //添加话题
-      var courseid = parseInt(this.data.courseid);
-      url = "https://fengyezhan.xyz/Interface/topic/addtopic";
+    if (type == 1) { //添加资料
+      //获得课程编号
+      var courseid=that.data.courseid;
+      url = "https://fengyezhan.xyz/Interface/data/adddata";
       data = {
         user: loginuser.tno,
         pwd: loginuser.pwd,
         courseid: courseid,
-        topictitle: title,
-        topiccontent: content,
-        committime: time,
-        topicstatus: 0
+        dataname: dataname,
+        datalink: datalink,
+        datatype: datatype
       }
-    } else if (type == 2) { //修改话题
-      var topicid = that.data.currTopic;
-      url = "https://fengyezhan.xyz/Interface/topic/updatetopic";
+    } else if (type == 2) { //修改资料
+      var dataid = that.data.currData;
+      url = "https://fengyezhan.xyz/Interface/data/updatedata";
       data = {
         user: loginuser.tno,
         pwd: loginuser.pwd,
-        topicid: topicid,
-        title: title,
-        content: content,
-        committime: time,
-        status: 0
+        dataid: dataid,
+        name: dataname,
+        link: datalink,
+        type: datatype
       }
     }
 
@@ -647,13 +682,13 @@ Page({
         icon: 'none'
       })
       that.setData({
-        addTopic: !that.data.addTopic
+        addData: !that.data.addData
       })
       if (res.data.code != 200) {
         return;
       }
       //更新数据
-      this.getTopic();
+      this.getData();
 
 
     })
@@ -712,6 +747,32 @@ Page({
       this.getTopic();
 
 
+    })
+  },
+
+  //开始日期变更
+  startDateChange(event){
+    
+    this.setData({
+      startdate:event.detail.value
+    })
+  },
+  //开始时间变更
+  startTimeChange(event){
+    this.setData({
+      starttime:event.detail.value
+    })
+  },
+  //结束日期变更
+  startDateChange(event){
+    this.setData({
+      enddate:event.detail.value
+    })
+  },
+  //结束时间变更
+  startTimeChange(event){
+    this.setData({
+      endtime:event.detail.value
     })
   },
   //隐藏界面

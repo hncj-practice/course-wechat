@@ -8,9 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showXZ: false,
-    showPD: false,
-    showTK: false
+    showXZ: true,
+    showPD: true,
+    showTK: true
   },
 
   

@@ -24,7 +24,7 @@
       </block>
     </view>
     <view class="action">
-      <button class="round bg-blue margin-top" bindtap="showOrHidenAddChapter" data-type="1">新建章节</button>
+      <button class="round bg-blue margin-top margin-bottom" bindtap="showOrHidenAddChapter" data-type="1">新建章节</button>
     </view>
 
     <!-- 添加章节dialog -->
@@ -82,7 +82,7 @@
     </view>
 
     <view class="action">
-      <button class="round bg-blue margin-top" bindtap="showOrHidenAddPaper" data-type="1">新建试卷</button>
+      <button class="round bg-blue margin-top margin-bottom" bindtap="showOrHidenAddPaper" data-type="1">新建试卷</button>
     </view>
 
     <!-- 添加试卷dialog -->
@@ -104,24 +104,24 @@
               </view>
               <view class="cu-form-group">
                 <view class="title">选择题分值</view>
-                <input name="papername" placeholder="两字短标题"></input>
+                <input name="choice" placeholder="两字短标题"></input>
               </view>
               <view class="cu-form-group">
                 <view class="title">判断题分值</view>
-                <input name="papername" placeholder="两字短标题"></input>
+                <input name="judge" placeholder="两字短标题"></input>
               </view>
               <view class="cu-form-group">
                 <view class="title">填空题分值</view>
-                <input name="papername" placeholder="两字短标题"></input>
+                <input name="fill" placeholder="两字短标题"></input>
               </view>
               <view class="cu-form-group">
                 <view class="title">开始时间</view>
-                <picker mode="date" value="{{startdate}}" start="09:00" end="21:01" bindchange="TimeChange">
+                <picker mode="date" value="{{startdate}}" start="09:00" end="21:01" bindchange="startDateChange">
                   <view class="picker">
                     {{startdate}}
                   </view>
                 </picker>
-                <picker mode="time" value="{{starttime}}" start="09:00" end="21:01" bindchange="TimeChange">
+                <picker mode="time" value="{{starttime}}" start="09:00" end="21:01" bindchange="startTimeChange">
                   <view class="picker">
                     {{starttime}}
                   </view>
@@ -172,7 +172,7 @@
     </view>
 
     <view class="action">
-      <button class="round bg-blue margin-top" bindtap="showOrHidenAddData" data-type="1">新建资料</button>
+      <button class="round bg-blue margin-top margin-bottom" bindtap="showOrHidenAddData" data-type="1">新建资料</button>
     </view>
 
     <!-- 添加资料dialog -->
@@ -191,15 +191,15 @@
 
               <view class="cu-form-group margin-top">
                 <view class="title">资料名称</view>
-                <input name="title" placeholder="两字短标题"></input>
+                <input name="dataname" placeholder="两字短标题"></input>
               </view>
               <view class="cu-form-group align-start">
                 <view class="title">资料链接</view>
-                <textarea name="content" maxlength="-1" placeholder="多行文本输入框"></textarea>
+                <textarea name="datalink" maxlength="-1" placeholder="多行文本输入框"></textarea>
               </view>
               <view class="cu-form-group margin-top">
                 <view class="title">资料类型</view>
-                <input name="papername" placeholder="两字短标题"></input>
+                <input name="datatype" placeholder="两字短标题"></input>
               </view>
               <view class="action">
                 <button class="round bg-blue margin-top margin-bottom"
@@ -263,7 +263,7 @@
     </view>
 
     <view class="action">
-      <button class="round bg-blue margin-top" bindtap="showOrHidenAddTopic" data-type="1">新建话题</button>
+      <button class="round bg-blue margin-top margin-bottom" bindtap="showOrHidenAddTopic" data-type="1">新建话题</button>
     </view>
 
     <!-- 添加话题dialog -->
@@ -333,11 +333,12 @@
   <view class="cu-modal bottom-modal {{modalName=='data'?'show':''}}" bindtap="hideWsModel">
     <view class="cu-dialog" catchtap>
       <view class="cu-bar bg-white">
-        <view class="action text-red">确认删除该资料？</view>
+        <view class="action text-blue">资料操作</view>
       </view>
       <view>
+        <button bindtap="showOrHidenAddData" data-type="2">修改</button>
+        <button bindtap="deleteData">删除</button>
         <button bindtap="hideWsModel">取消</button>
-        <button bindtap="deleteData">确认</button>
       </view>
     </view>
   </view>
