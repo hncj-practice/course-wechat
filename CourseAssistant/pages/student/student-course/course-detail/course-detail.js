@@ -59,36 +59,32 @@ Page({
     console.log('跳转到章节');
   },
 
-  jumpToChapter() {
-    console.log('跳转到章节');
+  jumpToPaper() {
+    console.log('跳转到试卷');
   },
 
-  jumpToChapter() {
-    console.log('跳转到章节');
+  downloadData() {
+    console.log('跳转到资料');
   },
 
-  jumpToChapter() {
-    console.log('跳转到章节');
+  jumpToTopic() {
+    console.log('跳转到话题');
   },
 
-  // 长按章节
   longPressChapter() {
     console.log('长按章节');
   },
 
-  // 长按章节
-  longPressChapter() {
-
+  longPressPaper() {
+    console.log('长按试卷');
   },
 
-  // 长按章节
-  longPressChapter() {
-
+  longPressData() {
+    console.log('长按资料');
   },
 
-  // 长按章节
-  longPressChapter() {
-
+  longPressTopic() {
+    console.log('长按话题');
   },
 
   // 切换导航栏
