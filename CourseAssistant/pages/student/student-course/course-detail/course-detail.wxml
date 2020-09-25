@@ -1,0 +1,174 @@
+<!--pages/student/student-course/course-detail/course-detail.wxml-->
+
+<view class="root">
+
+
+  <!-- 导航栏 -->
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tab.length}}" wx:key="key" bindtap="tabSelect"
+      data-id="{{index}}">
+      {{tab[index]}}
+    </view>
+  </scroll-view>
+
+  <!-- 章节 -->
+  <view wx:if="{{TabCur==0}}">
+
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item arrow" bindtap="jumpToChapter" bindlongpress="longPressChapter"
+          data-chapterid="{{item.chapterid}}">
+          <view class="content">
+            <text class="cuIcon-btn text-blue"></text>
+            <text class="text-grey text-center">{{item.chaptername}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+
+  </view>
+
+
+  <!-- 试卷 -->
+  <view wx:if="{{TabCur==1}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+
+      <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
+        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper"
+          data-paperid="{{item.paperid}}">
+          <image class="icon" src="../../../../images/icon/paper.png"></image>
+          <view class="content text">
+            <text class="text-grey text-left text-lg">{{item.papername}}</text>
+
+            <view class="desc">
+              <text class="text-grey text-left text-sm"> 09-19 14:00 ~ 09-19 15:00 </text>
+              <text class="text-gray text-sm" catchtap="releasePaper" data-paperidx="{{index}}">
+                {{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}}
+                {{item.status==2?'已结束':''}} </text>
+            </view>
+
+          </view>
+        </view>
+      </block>
+
+    </view>
+
+
+  </view>
+
+  <!-- 资料 -->
+  <view wx:if="{{TabCur==2}}">
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
+        <view class="cu-item" bindtap="downloadData" bindlongpress="longPressData" data-id="{{item.dataid}}"
+          data-datalink="{{item.datalink}}" data-datatype="{{item.datatype}}">
+          <view class="content">
+            <text
+              class="{{item.datatype==3?'cuIcon-video':''}} {{item.datatype==2?'cuIcon-form':''}} {{item.datatype==1?'cuIcon-pic':''}} text-blue"></text>
+            <text class="text-grey">{{item.dataname}}</text>
+          </view>
+          <!-- <view class="action">
+          <text class="cuIcon-down lg text-grey">打开</text>
+        </view> -->
+        </view>
+      </block>
+    </view>
+
+
+    <!-- 添加资料dialog -->
+    <view class="cu-modal {{addData?'show':''}}">
+      <view class="cu-dialog">
+
+        <view class="bg-img">
+          <view class="cu-bar justify-end text-black">
+            <view class="action" bindtap="showOrHidenAddData" data-type="1">
+              <text class="cuIcon-close "></text>
+            </view>
+          </view>
+          <!-- type为1代表添加话题，为2代表修改话题 -->
+          <scroll-view scroll-y="true" style="height:300px;">
+            <form bindsubmit="addOrModifyData" data-type="{{addOrModifytype}}">
+
+              <view class="cu-form-group margin-top">
+                <view class="title">资料名称</view>
+                <input name="dataname" placeholder="两字短标题"></input>
+              </view>
+              <view class="cu-form-group align-start">
+                <view class="title">资料链接</view>
+                <textarea name="datalink" maxlength="-1" placeholder="多行文本输入框"></textarea>
+              </view>
+              <view class="cu-form-group margin-top">
+                <view class="title">资料类型</view>
+                <input name="datatype" placeholder="两字短标题"></input>
+              </view>
+              <view class="action">
+                <button class="round bg-blue margin-top margin-bottom"
+                  form-type="submit">{{addOrModifytype=='1'?'添加':'修改'}}</button>
+              </view>
+
+            </form>
+          </scroll-view>
+
+        </view>
+      </view>
+    </view>
+
+    <!-- 资料图片 -->
+    <view class="cu-modal {{imagePath?'show':''}}">
+      <view class="cu-dialog">
+        <view class="bg-img" style="height:225px;">
+          <image src="{{imagePath}}" catchtap="previewImg"></image>
+          <view class="cu-bar justify-end text-white">
+            <view class="action" bindtap="hideModel">
+              <text class="cuIcon-close "></text>
+            </view>
+          </view>
+        </view>
+        <view class="cu-bar bg-white">
+          <view class="action margin-0 flex-sub  solid-left" bindtap="hideModel">关闭</view>
+        </view>
+      </view>
+    </view>
+    <!-- 资料视频 -->
+    <view class="cu-modal {{videoPath?'show':''}}">
+      <view class="cu-dialog bg-grey">
+        <view class="bg-img" style="height:225px;">
+          <video style="margin-top:10px;" src="{{videoPath}}"></video>
+        </view>
+        <view class="cu-bar bg-white">
+          <view class="action margin-0 flex-sub  solid-left" bindtap="hideModel">关闭</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 话题 -->
+  <view wx:if="{{TabCur==3}}">
+
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <block wx:for="{{topics}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
+        <view class="cu-item arrow" bindtap="jumpToTopic" bindlongpress="longPressTopic" data-topic="{{item}}">
+          <view class="content">
+            <text class="cuIcon-communityfill text-blue"></text>
+            <text class="text-grey text-center">{{item.topictitle}}</text>
+          </view>
+          <view class="desc" catchtap="releaseTopic" data-idx="{{idx}}">
+            <text class="text-gray text-sm"> {{item.topicstatus==0?'待发布':'已发布'}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+
+
+
+
+
+  </view>
+
+
+
+  <!--模态框------------------------------------------------------------------------------------------>
+
+
+</view>
