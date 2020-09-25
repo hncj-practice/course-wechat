@@ -17,12 +17,12 @@
 
     <view class="bg-white topic-item">
       <view class="left">
-        <image class="avatar" src="{{item.savatar}}" alt=""></image>
+        <image class="avatar" src="{{item.savatar}}" alt="" catchtap="previewImg" data-imagepath="{{item.savatar}}"></image>
       </view>
       <view class="right">
         <view class="info">
           <view class="text-black text-lg name">{{item.sname}}</view>
-          <view class="text-gray time">{{item.commenttime}}</view>
+          <view class="text-gray time">{{item.time}}</view>
         </view>
         <view class="content">
           <text class="text-black text-lg">{{item.commentcontent}}</text>

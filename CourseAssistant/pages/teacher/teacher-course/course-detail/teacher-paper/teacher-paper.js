@@ -23,6 +23,7 @@ Page({
     var data = {
       paperid: paperid
     }
+    console.log(data)
     util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
@@ -43,7 +44,7 @@ Page({
           fill.push(item);
         } else if (item.ptype == "3") { //判断
           item.question = questionUtil.question(item.question);
-          judge.push(fill);
+          judge.push(item);
         }
       });
 

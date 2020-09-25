@@ -35,12 +35,22 @@ Page({
       //格式化时间
       for(var i=0;i<len;i++){
         console.log(data[i].commenttime)
-        data[i].commenttime=util.formatTime(data[i].commenttime);
+        data[i].time=util.formatTime(data[i].commenttime,1);
       }
 
       this.setData({
         comments: data
       })
+    })
+  },
+
+  //实现图片预览
+  previewImg(event) {
+    var img = event.currentTarget.dataset.imagepath;
+    var imgs = [img, ]
+    wx.previewImage({
+      current: img,
+      urls: imgs,
     })
   },
   /**

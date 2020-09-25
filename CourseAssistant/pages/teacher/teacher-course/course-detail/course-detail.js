@@ -71,8 +71,16 @@ Page({
       if (res.data.code != 200) {
         return
       }
+      var data=res.data.data;
+      var len=data.length;
+      //格式化时间
+      for(var i=0;i<len;i++){
+        console.log(data[i].starttime)
+        data[i].start=util.formatTime(data[i].starttime,2);
+        data[i].end=util.formatTime(data[i].endtime,2);
+      }
       that.setData({
-        papers: res.data.data
+        papers: data
       })
     });
   },
@@ -210,10 +218,17 @@ Page({
 
   // 长按试卷
   longPressPaper(e) {
-    let id = e.currentTarget.dataset.paperid;
+    let item = e.currentTarget.dataset.paper;
+    if(item.status!=0){
+      wx.showToast({
+        title: '已发布或结束，不可修改',
+        icon: 'none'
+      })
+      return;
+    }
     // console.log('长按资料 ' + id);
     this.setData({
-      currPaper: id
+      currPaper: item.paperid
     });
     this.showWsModel('paper');
   },
@@ -292,6 +307,13 @@ Page({
   // 长按话题
   longPressTopic(e) {
     let item = e.currentTarget.dataset.topic;
+    if(item.topicstatus==1){
+      wx.showToast({
+        title: '已发布，不可修改',
+        icon: 'none'
+      })
+      return;
+    }
     this.setData({
       currTopic: item.topicid
     })
@@ -792,7 +814,8 @@ Page({
   startDateChange(event){
     
     this.setData({
-      startdate:event.detail.value
+      startdate:event.detail.value,
+      enddate:event.detail.value
     })
   },
   //开始时间变更
@@ -802,13 +825,13 @@ Page({
     })
   },
   //结束日期变更
-  startDateChange(event){
+  endDateChange(event){
     this.setData({
       enddate:event.detail.value
     })
   },
   //结束时间变更
-  startTimeChange(event){
+  endTimeChange(event){
     this.setData({
       endtime:event.detail.value
     })
