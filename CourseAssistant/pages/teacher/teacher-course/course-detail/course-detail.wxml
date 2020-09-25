@@ -197,9 +197,17 @@
                 <view class="title">资料链接</view>
                 <textarea name="datalink" maxlength="-1" placeholder="多行文本输入框"></textarea>
               </view>
-              <view class="cu-form-group margin-top">
+              <!-- <view class="cu-form-group margin-top">
                 <view class="title">资料类型</view>
                 <input name="datatype" placeholder="两字短标题"></input>
+              </view> -->
+              <view class="cu-form-group margin-top">
+                <view class="title">资料类型</view>
+                <picker bindchange="dataTypeChange" value="{{dataindex}}" range="{{datatype}}">
+                  <view class="picker">
+                    {{datatype[dataindex]}}
+                  </view>
+                </picker>
               </view>
               <view class="action">
                 <button class="round bg-blue margin-top margin-bottom"
@@ -269,13 +277,13 @@
     <!-- 添加话题dialog -->
     <view class="cu-modal {{addTopic?'show':''}}">
       <view class="cu-dialog">
-        <view class="bg-img" style="height:230px;">
+        <view class="bg-img">
           <view class="cu-bar justify-end text-black">
             <view class="action" bindtap="showOrHidenAddTopic" data-type="1">
               <text class="cuIcon-close "></text>
             </view>
           </view>
-          <scroll-view scroll-y="true" style="height:230px;">
+          <scroll-view scroll-y="true" style="height:280px;">
             <!-- type为1代表添加话题，为2代表修改话题 -->
             <form bindsubmit="addOrModifyTopic" data-type="{{addOrModifytype}}">
               <view class="cu-form-group margin-top">

@@ -30,9 +30,16 @@ Page({
       if (res.data.code != 200) {
         return;
       }
+      var data=res.data.data;
+      var len=data.length;
+      //格式化时间
+      for(var i=0;i<len;i++){
+        console.log(data[i].commenttime)
+        data[i].commenttime=util.formatTime(data[i].commenttime);
+      }
 
       this.setData({
-        comments: res.data.data
+        comments: data
       })
     })
   },
