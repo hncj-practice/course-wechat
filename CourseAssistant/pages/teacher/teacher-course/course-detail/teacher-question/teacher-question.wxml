@@ -97,4 +97,8 @@
 
   </view>
 
+  <view wx:if="{{!problems}}" class="text-center margin-bottom">
+    <text> 当前章节尚未添加试题，请添加后重试</text>
+  </view>
+
 </view>

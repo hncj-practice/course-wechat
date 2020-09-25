@@ -43,6 +43,8 @@ Page({
         }
       });
 
+      
+
       this.setData({
         problems:res.data.data,
         choice:choice,
