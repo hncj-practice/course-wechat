@@ -33,7 +33,7 @@ function add0(m) {
   return m < 10 ? '0' + m : m
 }
 
-function format(timestamp) {
+function format(timestamp,type) {
   //shijianchuo是整数，否则要parseInt转换
   var time = new Date(parseInt(timestamp));
   var y = time.getFullYear();
@@ -42,7 +42,12 @@ function format(timestamp) {
   var h = time.getHours();
   var mm = time.getMinutes();
   var s = time.getSeconds();
-  return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+  if(type==1){//返回完整时间2020-09-22 22:28:43
+    return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+  }else if(type==2){//不带年份和秒 09-19 14:00
+    return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm);
+  }
+  
 }
 
 module.exports = {
