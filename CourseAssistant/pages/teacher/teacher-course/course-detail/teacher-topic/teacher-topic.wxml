@@ -1,17 +1,16 @@
 <view class="root">
 
 
-  <view class="cu-bar bg-white solid-bottom margin-bottom topic-title">
-    <view class="action">
-      <text class="cuIcon-communityfill text-blue"></text>
-      <text class="text-black text-lg">{{title}}</text>
-    </view>
+  <view class="topic-title">
+    <view class="text-df text-gray cuIcon-communityfill " style="color:#0081ff"> 时间</view>
+    <view class="text-lg" style="margin-top:6rpx"> {{title}}</view>
   </view>
-  <view class="cu-bar bg-white solid-bottom margin-bottom topic-title">
-    <view class="action">
-      <text class="text-black text-lg">{{content}}</text>
-    </view>
+
+
+  <view class="topic-content">
+    <text class="text-black text-df">{{content}}</text>
   </view>
+
 
   <block wx:for="{{comments}}" wx:key="key" wx:for-item="item">
 
