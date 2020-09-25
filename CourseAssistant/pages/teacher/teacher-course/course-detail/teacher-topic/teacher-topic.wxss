@@ -2,9 +2,31 @@
 
 
 .topic-title {
-  padding: 15rpx 0;
+  width: 100%;
+  background: #fff;
+  padding: 18rpx 20rpx 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
+
+.topic-title .icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.topic-content {
+  width: 100%;
+  margin-bottom: 15rpx;
+  padding: 12rpx 20rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+}
 
 .topic-item {
   margin-bottom: 15rpx;
