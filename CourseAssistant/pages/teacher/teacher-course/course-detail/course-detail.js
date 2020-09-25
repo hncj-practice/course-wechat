@@ -16,6 +16,8 @@ Page({
       "资料",
       "话题"
     ],
+    datatype:['请选择','图片','文档','视频'],
+    dataindex:0,
     addChapter: false,
     addPaper: false,
     addData: false,
@@ -161,8 +163,7 @@ Page({
   // 隐藏模态框
   hideWsModel() {
     this.setData({
-      modalName: null,
-      currData: 0
+      modalName: null
     });
   },
 
@@ -518,6 +519,13 @@ Page({
     var courseid=this.data.courseid;
     var loginuser = that.data.loginuser;
     var chaptername = event.detail.value.chaptername;
+    if(!chaptername){
+      wx.showToast({
+        title: '信息未填写完整,请检查',
+        icon:'none'
+      })
+      return;
+    }
     var url = "";
     var data ={}
     if (type == 1) { //添加章节
@@ -563,10 +571,19 @@ Page({
     var loginuser=that.data.loginuser;
     //获取试卷名称
     var papername=event.detail.value.papername;
+
+    if(!papername){
+      wx.showToast({
+        title: '试卷名未填写，请检查',
+        icon:'none'
+      })
+      return;
+    }
     //获取选择、判断、填空分值
     var choice=event.detail.value.choice;
-    var judge=event.detail.value.judge;
+    var judge=event.detail.value.judge ;
     var fill=event.detail.value.fill;
+
 
     //获取时间并转换为时间戳
     var startdate=that.data.startdate;
@@ -601,7 +618,7 @@ Page({
       }
     } else if (type == 2) { //修改试卷
       var paperid = that.data.currPaper;
-      url = "http://localhost:8080/Interface_war/paper/updatepaper";
+      url = "https://fengyezhan.xyz/Interface/paper/updatepaper";
       data = {
         user: loginuser.tno,
         pwd: loginuser.pwd,
@@ -645,8 +662,21 @@ Page({
     //获得资料名称、资料链接、资料类型
     var dataname=event.detail.value.dataname;
     var datalink=event.detail.value.datalink;
-    var datatype=event.detail.value.datatype;
-
+    var datatype=that.data.dataindex;
+    if(!datalink||!dataname){
+      wx.showToast({
+        title: '信息未填写完整,请检查',
+        icon:'none'
+      })
+      return;
+    }
+    if(datatype==0){
+      wx.showToast({
+        title: '未选择资料类型',
+        icon:'none'
+      })
+      return;
+    }
     var url = "";
     var data = {}
     if (type == 1) { //添加资料
@@ -702,6 +732,14 @@ Page({
     var content = event.detail.value.content;
     var time = new Date().getTime();
     var loginuser = that.data.loginuser;
+
+    if(!title||!content){
+      wx.showToast({
+        title: '信息未填写完整,请检查',
+        icon:'none'
+      })
+      return;
+    }
     var url = "";
     var data = {}
     if (type == 1) { //添加话题
@@ -773,6 +811,12 @@ Page({
   startTimeChange(event){
     this.setData({
       endtime:event.detail.value
+    })
+  },
+  //资料类型改变
+  dataTypeChange(event){
+    this.setData({
+      dataindex:event.detail.value
     })
   },
   //隐藏界面
@@ -859,7 +903,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    //显示顶部刷新图标
+    wx.showNavigationBarLoading();
 
+    var Tabcur=this.data.TabCur;
+    if(Tabcur==0){
+      this.getChapter();
+    }else if(Tabcur==1){
+      this.getPaper();
+    }else if(Tabcur==2){
+      this.getData();
+    }else if(Tabcur==3){
+      this.getTopic();
+    }
+    //隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    //停止下拉事件
+    wx.stopPullDownRefresh();
   },
 
   /**
