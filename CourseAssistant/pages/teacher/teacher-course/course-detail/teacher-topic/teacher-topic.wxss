@@ -1,5 +1,9 @@
 /* pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic.wxss */
 
+page{
+  position: relative;
+  padding-bottom: 100rpx;
+}
 
 .topic-title {
   width: 100%;
@@ -64,3 +68,28 @@
 .topic-item .right .content {
   margin-top: 15rpx;
 }
+
+
+.comment{
+  position: fixed;
+  width: 100%;
+  min-height: 100rpx;
+  background: #fff;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20rpx 15rpx;
+}
+
+.comment .content{
+  position: relative;
+  min-height: 60rpx;
+  background: #f1f1f1;
+  margin-right: 15rpx;
+  flex: 78;
+
+  border-radius: 60rpx;
+  padding: 0 15rpx;
+}
+
