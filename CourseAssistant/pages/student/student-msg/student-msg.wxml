@@ -1,8 +1,40 @@
 <!--pages/student/student-msg/student-msg.wxml-->
+
+<!-- 显示：这名学生已选课程中的试卷 -->
 <view class="root">
 
 
-  msg
+
+  <!-- 进行中 -->
+  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-tag="going">
+    <view class="action">
+      <text class="cuIcon-titles text-blue"></text>
+      进行中
+    </view>
+    <view wx:if="{{showGoing==true}}" class="action">
+      <text class="cuIcon-unfold text-gray"></text>
+    </view>
+    <view wx:if="{{showGoing==false}}" class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+
+  <!-- 已完成 -->
+  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-tag="ended">
+    <view class="action">
+      <text class="cuIcon-titles text-blue"></text>
+      已完成
+    </view>
+    <view wx:if="{{showEnded==true}}" class="action">
+      <text class="cuIcon-unfold text-gray"></text>
+    </view>
+    <view wx:if="{{showEnded==false}}" class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+
+  
+
 
 
   <!-- 底部tabbar -->

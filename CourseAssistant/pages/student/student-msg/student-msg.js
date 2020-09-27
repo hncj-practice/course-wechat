@@ -8,8 +8,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showGoing:true,
+    showEnded:true
   },
+
+
+
+// 切换折叠菜单
+trigger(e){
+  console.log('切换');
+
+  
+  
+  
+},
 
   // tabbar跳转
   jump(e) {
