@@ -19,7 +19,7 @@
     </view>
 
     <view class="cu-form-group">
-      <button class="cu-btn bg-green shadow" form-type="submit">登录</button>
+      <button class="cu-btn bg-green shadow round" form-type="submit">登录</button>
     </view>
 
   </form>

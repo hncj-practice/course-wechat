@@ -2,7 +2,7 @@
 
 
   <view class="topic-title">
-    <view class="text-df text-gray cuIcon-communityfill " style="color:#0081ff"> 时间</view>
+    <view class="text-df text-gray cuIcon-communityfill " style="color:#0081ff"> {{time}}</view>
     <view class="text-lg" style="margin-top:6rpx"> {{title}}</view>
   </view>
 
@@ -49,9 +49,10 @@
 
 
     <!-- <textarea class="content" placeholder="请输入评论" auto-height></textarea> -->
-    <input class="content" placeholder="请输入评论" auto-height></input>
+    <input class="content" placeholder="请输入评论" auto-height bindinput="getCommentValue" value="{{commentcontent}}"></input>
 
-    <button class="cu-btn bg-blue shadow-blur round" style="width:18%">回复</button>
+    <button class="cu-btn bg-blue shadow-blur round" style="width:18%" bindtap="sendComment">回复</button>
+
 
   </view>
 

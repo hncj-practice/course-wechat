@@ -1,11 +1,11 @@
 <view class="cu-list menu sm-border card-menu margin-top">
-  <view class="cu-item">
+  <view class="cu-item" bindtap="showModify">
     <view class="content">
       <text class="cuIcon-btn text-green"></text>
       <text class="text-grey">修改密码</text>
     </view>
   </view>
-  <view class="cu-item">
+  <view class="cu-item" bindtap="showAbout">
     <view class="content">
       <text class="cuIcon-profile text-blue"></text>
       <text class="text-grey">关于</text>
@@ -15,6 +15,68 @@
     <view class="content">
       <text class="cuIcon-roundclosefill text-red"></text>
       <text class="text-grey">退出登录</text>
+    </view>
+  </view>
+
+
+
+
+  <!-- 模态框 -->
+
+  <!-- 修改密码dialog -->
+  <view class="cu-modal {{changepwd?'show':''}}">
+    <view class="cu-dialog">
+      <view class="bg-img">
+        <view class="cu-bar justify-end text-black">
+          <view class="action" bindtap="showModify">
+            <text class="cuIcon-close "></text>
+          </view>
+        </view>
+        <scroll-view scroll-y="true" style="height:220px;">
+          <form bindsubmit="modifyPwd">
+            <view class="cu-form-group margin-top">
+              <view class="title">旧密码</view>
+              <input name="olderpwd" placeholder="旧密码"></input>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">新密码</view>
+              <input name="newpwd" placeholder="新密码"></input>
+            </view>
+            <view class="action">
+              <button class="round bg-blue margin-top margin-bottom" form-type="submit">修改密码</button>
+            </view>
+          </form>
+        </scroll-view>
+
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于dialog -->
+  <view class="cu-modal {{about?'show':''}}">
+    <view class="cu-dialog">
+      <view class="bg-img">
+        <view class="cu-bar justify-end text-black">
+          <view class="action" bindtap="showAbout">
+            <text class="cuIcon-close "></text>
+          </view>
+        </view>
+        <scroll-view scroll-y="true" style="height:250px;">
+          <text>
+                        锦瑟
+                    朝代：唐朝
+                    作者：李商隐
+
+            锦瑟无端五十弦，一弦一柱思华年。
+
+            庄生晓梦迷蝴蝶，望帝春心托杜鹃。
+
+            沧海月明珠有泪，蓝田日暖玉生烟。
+
+            此情可待成追忆，只是当时已惘然。</text>
+        </scroll-view>
+
+      </view>
     </view>
   </view>
 
