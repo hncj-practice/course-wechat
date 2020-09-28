@@ -123,7 +123,7 @@
 
   <!-- 提交按钮 -->
   <view class="submit">
-    <button class="cu-btn bg-green margin-tb-sm lg button-hover" role="button" aria-disabled="false">交卷</button>
+    <button class="cu-btn bg-green margin-tb-sm lg button-hover" role="button" aria-disabled="false" bindtap="onSubmitPaper">交卷</button>
   </view>
 
 </view>
