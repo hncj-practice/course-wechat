@@ -132,9 +132,7 @@ Page({
     })
   },
 
-  /**
-   * 跳转到课程页面
-   */
+  //跳转到课程页面
   gotocourse(event) {
     var courseid=event.currentTarget.dataset.courseid;
     wx.showToast({

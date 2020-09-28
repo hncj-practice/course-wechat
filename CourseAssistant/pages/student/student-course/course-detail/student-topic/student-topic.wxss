@@ -1,0 +1,95 @@
+/* pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic.wxss */
+
+page{
+  position: relative;
+  padding-bottom: 100rpx;
+}
+
+.topic-title {
+  width: 100%;
+  background: #fff;
+  padding: 18rpx 20rpx 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+.topic-title .icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.topic-content {
+  width: 100%;
+  margin-bottom: 15rpx;
+  padding: 12rpx 20rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+
+.topic-item {
+  margin-bottom: 15rpx;
+  padding: 15rpx;
+
+  display: flex;
+}
+
+.topic-item .left .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 14rpx;
+}
+
+.topic-item .right {
+  /* background: pink; */
+  margin-left: 15rpx;
+}
+
+.topic-item .right .info {
+  position: relative;
+  height: 80rpx;
+}
+
+.topic-item .right .info .name {
+  position: absolute;
+  top: 5rpx;
+}
+
+.topic-item .right .info .time {
+  position: absolute;
+  bottom: 0;
+}
+
+.topic-item .right .content {
+  margin-top: 15rpx;
+}
+
+
+.comment{
+  position: fixed;
+  width: 100%;
+  min-height: 100rpx;
+  background: #fff;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20rpx 15rpx;
+}
+
+.comment .content{
+  position: relative;
+  min-height: 60rpx;
+  background: #f1f1f1;
+  margin-right: 15rpx;
+  flex: 78;
+
+  border-radius: 60rpx;
+  padding: 0 15rpx;
+}
+

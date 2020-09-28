@@ -34,17 +34,16 @@
     <view class="cu-list menu sm-border card-menu margin-top">
 
       <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper"
-          data-paperid="{{item.paperid}}">
+        <view wx:if="{{item.status==1}}" class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper"
+          data-paper="{{item}}">
           <image class="icon" src="../../../../images/icon/paper.png"></image>
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>
 
             <view class="desc">
-              <text class="text-grey text-left text-sm"> 09-19 14:00 ~ 09-19 15:00 </text>
+              <text class="text-grey text-left text-sm"> {{item.start}} ~ {{item.end}} </text>
               <text class="text-gray text-sm" catchtap="releasePaper"
-                data-paperidx="{{index}}">{{item.status==0?'待发布':''}} {{item.status==1?'已发布':''}}
-                {{item.status==2?'已结束':''}} </text>
+                data-paperidx="{{index}}">已发布 </text>
             </view>
 
           </view>
@@ -60,7 +59,7 @@
   <view wx:if="{{TabCur==2}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item" bindtap="downloadData" bindlongpress="longPressData" data-id="{{item.dataid}}"
+        <view class="cu-item" bindtap="openData" bindlongpress="longPressData" data-id="{{item.dataid}}"
           data-datalink="{{item.datalink}}" data-datatype="{{item.datatype}}">
           <view class="content">
             <text
@@ -107,13 +106,13 @@
 
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{topics}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
-        <view class="cu-item arrow" bindtap="jumpToTopic" bindlongpress="longPressTopic" data-topic="{{item}}">
+        <view wx:if="{{item.topicstatus==1}}" class="cu-item arrow" bindtap="jumpToTopic" bindlongpress="longPressTopic" data-topic="{{item}}">
           <view class="content">
             <text class="cuIcon-communityfill text-blue"></text>
             <text class="text-grey text-center">{{item.topictitle}}</text>
           </view>
           <view class="desc" catchtap="releaseTopic" data-idx="{{idx}}">
-            <text class="text-gray text-sm"> {{item.topicstatus==0?'待发布':'已发布'}}</text>
+            <text class="text-gray text-sm">已发布</text>
           </view>
         </view>
       </block>

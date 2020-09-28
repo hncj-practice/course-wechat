@@ -1,0 +1,60 @@
+<view class="root">
+
+
+  <view class="topic-title">
+    <view class="text-df text-gray cuIcon-communityfill " style="color:#0081ff"> {{time}}</view>
+    <view class="text-lg" style="margin-top:6rpx"> {{title}}</view>
+  </view>
+
+
+  <view class="topic-content">
+    <text class="text-black text-df">{{content}}</text>
+  </view>
+
+
+  <block wx:for="{{comments}}" wx:key="key" wx:for-item="item">
+
+    <view class="bg-white topic-item">
+      <view class="left">
+        <image class="avatar" src="{{item.savatar}}" alt="" catchtap="previewImg" data-imagepath="{{item.savatar}}">
+        </image>
+      </view>
+      <view class="right">
+        <view class="info">
+          <view class="text-black text-lg name">{{item.sname}}</view>
+          <view class="text-gray time">{{item.time}}</view>
+        </view>
+        <view class="content">
+          <text class="text-black text-lg">{{item.commentcontent}}</text>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+
+
+  <!-- <view class="cu-bar search bg-white comment">
+    <view class="search-form round">
+      <text class="cuIcon-comment"></text>
+      <input type="text" placeholder="输入评论"></input>
+    </view>
+    <view class="action" style="width:18%">
+      <button class="cu-btn bg-blue shadow-blur round">回复</button>
+    </view>
+  </view> -->
+
+
+  <view class="comment">
+
+
+    <!-- <textarea class="content" placeholder="请输入评论" auto-height></textarea> -->
+    <input class="content" placeholder="请输入评论" auto-height bindinput="getCommentValue" value="{{commentcontent}}"></input>
+
+    <button class="cu-btn bg-blue shadow-blur round" style="width:18%" bindtap="sendComment">回复</button>
+
+
+  </view>
+
+
+</view>

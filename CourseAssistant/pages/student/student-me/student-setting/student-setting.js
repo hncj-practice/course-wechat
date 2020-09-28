@@ -1,14 +1,14 @@
-// pages/student/student-me/student-me.js
+const util = require("../../../../utils/util");
 
-var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
-
+// pages/teacher/teacher-me/teacher-setting/teacher-setting.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    changepwd:false,
+    about:false
   },
   //获取登录用户信息
   isLogin() {
@@ -35,23 +35,58 @@ Page({
       }
     } catch (e) {}
   },
+  //显示修改模态框
+  showModify(){
+    this.setData({
+      changepwd:!this.data.changepwd
+    })
+  },
+  showAbout(){
+    this.setData({
+      about:!this.data.about
+    })
+  },
+  //修改密码
+  modifyPwd(event){
+    var that=this;
+    var loginuser=that.data.loginuser;
+    //获取学号
+    var tno=loginuser.sno;
+    //获取旧密码和新密码
+    var olderpwd=event.detail.value.olderpwd;
+    var newpwd=event.detail.value.newpwd;
+
+    var url="https://fengyezhan.xyz/Interface/account/resetpwd";
+    var data={
+      username:tno,
+      password:olderpwd,
+      newpwd:newpwd,
+      type:1
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      setTimeout(function(){
+        that.showModify();
+        that.logout();
+      },1000)
+    })
+
+
+  },
+
   /**
-   * 跳转到我的资料页面
+   * 退出登录
    */
-  jumpToMydata() {
-    wx.navigateTo({
-      url: './student-data/student-data',
+  logout() {
+    wx.reLaunch({
+      url: '../../../login/login',
     })
-  },
-  jumpToSetting(){
-    wx.navigateTo({
-      url: './student-setting/student-setting',
-    })
-  },
-  // tabbar跳转
-  jump(e) {
-    let page = e.currentTarget.dataset.page;
-    PageJumpUtil.jump(false, page);
   },
 
   /**
@@ -108,11 +143,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-
-  // tabbar跳转
-
-
-
+  }
 })

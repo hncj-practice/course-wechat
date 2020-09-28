@@ -33,9 +33,7 @@ Page({
       url: 'https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/05.png'
     }],
   },
-  /**
-   * 判断当前用户是否登录
-   */
+  //判断当前用户是否登录
   isLogin() {
     try {
       var loginuser = wx.getStorageSync('loginuser');
@@ -116,7 +114,18 @@ Page({
       })
     })
   },
-
+  //跳转到课程页面
+  gotocourse(event) {
+    var courseid = event.currentTarget.dataset.courseid;
+    wx.showToast({
+      title: '跳转到课程页面',
+      icon: 'none'
+    })
+    console.log("跳转到课程页面");
+    wx.navigateTo({
+      url: '../student-course/course-detail/course-detail?courseid=' + courseid
+    })
+  },
   // 轮播图切换
   cardSwiper(e) {
     this.setData({

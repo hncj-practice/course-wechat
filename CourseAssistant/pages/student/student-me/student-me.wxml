@@ -6,9 +6,9 @@
 
     <view class="cu-item">
       <view class="cu-avatar round lg"
-        style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        style="background-image:url({{loginuser.avatar}});"></view>
       <view class="content">
-        <view class="text-grey">吴硕</view>
+        <view class="text-grey">{{loginuser.name}}</view>
         <view class="text-gray text-sm flex">
           <text class="text-cut">
             <text class="cuIcon-myfill text-green  margin-right-xs"></text>这个人很懒，什么都没有留下！！！
@@ -29,7 +29,7 @@
       </navigator>
     </view>
 
-    <view class="cu-item arrow">
+    <view class="cu-item arrow" bindtap="jumpToSetting">
       <navigator class="content" url="/pages/about/log/log" hover-class="none">
         <text class="cuIcon-settingsfill text-grey"></text>
         <text class="text-grey">设置</text>

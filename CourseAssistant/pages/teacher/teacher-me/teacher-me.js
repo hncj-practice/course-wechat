@@ -27,25 +27,6 @@ Page({
   },
 
   /**
-   * 跳转到课程页面
-   */
-  jump2Course(event) {
-    var status = event.currentTarget.dataset.status;
-    console.log("WWW" + status);
-    wx.navigateTo({
-      url: '../teacher-course/teacher-course?status=' + status,
-      success: (result) => {
-        console.log(result)
-      },
-      fail: (res) => {
-        console.log(res)
-      },
-      complete: (res) => {
-        console.log(res)
-      },
-    })
-  },
-  /**
    * 跳转到我的资料页面
    */
   jumpToMydata() {
@@ -58,6 +39,7 @@ Page({
       url: './teacher-setting/teacher-setting',
     })
   },
+  
 
   /**
    * 生命周期函数--监听页面加载
