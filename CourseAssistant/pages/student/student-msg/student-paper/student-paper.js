@@ -1,38 +1,11 @@
-// pages/student/student-msg/student-msg.js
-
-var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
-
+// pages/student/student-msg/student-paper/student-paper.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showGoing: true,
-    showEnded: true
-  },
 
-
-
-  // 切换折叠菜单
-  trigger(e) {
-    let log = e.currentTarget.dataset.tag;
-    if (log === 'going') {
-      this.setData({
-        showGoing: !this.data.showGoing
-      });
-    } else {
-      this.setData({
-        showEnded: !this.data.showEnded
-      });
-    }
-
-  },
-
-  // tabbar跳转
-  jump(e) {
-    let page = e.currentTarget.dataset.page;
-    PageJumpUtil.jump(false, page);
   },
 
   /**
