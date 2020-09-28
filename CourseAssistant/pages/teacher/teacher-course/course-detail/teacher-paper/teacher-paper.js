@@ -13,10 +13,7 @@ Page({
     showTK: true
   },
 
-  /**
-   * 获取试卷详情信息
-   * @param {*} options 
-   */
+  //获取试卷详情信息
   getPaperDetail(options) {
     var paperid = options.paperid;
     var url = "https://fengyezhan.xyz/Interface/problem/getproblembypaperid";

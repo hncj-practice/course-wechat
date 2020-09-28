@@ -8,122 +8,96 @@
     <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-tag="going">
       <view class="action">
         <text class="cuIcon-titles text-green"></text>
-        试卷名
+        {{papername}}
       </view>
       <view class="action">
         <text class="cuIcon-timefill text-green"></text>
       </view>
     </view>
     <view class="desc">
-      <text class="text-df text-gray text-right">2020.09.28 10:30 ~ 2020.09.28 11:30</text>
+      <text class="text-df text-gray text-right">{{start}} ~ {{end}}</text>
     </view>
   </view>
 
   <!-- 选择题 -->
   <view class="choices">
-    <view class="question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">{{"1. "}}题目名</text>
-      <!-- 选项 -->
-      <text class="text-black text-df opt">A.A</text>
-      <text class="text-black text-df opt">A.A</text>
-      <text class="text-black text-df opt">A.A</text>
-      <text class="text-black text-df opt">A.A</text>
+    <block wx:for="{{choice}}" wx:key="key">
+      <view class="question">
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{"1. "}}{{item.question.question}}</text>
+        <!-- 选项 -->
+        <block wx:for="{{item.question.options}}" wx:for-item="it">
+          <text class="text-black text-df opt">{{it}}</text>
+        </block>
 
-      <!-- 选择答案 -->
-      <radio-group class="radio select-opt">
-        <radio value="0" checked="false">A</radio>
-        <radio value="1" checked="false">B</radio>
-        <radio value="2" checked="false">C</radio>
-        <radio value="3" checked="false">D</radio>
-      </radio-group>
+        <!-- <text class="text-black text-df opt">A.A</text>
+        <text class="text-black text-df opt">A.A</text>
+        <text class="text-black text-df opt">A.A</text> -->
 
-      <!-- 分割线 -->
-      <view class="line"></view>
-    </view>
+        <!-- 选择答案 -->
+        <radio-group class="radio select-opt">
+          <radio wx:if="{{item.question.options.length>=1}}" value="0" checked="false">A</radio>
+          <radio wx:if="{{item.question.options.length>=2}}" value="1" checked="false">B</radio>
+          <radio wx:if="{{item.question.options.length>=3}}" value="2" checked="false">C</radio>
+          <radio wx:if="{{item.question.options.length>=4}}" value="3" checked="false">D</radio>
+        </radio-group>
 
-    <view class="question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">{{"2. "}}题目名</text>
-      <!-- 选项 -->
-      <text class="text-black text-df opt">A.A</text>
-      <text class="text-black text-df opt">A.A</text>
-      <text class="text-black text-df opt">A.A</text>
-      <text class="text-black text-df opt">A.A</text>
-
-      <!-- 选择答案 -->
-      <radio-group class="radio select-opt">
-        <radio value="0" checked="false">A</radio>
-        <radio value="1" checked="false">B</radio>
-        <radio value="2" checked="false">C</radio>
-        <radio value="3" checked="false">D</radio>
-      </radio-group>
-
-      <!-- 分割线 -->
-      <view class="line"></view>
-    </view>
-
+        <!-- 分割线 -->
+        <view class="line"></view>
+      </view>
+    </block>
 
   </view>
 
   <!-- 判断题 -->
   <view class=".judges">
-    <view class=" question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">{{"3. "}}这道题选B
-      </text>
-      <!-- 选项 -->
-      <text class="text-black text-df opts">√</text>
-      <text class="text-black text-df opts">×</text>
+    <block wx:for="{{judge}}" wx:key="key">
+      <view class=" question">
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{"3. "}}{{item.question.question}}</text>
+        <!-- 选项 -->
+        <block wx:for="{{item.question.options}}" wx:for-item="it" wx:key="key">
+          <text class="text-black text-df opts">{{it}}</text>
+        </block>
 
-      <!-- 选择答案 -->
-      <radio-group class="radio select-opt">
-        <radio value="0" checked="false">√</radio>
-        <radio value="1" checked="false">×</radio>
-      </radio-group>
 
-      <view class="line"></view>
-    </view>
+        <!-- 选择答案 -->
+        <radio-group class="radio select-opt">
+          <radio wx:if="{{item.question.options.length>=1}}" value="0" checked="false">√</radio>
+          <radio wx:if="{{item.question.options.length>=2}}" value="1" checked="false">×</radio>
+        </radio-group>
 
-    <view class=" question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">{{"4. "}}这道题选B
-      </text>
-      <!-- 选项 -->
-      <text class="text-black text-df opts">√</text>
-      <text class="text-black text-df opts">×</text>
-
-      <!-- 选择答案 -->
-      <radio-group class="radio select-opt">
-        <radio value="0" checked="false">√</radio>
-        <radio value="1" checked="false">×</radio>
-      </radio-group>
-
-      <view class="line"></view>
-    </view>
+        <view class="line"></view>
+      </view>
+    </block>
   </view>
 
   <!-- 填空题 -->
   <view class=".fills">
-    <view class="question">
-      <!-- 题目 -->
-      <text class="text-black text-lg main">{{"5. "}}四大名著包括____、____、____和____.
-      </text>
-      <!-- 填写答案 -->
-      <view class="input-answer">
-        <input type="text"/>
-        <input type="text"/>
-        <input type="text"/>
-        <input type="text"/>
+    <block wx:for="{{fill}}" wx:key="key">
+      <view class="question">
+        <!-- 题目 -->
+        <text class="text-black text-lg main">{{"5. "}}{{item.question}}
+        </text>
+        <!-- 填写答案 -->
+        <view class="input-answer">
+          <!-- <block wx:for="{{}}"></block> -->
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+        </view>
+        <view class="line"></view>
       </view>
-      <view class="line"></view>
-    </view>
+    </block>
+
   </view>
 
 
   <!-- 提交按钮 -->
   <view class="submit">
-    <button class="cu-btn bg-green margin-tb-sm lg button-hover" role="button" aria-disabled="false" bindtap="onSubmitPaper">交卷</button>
+    <button class="cu-btn bg-green margin-tb-sm lg button-hover" role="button" aria-disabled="false"
+      bindtap="onSubmitPaper">交卷</button>
   </view>
 
 </view>

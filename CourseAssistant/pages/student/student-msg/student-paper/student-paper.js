@@ -1,3 +1,5 @@
+const util = require("../../../../utils/util");
+const questionUtil=require("../../../../utils/questionUtil.js");
 // pages/student/student-msg/student-paper/student-paper.js
 Page({
 
@@ -7,9 +9,22 @@ Page({
   data: {
 
   },
+  initdata(options){
+    var paperid=options.paperid;
+    var papername=options.papername;
+    var start=options.start;
+    var end=options.end;
+    this.setData({
+      paperid:paperid,
+      papername:papername,
+      start:start,
+      end:end
+    })
+  },
 
   // 做题前警告
   showWarning() {
+    var that=this;
     wx.showModal({
       title: '警告',
       content: '请不要再答题过程中离开此页面！！',
@@ -19,7 +34,7 @@ Page({
 
           // 请求数据
           // ajax();
-
+          that.getPaper();
 
         } else {
           console.log('返回');
@@ -27,6 +42,46 @@ Page({
         }
       }
     });
+  },
+  //获取试卷详情信息
+  getPaper() {
+    var paperid = this.data.paperid;
+    var url = "https://fengyezhan.xyz/Interface/problem/getproblembypaperid";
+    var data = {
+      paperid: paperid
+    }
+    console.log(data)
+    util.myAjaxPost(url, data).then(res => {
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      var data = res.data.data;
+      var choice = [],
+        fill = [],
+        judge = [];
+      data.forEach(item => {
+        if (item.ptype == "1") { //选择题
+          item.question = questionUtil.question(item.question);
+          choice.push(item);
+        } else if (item.ptype == "2") { //填空
+          fill.push(item);
+        } else if (item.ptype == "3") { //判断
+          item.question = questionUtil.question(item.question);
+          judge.push(item);
+        }
+      });
+
+      this.setData({
+        problems: res.data.data,
+        choice: choice,
+        fill: fill,
+        judge: judge
+      })
+    })
   },
 
   // 点击交卷
@@ -56,6 +111,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.initdata(options);
     this.showWarning();
   },
 

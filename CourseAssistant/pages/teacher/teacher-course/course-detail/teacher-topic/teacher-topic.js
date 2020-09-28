@@ -83,7 +83,7 @@ Page({
 
     var time=new Date().getTime();
 
-    var url="http://localhost:8080/Interface_war/comment/addcomment";
+    var url="https://fengyezhan.xyz/Interface/comment/addcomment";
     var data={
       sno:'081417154',
       topicid:that.data.topicid,

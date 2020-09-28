@@ -1,6 +1,7 @@
 // pages/student/student-msg/student-msg.js
 
 var PageJumpUtil = require('../../../utils/PageJumpUtil.js');
+const util = require('../../../utils/util.js');
 
 Page({
 
@@ -11,7 +12,77 @@ Page({
     showGoing: true,
     showEnded: true
   },
+  //获取登录用户信息
+  isLogin() {
+    try {
+      var loginuser = wx.getStorageSync('loginuser');
+      console.log(loginuser)
+      if (loginuser) {
+        this.setData({
+          loginuser: loginuser
+        })
+      } else {
+        wx.showToast({
+          title: '未登录，请登录后重试',
+          icon: 'none',
+          duration: 3000
+        })
 
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        }, 3000);
+
+      }
+    } catch (e) {}
+  },
+
+  //获取试卷信息
+  getPaper(){
+    var studentid=this.data.loginuser.sno;
+    var url="https://fengyezhan.xyz/Interface/paper/findpaperbysno";
+    var data={
+      studentid:studentid
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      wx.showToast({
+        title: res.data.message,
+        icon: 'none'
+      })
+      if (res.data.code != 200) {
+        return;
+      }
+      var data=res.data.data;
+      var len=data.length;
+      var processing=[],finish=[];
+      for(var i=0;i<len;i++){
+        data[i].start=util.formatTime(data[i].starttime,2);
+        data[i].end=util.formatTime(data[i].endtime,2);
+        if(data[i].status==1){
+          processing.push(data[i]);
+        }else if(data[i].status==2){
+          finish.push(data[i])
+        }
+      }
+      this.setData({
+        papers:data,
+        processing:processing,
+        finish,finish
+      })
+    })
+  },
+  //跳转到试卷详情页
+  jumpToPaper(event) {
+    var paper = event.currentTarget.dataset.paper;
+    var paperid=paper.paperid;
+    var papername=paper.papername;
+    var start=paper.start;
+    var end=paper.end;
+    wx.navigateTo({
+      url: './student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end,
+    })
+  },
 
 
   // 切换折叠菜单
@@ -39,7 +110,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.isLogin();
+    this.getPaper();
   },
 
   /**
@@ -75,6 +147,10 @@ Page({
    */
   onPullDownRefresh: function () {
 
+    wx.showNavigationBarLoading();
+    this.getPaper();
+    wx.hideNavigationBarLoading();
+    wx.stopPullDownRefresh();
   },
 
   /**
