@@ -17,7 +17,8 @@
     "pages/teacher/teacher-course/course-detail/teacher-topic/teacher-topic",
     "pages/teacher/teacher-me/teacher-setting/teacher-setting",
     "pages/teacher/teacher-course/course-statistics/course-statistics",
-    "pages/student/student-course/course-detail/course-detail"
+    "pages/student/student-course/course-detail/course-detail",
+    "pages/student/student-msg/student-paper/student-paper"
   ],
   "window": {
     "backgroundTextStyle": "dark",

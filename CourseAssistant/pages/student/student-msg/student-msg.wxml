@@ -3,8 +3,6 @@
 <!-- 显示：这名学生已选课程中的试卷 -->
 <view class="root">
 
-
-
   <!-- 进行中 -->
   <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-tag="going">
     <view class="action">

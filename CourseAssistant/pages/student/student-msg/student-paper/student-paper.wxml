@@ -1,0 +1,52 @@
+<!--pages/student/student-msg/student-paper/student-paper.wxml-->
+
+
+<view class="root">
+
+  <!-- 试卷头 -->
+  <view class="header margin-bottom">
+    <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-tag="going">
+      <view class="action">
+        <text class="cuIcon-titles text-green"></text>
+        试卷名
+      </view>
+      <view class="action">
+        <text class="cuIcon-timefill text-green"></text>
+      </view>
+    </view>
+    <view class="desc">
+      <text class="text-df text-gray text-right">2020.09.28 10:30 ~ 2020.09.28 11:30</text>
+    </view>
+  </view>
+
+  <!-- 判断题 -->
+  <view class="question">
+    <!-- 题目 -->
+    <text class="text-black text-lg main">题目名</text>
+    <!-- 选项 -->
+    <text class="text-black text-df opts">A.A</text>
+    <text class="text-black text-df opts">A.A</text>
+    <text class="text-black text-df opts">A.A</text>
+    <text class="text-black text-df opts">A.A</text>
+
+    <!-- 选择答案 -->
+    <radio-group class="radio" bindChange="updataRadio">
+      <radio value="0" checked="false">A</radio>
+      <radio value="0" checked="false">A</radio>
+      <radio value="0" checked="false">A</radio>
+      <radio value="0" checked="false">A</radio>
+    </radio-group>
+
+    <!-- 分割线 -->
+    <view class="line"></view>
+  </view>
+
+
+
+
+  <!-- 提交按钮 -->
+  <view class="submit">
+    <button class="cu-btn bg-green margin-tb-sm lg button-hover" role="button" aria-disabled="false">交卷</button>
+  </view>
+
+</view>
