@@ -19,29 +19,106 @@
     </view>
   </view>
 
-  <!-- 判断题 -->
-  <view class="question">
-    <!-- 题目 -->
-    <text class="text-black text-lg main">题目名</text>
-    <!-- 选项 -->
-    <text class="text-black text-df opts">A.A</text>
-    <text class="text-black text-df opts">A.A</text>
-    <text class="text-black text-df opts">A.A</text>
-    <text class="text-black text-df opts">A.A</text>
+  <!-- 选择题 -->
+  <view class="choices">
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">{{"1. "}}题目名</text>
+      <!-- 选项 -->
+      <text class="text-black text-df opt">A.A</text>
+      <text class="text-black text-df opt">A.A</text>
+      <text class="text-black text-df opt">A.A</text>
+      <text class="text-black text-df opt">A.A</text>
 
-    <!-- 选择答案 -->
-    <radio-group class="radio" bindChange="updataRadio">
-      <radio value="0" checked="false">A</radio>
-      <radio value="0" checked="false">A</radio>
-      <radio value="0" checked="false">A</radio>
-      <radio value="0" checked="false">A</radio>
-    </radio-group>
+      <!-- 选择答案 -->
+      <radio-group class="radio select-opt">
+        <radio value="0" checked="false">A</radio>
+        <radio value="1" checked="false">B</radio>
+        <radio value="2" checked="false">C</radio>
+        <radio value="3" checked="false">D</radio>
+      </radio-group>
 
-    <!-- 分割线 -->
-    <view class="line"></view>
+      <!-- 分割线 -->
+      <view class="line"></view>
+    </view>
+
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">{{"2. "}}题目名</text>
+      <!-- 选项 -->
+      <text class="text-black text-df opt">A.A</text>
+      <text class="text-black text-df opt">A.A</text>
+      <text class="text-black text-df opt">A.A</text>
+      <text class="text-black text-df opt">A.A</text>
+
+      <!-- 选择答案 -->
+      <radio-group class="radio select-opt">
+        <radio value="0" checked="false">A</radio>
+        <radio value="1" checked="false">B</radio>
+        <radio value="2" checked="false">C</radio>
+        <radio value="3" checked="false">D</radio>
+      </radio-group>
+
+      <!-- 分割线 -->
+      <view class="line"></view>
+    </view>
+
+
   </view>
 
+  <!-- 判断题 -->
+  <view class=".judges">
+    <view class=" question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">{{"3. "}}这道题选B
+      </text>
+      <!-- 选项 -->
+      <text class="text-black text-df opts">√</text>
+      <text class="text-black text-df opts">×</text>
 
+      <!-- 选择答案 -->
+      <radio-group class="radio select-opt">
+        <radio value="0" checked="false">√</radio>
+        <radio value="1" checked="false">×</radio>
+      </radio-group>
+
+      <view class="line"></view>
+    </view>
+
+    <view class=" question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">{{"4. "}}这道题选B
+      </text>
+      <!-- 选项 -->
+      <text class="text-black text-df opts">√</text>
+      <text class="text-black text-df opts">×</text>
+
+      <!-- 选择答案 -->
+      <radio-group class="radio select-opt">
+        <radio value="0" checked="false">√</radio>
+        <radio value="1" checked="false">×</radio>
+      </radio-group>
+
+      <view class="line"></view>
+    </view>
+  </view>
+
+  <!-- 填空题 -->
+  <view class=".fills">
+    <view class="question">
+      <!-- 题目 -->
+      <text class="text-black text-lg main">{{"5. "}}四大名著包括____、____、____和____.
+      </text>
+      <!-- 填写答案 -->
+      <view class="input-answer">
+        <input type="text"/>
+        <input type="text"/>
+        <input type="text"/>
+        <input type="text"/>
+      </view>
+      <view class="line"></view>
+    </view>
+  </view>
 
 
   <!-- 提交按钮 -->

@@ -15,9 +15,9 @@
   width: 100%;
 }
 
-.submit button{
-  width:98% !important;
-  margin: 1% !important;
+.submit button {
+  width: 98% !important;
+  margin: 3% 1% 1% 1% !important;
 }
 
 
@@ -44,16 +44,59 @@
 
 
 /* 题干 */
-.question .main{
+.question .main {
   margin: 0 0 10rpx 0;
 }
 
-/* 选项 */
-.question .opts{
+/* 问题的选项 */
+.question .opt {
   margin: 10rpx 0;
 }
 
+
+
 /* 答案 */
-.question .answer{
+.question .answer {
   margin: 10rpx 0;
+}
+
+
+/* 选择题 */
+.choices {
+  margin: 10rpx 0;
+}
+
+/* 选答案的选择 */
+.choices .select-opt {
+  display: flex;
+  justify-content: space-between;
+  margin: 10rpx 0;
+}
+
+
+/* 判断题 */
+.judges {
+  margin: 10rpx 0;
+}
+
+.judges .select-opt {
+  display: flex;
+}
+
+
+/* 填空题 */
+.fills {
+  margin: 10rpx 0;
+}
+
+.fills .input-answer {
+  padding: 10rpx 0;
+}
+
+.input-answer input {
+  /* background: pink; */
+  height: 50rpx;
+  margin: 10rpx 0;
+  border: solid 1px gray;
+  padding: 5rpx;
 }
