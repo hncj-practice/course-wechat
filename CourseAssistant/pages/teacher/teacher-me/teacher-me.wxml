@@ -2,7 +2,7 @@
 <view class="root">
   <!-- <view class="head" style="background-image: url(../../../images/index.jpg);"> -->
   <view class="head" style="background-image: url({{bgImage}});">
-    <image class="avatar" mode="widthFix" src="{{teacheravatar}}"> </image>
+    <image class="avatar" mode="widthFix" src="{{teacheravatar}}" catchtap="previewImg" data-image="{{teacheravatar}}"> </image>
     <view class="text-xl name">
       {{teachername}}
     </view>

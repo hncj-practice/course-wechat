@@ -1,1 +1,5 @@
 /* pages/login/login.wxss */
+page{
+  background-image: url("https://fyz1522426323.oss-cn-beijing.aliyuncs.com/login1.jpg");
+  background-size: 100%;
+}

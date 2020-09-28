@@ -10,6 +10,15 @@ Page({
   data: {
     bgImage: "https://fyz1522426323.oss-cn-beijing.aliyuncs.com/fyz/images/index.jpg"
   },
+  //实现图片预览
+  previewImg(event) {
+    var img = event.currentTarget.dataset.image;
+    var imgs = [img, ]
+    wx.previewImage({
+      current: img,
+      urls: imgs,
+    })
+  },
 
   // tabbar跳转
   jump(e) {

@@ -14,8 +14,29 @@ Page({
       "章节",
       "试卷",
       "资料",
-      "话题"
+      "话题",
+      "统计"
     ],
+
+    listData: [{
+      sno: "081417137",
+      sname: "吴硕",
+      paper: "15/15",
+      topic: "2/2",
+      score: "99.1",
+    }, {
+      sno: "081417137",
+      sname: "吴硕",
+      paper: "15/15",
+      topic: "2/2",
+      score: "99.1",
+    }, {
+      sno: "081417137",
+      sname: "吴硕",
+      paper: "15/15",
+      topic: "2/2",
+      score: "99.1",
+    }],
     datatype:['请选择','图片','文档','视频'],
     dataindex:0,
     addChapter: false,
@@ -118,6 +139,23 @@ Page({
       })
     });
   },
+  getStatistic(){
+    var that = this;
+    //获取该课程的话题信息
+    var statistic_url = 'https://fengyezhan.xyz/Interface/student/statistic';
+    var statistic_data = {
+      courseid: that.data.courseid
+    }
+    util.myAjaxPost(statistic_url, statistic_data).then(res => {
+      console.log(res.data)
+      if (res.data.code != 200) {
+        return
+      }
+      that.setData({
+        statistic: res.data.data
+      })
+    });
+  },
 
   //获取本页面需要的所有数据
   getAllData(options) {
@@ -136,6 +174,8 @@ Page({
     this.getData();
 
     this.getTopic();
+
+    this.getStatistic();
 
   },
 
@@ -156,7 +196,7 @@ Page({
   jumpToTopic(event) {
     var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
-      url: './teacher-topic/teacher-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent,
+      url: './teacher-topic/teacher-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent+ '&time=' + topic.committime,
     })
   },
 
@@ -938,6 +978,8 @@ Page({
       this.getData();
     }else if(Tabcur==3){
       this.getTopic();
+    }else if(Tabcur==4){
+      this.getStatistic();
     }
     //隐藏导航栏加载框
     wx.hideNavigationBarLoading();

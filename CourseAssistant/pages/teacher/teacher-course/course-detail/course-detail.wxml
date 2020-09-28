@@ -61,8 +61,8 @@
     <view class="cu-list menu sm-border card-menu margin-top">
 
       <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper"
-          data-paper="{{item}}" data-paperid="{{item.paperid}}">
+        <view class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper" data-paper="{{item}}"
+          data-paperid="{{item.paperid}}">
           <!-- <text class="icon"></text> -->
           <image class="icon" src="../../../../images/icon/paper.png"></image>
           <view class="content text">
@@ -304,6 +304,39 @@
     </view>
   </view>
 
+  <!-- 统计 -->
+  <!-- 进度统计 -->
+  <view wx:if="{{TabCur==4}}">
+    <view class="table">
+      <view class="tr bg-w text-sm">
+        <view class="th">学号</view>
+        <view class="th">姓名</view>
+        <view class="th">试卷完成数</view>
+        <view class="th">讨论次数</view>
+        <view class="th ">分数</view>
+      </view>
+
+      <block wx:for="{{statistic}}" wx:key="key">
+
+        <view class="tr bg-g text-sm" wx:if="{{index % 2 == 0}}">
+          <text class="td">{{item.sno}}</text>
+          <view class="td">{{item.sname}}</view>
+          <view class="td">{{item.finpapernum}}/{{item.totalpapernum}}</view>
+          <view class="td">{{item.commentnum}}</view>
+          <view class="td">95.0</view>
+        </view>
+
+        <view class="tr bg-w text-sm" wx:else>
+          <text class="td">{{item.sno}}</text>
+          <view class="td">{{item.sname}}</view>
+          <view class="td">{{item.finpapernum}}/{{item.totalpapernum}}</view>
+          <view class="td">{{item.commentnum}}</view>
+          <view class="td">95.0</view>
+        </view>
+
+      </block>
+    </view>
+  </view>
 
 
   <!--模态框------------------------------------------------------------------------------------------>
