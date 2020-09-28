@@ -19,8 +19,36 @@
     </view>
   </view>
 
+  <view wx:if="{{showGoing}}">
+    <view class="cu-list menu shadow-lg radius padding-top padding-bottom">
+
+      <view class="cu-item arrow paper">
+        <image class="icon" src="../../../images/icon/paper.png"></image>
+        <view class="content text">
+          <text class="text-grey text-left text-lg"> 5555555 {{item.papername}}</text>
+          <view class="desc">
+            <text class="text-grey text-left text-sm"> 12{{item.start}} ~ 34{{item.end}} </text>
+            <text class="text-green text-sm">进行中</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="cu-item arrow paper">
+        <image class="icon" src="../../../images/icon/paper.png"></image>
+        <view class="content text">
+          <text class="text-grey text-left text-lg"> 5555555 {{item.papername}}</text>
+          <view class="desc">
+            <text class="text-grey text-left text-sm"> 12{{item.start}} ~ 34{{item.end}} </text>
+            <text class="text-green text-sm">进行中</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
   <!-- 已完成 -->
-  <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-tag="ended">
+  <view class="cu-bar bg-white solid-bottom " bindtap="trigger" data-tag="ended">
     <view class="action">
       <text class="cuIcon-titles text-blue"></text>
       已完成
@@ -33,12 +61,44 @@
     </view>
   </view>
 
-  
+  <view wx:if="{{showEnded}}">
+
+    <view class="cu-list menu shadow-lg radius padding-top padding-bottom">
+
+
+      <view class="cu-item arrow paper">
+        <image class="icon" src="../../../images/icon/paper.png"></image>
+        <view class="content text">
+          <text class="text-grey text-left text-lg"> 5555555 {{item.papername}}</text>
+          <view class="desc">
+            <text class="text-grey text-left text-sm"> 12{{item.start}} ~ 34{{item.end}} </text>
+            <text class="text-gray text-sm">已结束</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="cu-item arrow paper">
+        <image class="icon" src="../../../images/icon/paper.png"></image>
+        <view class="content text">
+          <text class="text-grey text-left text-lg"> 5555555 {{item.papername}}</text>
+          <view class="desc">
+            <text class="text-grey text-left text-sm"> 12{{item.start}} ~ 34{{item.end}} </text>
+            <text class="text-gray text-sm">已结束</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+
+
+
+  </view>
 
 
 
   <!-- 底部tabbar -->
-  <view class="cu-bar tabbar bg-white  shadow foot">
+  <view class=" cu-bar tabbar bg-white shadow foot">
     <view class="action" bindtap="jump" data-page="index">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/index.png"></image>
