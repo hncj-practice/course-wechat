@@ -1,0 +1,13 @@
+<!--pages/student/student-msg/paper-course/paper-course.wxml-->
+
+<view class="root">
+
+
+
+  <view class="score">
+    <text class="num pass">100</text>
+  </view>
+
+
+
+</view>

@@ -1,0 +1,40 @@
+/* pages/student/student-msg/paper-course/paper-course.wxss */
+page {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+
+.score {
+  position: absolute;
+  top: 263rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 360rpx;
+  height: 300rpx;
+  /* background: pink; */
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.score .num{
+  font-size: 180rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.score .pass{
+  color: cornflowerblue;
+}
+
+.score .unpass{
+  color: #b6b6b6;
+}
+
+.score .s{
+  font-size: 35rpx;
+}
