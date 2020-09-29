@@ -1,26 +1,28 @@
 <!--pages/login/login.wxml-->
 <view>
-  <form bindsubmit="loginBox">
+
+  <form bindsubmit="loginBox" class="form">
     <view class="text-center">
-      <view class=" cu-form-group margin-top">
+      <view class="cu-form-group margin-top" style="background: #ffffff00">
         <view class="title">用户类型</view>
         <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
           <view class="picker">{{picker[index]}}</view>
         </picker>
       </view>
-      <view class=" cu-form-group">
+      <view class=" cu-form-group" style="background: #ffffff00">
         <view class="title">账号</view>
         <input type="text" name="username" placeholder="Please input Account" value="888888888"></input>
       </view>
-      <view class="cu-form-group">
+      <view class="cu-form-group" style="background: #ffffff00">
         <view class="title">密码</view>
         <input type="password" name="pwd" placeholder="Please input password" value="000000"></input>
       </view>
     </view>
 
-    <view class="cu-form-group">
+    <view class="cu-form-group" style="background: #ffffff00">
       <button class="cu-btn bg-green shadow round" form-type="submit">登录</button>
     </view>
-
   </form>
+
+
 </view>
