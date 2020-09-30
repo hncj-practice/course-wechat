@@ -1,5 +1,5 @@
 const util = require("../../../../utils/util");
-const questionUtil=require("../../../../utils/questionUtil.js");
+const questionUtil = require("../../../../utils/questionUtil.js");
 // pages/student/student-msg/student-paper/student-paper.js
 Page({
 
@@ -7,24 +7,38 @@ Page({
    * 页面的初始数据
    */
   data: {
+    score: 0,
+    //选择的
+    choices: [],
+    //判断
+    judges:[],
+    //填空
+    fills:[]
 
   },
-  initdata(options){
-    var paperid=options.paperid;
-    var papername=options.papername;
-    var start=options.start;
-    var end=options.end;
+  initdata(options) {
+    var paperid = options.paperid;
+    var papername = options.papername;
+    var start = options.start;
+    var end = options.end;
+    var choicescore = options.choicescore;
+    var fillscore = options.fillscore;
+    var judgescore = options.judgescore
     this.setData({
-      paperid:paperid,
-      papername:papername,
-      start:start,
-      end:end
+      paperid: paperid,
+      papername: papername,
+      start: start,
+      end: end,
+      choicescore: choicescore,
+      fillscore: fillscore,
+      judgescore: judgescore
     })
   },
 
+
   // 做题前警告
   showWarning() {
-    var that=this;
+    var that = this;
     wx.showModal({
       title: '警告',
       content: '请不要再答题过程中离开此页面！！',
@@ -100,10 +114,129 @@ Page({
     })
   },
 
+  //选择题radio状态改变
+  choicechange(event) {
+    console.log(event);
+    var status = false;
+    var choice = event.detail.value;
+    var id = event.currentTarget.dataset.id;
+    var answer = event.currentTarget.dataset.answer;
+    // var score=parseInt(event.currentTarget.dataset.score);
+    console.log("choice:" + choice);
+    console.log("id:" + id)
+    console.log("answer:" + answer);
+    // console.log("score:"+score)
+    if (choice == 0 && answer == "A") {
+      status = true;
+    } else if (choice == 1 && answer == "B") {
+      status = true;
+    } else if (choice == 2 && answer == "C") {
+      status = true;
+    } else if (choice == 3 && answer == "D") {
+      status = true;
+    } else {
+      status = false;
+    }
+
+    var choices = this.data.choices;
+
+    choices[id] = status;
+
+    this.setData({
+      choices: choices
+    })
+  },
+
+  //判断题radio状态改变
+  judgechange(event) {
+    var status = false;
+    var judge = event.detail.value;
+    var id = event.currentTarget.dataset.id;
+    var answer = event.currentTarget.dataset.answer;
+    console.log("judge:" + judge);
+    console.log("id:" + id)
+    console.log("answer:" + answer);
+    // console.log("score:"+score)
+    if (judge == 0 && answer == "A") {
+      status = true;
+    } else if (judge == 1 && answer == "B") {
+      status = true;
+    } else {
+      status = false;
+    }
+
+    var judges = this.data.judges;
+
+    judges[id] = status;
+
+    this.setData({
+      judges: judges
+    })
+  },
+
 
   // 交卷
   submitPaper() {
     console.log('提交试卷');
+    var score=0;
+
+    var choicescore=parseInt(this.data.choicescore);
+    var fillscore=parseInt(this.data.fillscore);
+    var judgescore=parseInt(this.data.judgescore);
+
+    var choices = this.data.choices;
+    var judges = this.data.judges;
+    var choiceslen = choices.length;
+    var judgeslen=this.data.judges.length;
+    if(choiceslen<1||judgeslen<1){
+      wx.showToast({
+        title: '试卷未完成，请检查',
+        icon: 'none'
+      })
+      return;
+    }
+    var choice = this.data.choice;
+    var judge=this.data.judge;
+    var choicelen = choice.length;
+    var judgelen=judge.length;
+    choices.forEach(item => {
+      if (item == null||choiceslen<choicelen) {
+        wx.showToast({
+          title: '选择题未完成，请检查',
+          icon: 'none'
+        })
+        return;
+      }
+    });
+    judges.forEach(item => {
+      if (item == null||judgeslen<judgelen) {
+        wx.showToast({
+          title: '判断题未完成，请检查',
+          icon: 'none'
+        })
+        return;
+      }
+    });
+
+    choices.forEach(item=>{
+      if(item){
+        score=score+choicescore;
+      }
+    })
+    judges.forEach(item=>{
+      if(item){
+        score=score+judgescore;
+      }
+    })
+
+    this.setData({
+      score:score
+    })
+
+    //跳转到成绩页面
+    wx.navigateTo({
+      url: '../paper-course/paper-course?score='+score,
+    })
 
   },
 

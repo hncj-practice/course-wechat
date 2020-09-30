@@ -91,8 +91,11 @@ hideModel() {
     var papername=paper.papername;
     var start=paper.start;
     var end=paper.end;
+    var choicescore=paper.choicepoints;
+    var fillscore=paper.fillpoints;
+    var judgescore=paper.judgepoints
     wx.navigateTo({
-      url: '../../student-msg/student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end,
+      url: '../../student-msg/student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end+'&choicescore='+choicescore+'&fillscore='+fillscore+'&judgescore='+judgescore,
     })
   },
 

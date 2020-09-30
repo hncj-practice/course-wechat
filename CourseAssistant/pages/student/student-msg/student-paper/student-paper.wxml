@@ -21,10 +21,10 @@
 
   <!-- 选择题 -->
   <view class="choices">
-    <block wx:for="{{choice}}" wx:key="key">
+    <block wx:for="{{choice}}" wx:key="key" wx:for-index="idx">
       <view class="question">
         <!-- 题目 -->
-        <text class="text-black text-lg main">{{"1. "}}{{item.question.question}}</text>
+        <text class="text-black text-lg main">{{idx+1}}.{{item.question.question}}</text>
         <!-- 选项 -->
         <block wx:for="{{item.question.options}}" wx:for-item="it">
           <text class="text-black text-df opt">{{it}}</text>
@@ -35,7 +35,7 @@
         <text class="text-black text-df opt">A.A</text> -->
 
         <!-- 选择答案 -->
-        <radio-group class="radio select-opt">
+        <radio-group class="radio select-opt" bindchange="choicechange" data-answer="{{item.panswer}}" data-score="{{choicescore}}" data-id="{{idx}}">
           <radio wx:if="{{item.question.options.length>=1}}" value="0" checked="false">A</radio>
           <radio wx:if="{{item.question.options.length>=2}}" value="1" checked="false">B</radio>
           <radio wx:if="{{item.question.options.length>=3}}" value="2" checked="false">C</radio>
@@ -51,10 +51,10 @@
 
   <!-- 判断题 -->
   <view class=".judges">
-    <block wx:for="{{judge}}" wx:key="key">
+    <block wx:for="{{judge}}" wx:key="key" wx:for-index="idx">
       <view class=" question">
         <!-- 题目 -->
-        <text class="text-black text-lg main">{{"3. "}}{{item.question.question}}</text>
+        <text class="text-black text-lg main">{{idx+1}}.{{item.question.question}}</text>
         <!-- 选项 -->
         <block wx:for="{{item.question.options}}" wx:for-item="it" wx:key="key">
           <text class="text-black text-df opts">{{it}}</text>
@@ -62,7 +62,7 @@
 
 
         <!-- 选择答案 -->
-        <radio-group class="radio select-opt">
+        <radio-group class="radio select-opt" bindchange="judgechange" data-answer="{{item.panswer}}" data-score="{{judgescore}}" data-id="{{idx}}">
           <radio wx:if="{{item.question.options.length>=1}}" value="0" checked="false">√</radio>
           <radio wx:if="{{item.question.options.length>=2}}" value="1" checked="false">×</radio>
         </radio-group>
@@ -77,7 +77,7 @@
     <block wx:for="{{fill}}" wx:key="key">
       <view class="question">
         <!-- 题目 -->
-        <text class="text-black text-lg main">{{"5. "}}{{item.question}}
+        <text class="text-black text-lg main">{{index+1}}.{{item.question}}
         </text>
         <!-- 填写答案 -->
         <view class="input-answer">

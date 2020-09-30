@@ -5,7 +5,7 @@
 
 
   <view class="score">
-    <text class="num pass">100</text>
+    <text class="num pass">{{score}}</text>
   </view>
 
 
