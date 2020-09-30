@@ -79,12 +79,13 @@ Page({
         judge = [];
       data.forEach(item => {
         if (item.ptype == "1") { //选择题
-          item.question = questionUtil.question(item.question);
+          item.question = questionUtil.question(item.question, 0);
           choice.push(item);
         } else if (item.ptype == "2") { //填空
+          item = questionUtil.question(item, 1);
           fill.push(item);
         } else if (item.ptype == "3") { //判断
-          item.question = questionUtil.question(item.question);
+          item.question = questionUtil.question(item.question, 0);
           judge.push(item);
         }
       });
@@ -100,7 +101,7 @@ Page({
       let n = fill.length;
       let new_fills = [];
       for (let i = 0; i < n; i++) {
-        new_fills.push([null, null,null, null,null, null]);
+        new_fills.push([null, null, null, null, null, null]);
       }
       this.setData({
         fills: new_fills
@@ -222,11 +223,11 @@ Page({
 
     var choices = this.data.choices;
     var judges = this.data.judges;
-    var fills=this.data.fills;
+    var fills = this.data.fills;
     var choiceslen = choices.length;
     var judgeslen = this.data.judges.length;
-    var fillslen=this.data.fills.length;
-    if (choiceslen < 1 || judgeslen < 1||fillslen<1) {
+    var fillslen = this.data.fills.length;
+    if (choiceslen < 1 || judgeslen < 1 || fillslen < 1) {
       wx.showToast({
         title: '试卷未完成，请检查',
         icon: 'none'
@@ -235,10 +236,10 @@ Page({
     }
     var choice = this.data.choice;
     var judge = this.data.judge;
-    var fill=this.data.fill;
+    var fill = this.data.fill;
     var choicelen = choice.length;
     var judgelen = judge.length;
-    var filllen=fill.length;
+    var filllen = fill.length;
     choices.forEach(item => {
       if (item == null || choiceslen < choicelen) {
         wx.showToast({
@@ -257,16 +258,16 @@ Page({
         return;
       }
     });
-    for(var i=0;i<filllen;i++){
-      for(var j=0;j<6;j++){
-        if(fills[i][j]!=null&&fills[i][j]==1){
+    for (var i = 0; i < filllen; i++) {
+      for (var j = 0; j < 6; j++) {
+        if (fills[i][j] != null && fills[i][j] == 1) {
           ;
         }
       }
     }
-    fillslen.forEach(item=>{
-      item.forEach(it=>{
-        if(it!=null){
+    fillslen.forEach(item => {
+      item.forEach(it => {
+        if (it != null) {
 
         }
       })
