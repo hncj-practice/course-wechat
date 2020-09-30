@@ -97,6 +97,11 @@
   /* background: pink; */
   height: 50rpx;
   margin: 10rpx 0;
-  border: solid 1px gray;
+  border-bottom: solid 1px gray;
   padding: 5rpx;
+}
+
+.input-answer .input-line {
+  display: flex;
+  align-items: center;
 }

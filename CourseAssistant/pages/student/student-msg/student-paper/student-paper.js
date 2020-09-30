@@ -13,7 +13,16 @@ Page({
     //判断
     judges: [],
     //填空
-    fills: []
+    fills: [
+    //   {
+    //   pid: 7,
+    //   chapterid: 1,
+    //   ptype: 2,
+    //   question: '数据仓库就是一个____、集成的、____、反映历史变化的数据集合。',
+    //   panswer: '面向主题的$面向稳定的',
+    //   ptypename: '填空题'
+    // }
+  ]
 
   },
   initdata(options) {

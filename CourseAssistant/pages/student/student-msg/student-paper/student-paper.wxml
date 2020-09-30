@@ -116,13 +116,18 @@
         <!-- 题目 -->
         <text class="text-black text-lg main">{{index+1}}.{{item.question}}
         </text>
+
+        <view class="text-sm text-gray">填写答案：</view>
         <!-- 填写答案 -->
         <view class="input-answer">
-          <!-- <block wx:for="{{}}"></block> -->
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
+          <view class="input-line">
+            <text>（1）</text>
+            <input type="text" />
+          </view>
+          <view class="input-line">
+            <text>（2）</text>
+            <input type="text" />
+          </view>
         </view>
         <view class="line"></view>
       </view>
