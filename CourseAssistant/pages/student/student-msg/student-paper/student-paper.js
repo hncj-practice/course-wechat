@@ -11,9 +11,9 @@ Page({
     //选择的
     choices: [],
     //判断
-    judges:[],
+    judges: [],
     //填空
-    fills:[]
+    fills: []
 
   },
   initdata(options) {
@@ -178,17 +178,17 @@ Page({
   // 交卷
   submitPaper() {
     console.log('提交试卷');
-    var score=0;
+    var score = 0;
 
-    var choicescore=parseInt(this.data.choicescore);
-    var fillscore=parseInt(this.data.fillscore);
-    var judgescore=parseInt(this.data.judgescore);
+    var choicescore = parseInt(this.data.choicescore);
+    var fillscore = parseInt(this.data.fillscore);
+    var judgescore = parseInt(this.data.judgescore);
 
     var choices = this.data.choices;
     var judges = this.data.judges;
     var choiceslen = choices.length;
-    var judgeslen=this.data.judges.length;
-    if(choiceslen<1||judgeslen<1){
+    var judgeslen = this.data.judges.length;
+    if (choiceslen < 1 || judgeslen < 1) {
       wx.showToast({
         title: '试卷未完成，请检查',
         icon: 'none'
@@ -196,11 +196,11 @@ Page({
       return;
     }
     var choice = this.data.choice;
-    var judge=this.data.judge;
+    var judge = this.data.judge;
     var choicelen = choice.length;
-    var judgelen=judge.length;
+    var judgelen = judge.length;
     choices.forEach(item => {
-      if (item == null||choiceslen<choicelen) {
+      if (item == null || choiceslen < choicelen) {
         wx.showToast({
           title: '选择题未完成，请检查',
           icon: 'none'
@@ -209,7 +209,7 @@ Page({
       }
     });
     judges.forEach(item => {
-      if (item == null||judgeslen<judgelen) {
+      if (item == null || judgeslen < judgelen) {
         wx.showToast({
           title: '判断题未完成，请检查',
           icon: 'none'
@@ -218,26 +218,25 @@ Page({
       }
     });
 
-    choices.forEach(item=>{
-      if(item){
-        score=score+choicescore;
+    choices.forEach(item => {
+      if (item) {
+        score = score + choicescore;
       }
     })
-    judges.forEach(item=>{
-      if(item){
-        score=score+judgescore;
+    judges.forEach(item => {
+      if (item) {
+        score = score + judgescore;
       }
     })
 
     this.setData({
-      score:score
+      score: score
     })
 
     //跳转到成绩页面
-    wx.navigateTo({
-      url: '../paper-course/paper-course?score='+score,
+    wx.redirectTo({
+      url: '../paper-score/paper-score?score=' + score,
     })
-
   },
 
   /**
