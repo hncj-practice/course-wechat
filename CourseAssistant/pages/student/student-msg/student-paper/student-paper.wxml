@@ -30,17 +30,38 @@
           <text class="text-black text-df opt">{{it}}</text>
         </block>
 
-        <!-- <text class="text-black text-df opt">A.A</text>
-        <text class="text-black text-df opt">A.A</text>
-        <text class="text-black text-df opt">A.A</text> -->
+        <!-- 选择答案 -->
+        <radio-group class="block">
+          <view class="cu-form-group">
+            <view style="display:flex">
+              <view>
+                <text class="text-bold">A </text>
+                <radio class="margin-right"></radio>
+              </view>
+              <view>
+                <text class="text-bold">B </text>
+                <radio class="margin-right"></radio>
+              </view>
+              <view>
+                <text class="text-bold">C </text>
+                <radio class="margin-right"></radio>
+              </view>
+              <view>
+                <text class="text-bold">D </text>
+                <radio class="margin-right"></radio>
+              </view>
+            </view>
+          </view>
+        </radio-group>
 
         <!-- 选择答案 -->
-        <radio-group class="radio select-opt" bindchange="choicechange" data-answer="{{item.panswer}}" data-score="{{choicescore}}" data-id="{{idx}}">
-          <radio wx:if="{{item.question.options.length>=1}}" value="0" checked="false">A</radio>
-          <radio wx:if="{{item.question.options.length>=2}}" value="1" checked="false">B</radio>
-          <radio wx:if="{{item.question.options.length>=3}}" value="2" checked="false">C</radio>
-          <radio wx:if="{{item.question.options.length>=4}}" value="3" checked="false">D</radio>
-        </radio-group>
+        <!-- <radio-group class="radio select-opt" bindchange="choicechange" data-answer="{{item.panswer}}"
+          data-score="{{choicescore}}" data-id="{{idx}}">
+          <radio wx:if="{{item.question.options.length>=1}}" value="0">A</radio>
+          <radio wx:if="{{item.question.options.length>=2}}" value="1">B</radio>
+          <radio wx:if="{{item.question.options.length>=3}}" value="2">C</radio>
+          <radio wx:if="{{item.question.options.length>=4}}" value="3">D</radio>
+        </radio-group> -->
 
         <!-- 分割线 -->
         <view class="line"></view>
@@ -60,12 +81,28 @@
           <text class="text-black text-df opts">{{it}}</text>
         </block>
 
+        <!-- 选择答案 -->
+        <radio-group class="block">
+          <view class="cu-form-group">
+            <view style="display:flex">
+              <view>
+                <text class="">✔ </text>
+                <radio class="margin-right"></radio>
+              </view>
+              <view>
+                <text class="">✖ </text>
+                <radio class="margin-right"></radio>
+              </view>
+            </view>
+          </view>
+        </radio-group>
 
         <!-- 选择答案 -->
-        <radio-group class="radio select-opt" bindchange="judgechange" data-answer="{{item.panswer}}" data-score="{{judgescore}}" data-id="{{idx}}">
-          <radio wx:if="{{item.question.options.length>=1}}" value="0" checked="false">√</radio>
-          <radio wx:if="{{item.question.options.length>=2}}" value="1" checked="false">×</radio>
-        </radio-group>
+        <!-- <radio-group class="radio select-opt" bindchange="judgechange" data-answer="{{item.panswer}}"
+          data-score="{{judgescore}}" data-id="{{idx}}">
+          <radio wx:if="{{item.question.options.length>=1}}" value="0">√</radio>
+          <radio wx:if="{{item.question.options.length>=2}}" value="1">×</radio>
+        </radio-group> -->
 
         <view class="line"></view>
       </view>
