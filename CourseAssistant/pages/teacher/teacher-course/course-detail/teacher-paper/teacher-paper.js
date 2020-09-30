@@ -1,6 +1,6 @@
 // pages/teacher/teacher-course/course-detail/teacher-paper/teacher-paper.js
 var util = require("../../../../../utils/util.js");
-var questionUtil=require("../../../../../utils/questionUtil.js");
+var questionUtil = require("../../../../../utils/questionUtil.js");
 var app = getApp();
 Page({
 
@@ -34,13 +34,16 @@ Page({
         fill = [],
         judge = [];
       data.forEach(item => {
+        console.log('切问题');
+
         if (item.ptype == "1") { //选择题
-          item.question = questionUtil.question(item.question);
+          item.question = questionUtil.question(item.question, 0);
           choice.push(item);
         } else if (item.ptype == "2") { //填空
+          item.panswer = item.panswer.replace('$', '、');
           fill.push(item);
         } else if (item.ptype == "3") { //判断
-          item.question = questionUtil.question(item.question);
+          item.question = questionUtil.question(item.question, 0);
           judge.push(item);
         }
       });

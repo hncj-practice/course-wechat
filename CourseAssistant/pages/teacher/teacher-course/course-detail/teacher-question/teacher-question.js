@@ -1,7 +1,7 @@
 // pages/teacher/teacher-course/course-detail/teacher-question/teacher-question.js
-var util=require("../../../../../utils/util.js");
-var questionUtil=require("../../../../../utils/questionUtil.js");
-var app=getApp();
+var util = require("../../../../../utils/util.js");
+var questionUtil = require("../../../../../utils/questionUtil.js");
+var app = getApp();
 Page({
 
   /**
@@ -13,14 +13,14 @@ Page({
     showTK: true
   },
 
-  
-  getChapterDetail(options){
-    var chapterid=options.chapterid;
-    var url="https://fengyezhan.xyz/Interface/problem/getproblembychapterid";
-    var data={
-      chapterid:chapterid
+
+  getChapterDetail(options) {
+    var chapterid = options.chapterid;
+    var url = "https://fengyezhan.xyz/Interface/problem/getproblembychapterid";
+    var data = {
+      chapterid: chapterid
     }
-    util.myAjaxPost(url,data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
         icon: 'none'
@@ -29,27 +29,30 @@ Page({
         return;
       }
 
-      var data=res.data.data;
-      var choice=[],fill=[],judge=[];
+      var data = res.data.data;
+      var choice = [],
+        fill = [],
+        judge = [];
       data.forEach(item => {
-        if(item.ptype=="1"){//选择题
-          item.question = questionUtil.question(item.question);
+        if (item.ptype == "1") { //选择题
+          item.question = questionUtil.question(item.question, 0);
           choice.push(item);
-        }else if(item.ptype=="2"){//填空
+        } else if (item.ptype == "2") { //填空
+          item.panswer = item.panswer.replace('$', '、');
           fill.push(item);
-        }else if(item.ptype=="3"){//判断
-          item.question = questionUtil.question(item.question);
+        } else if (item.ptype == "3") { //判断
+          item.question = questionUtil.question(item.question, 0);
           judge.push(item);
         }
       });
 
-      
+
 
       this.setData({
-        problems:res.data.data,
-        choice:choice,
-        fill:fill,
-        judge:judge
+        problems: res.data.data,
+        choice: choice,
+        fill: fill,
+        judge: judge
       })
     })
   },

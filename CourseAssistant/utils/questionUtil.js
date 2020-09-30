@@ -4,6 +4,8 @@ function question(q, type) {
 
   // 选择、判断
   if (type === 0) {
+    console.log('选择、判断');
+    
     let strs = q.split('$');
     if (!strs || strs.length === 0) {
       return undefined;
