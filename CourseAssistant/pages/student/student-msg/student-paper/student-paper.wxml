@@ -31,24 +31,24 @@
         </block>
 
         <!-- 选择答案 -->
-        <radio-group class="block">
+        <radio-group class="block" bindchange="choicechange" data-answer="{{item.panswer}}" data-score="{{choicescore}}" data-id="{{idx}}">
           <view class="cu-form-group">
             <view style="display:flex">
               <view>
                 <text class="text-bold">A </text>
-                <radio class="margin-right"></radio>
+                <radio class="margin-right" value="0"></radio>
               </view>
               <view>
                 <text class="text-bold">B </text>
-                <radio class="margin-right"></radio>
+                <radio class="margin-right" value="1"></radio>
               </view>
               <view>
                 <text class="text-bold">C </text>
-                <radio class="margin-right"></radio>
+                <radio class="margin-right" value="2"></radio>
               </view>
               <view>
                 <text class="text-bold">D </text>
-                <radio class="margin-right"></radio>
+                <radio class="margin-right" value="3"></radio>
               </view>
             </view>
           </view>
@@ -82,16 +82,16 @@
         </block>
 
         <!-- 选择答案 -->
-        <radio-group class="block">
+        <radio-group class="block" bindchange="judgechange" data-answer="{{item.panswer}}" data-score="{{judgescore}}" data-id="{{idx}}">
           <view class="cu-form-group">
             <view style="display:flex">
               <view>
                 <text class="">✔ </text>
-                <radio class="margin-right"></radio>
+                <radio class="margin-right" value="0"></radio>
               </view>
               <view>
                 <text class="">✖ </text>
-                <radio class="margin-right"></radio>
+                <radio class="margin-right" value="1"></radio>
               </view>
             </view>
           </view>
@@ -122,11 +122,11 @@
         <view class="input-answer">
           <view class="input-line">
             <text>（1）</text>
-            <input type="text" />
+            <input type="text" bindinput="fillchange" data-id="{{index}}" data-num="0"/>
           </view>
           <view class="input-line">
             <text>（2）</text>
-            <input type="text" />
+            <input type="text" bindinput="fillchange" data-id="{{index}}" data-num="1"/>
           </view>
         </view>
         <view class="line"></view>
