@@ -53,22 +53,22 @@ Page({
       if (res.data.code != 200) {
         return;
       }
-      var data=res.data.data;
-      var len=data.length;
-      var processing=[],finish=[];
-      for(var i=0;i<len;i++){
-        data[i].start=util.formatTime(data[i].starttime,2);
-        data[i].end=util.formatTime(data[i].endtime,2);
-        if(data[i].status==1){
-          processing.push(data[i]);
-        }else if(data[i].status==2){
-          finish.push(data[i])
-        }
-      }
+      // var data=res.data.data;
+      // var len=data.length;
+      // var processing=[],finish=[];
+      // for(var i=0;i<len;i++){
+      //   data[i].start=util.formatTime(data[i].starttime,2);
+      //   data[i].end=util.formatTime(data[i].endtime,2);
+      //   if(data[i].status==1){
+      //     processing.push(data[i]);
+      //   }else if(data[i].status==2){
+      //     finish.push(data[i])
+      //   }
+      // }
       this.setData({
-        papers:data,
-        processing:processing,
-        finish,finish
+        papers:res.data.data,
+        // processing:processing,
+        // finish,finish
       })
     })
   },

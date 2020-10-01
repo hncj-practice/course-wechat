@@ -33,6 +33,8 @@ Page({
       fillscore: fillscore,
       judgescore: judgescore
     })
+    //获取登录账号信息
+    this.isLogin();
   },
 
 
@@ -260,15 +262,17 @@ Page({
     });
     for (var i = 0; i < filllen; i++) {
       for (var j = 0; j < 6; j++) {
-        if (fills[i][j] != null && fills[i][j] == 1) {
-          ;
+        if (fill[i].panswer[j]&&fills[i][j] != null && fills[i][j] == fill[i].panswer[j]) {
+          score=score+fillscore;
         }
       }
     }
-    fillslen.forEach(item => {
-      item.forEach(it => {
+    //获取填空题的空数
+    var count=0;
+    fill.forEach(item => {
+      item.panswer.forEach(it => {
         if (it != null) {
-
+          count=count+1;
         }
       })
     })
@@ -284,16 +288,69 @@ Page({
       }
     })
 
-    this.setData({
-      score: score
-    })
+    var all=choicelen*choicescore+judgelen*judgescore+count*fillscore;
+    var score_percentile=((score/all)*100).toFixed(0);//四舍五入取整数
+
+    console.log("count:"+count);
+    console.log("score:"+score);
+    console.log("all:"+all);
+    console.log("percentile:"+score_percentile);
+
+    // this.setData({
+    //   score: score_percentile
+    // })
+
+    //提交学生成绩并修改学生课程状态
+    this.submitscore(score_percentile);
 
     //跳转到成绩页面
     wx.redirectTo({
-      url: '../paper-score/paper-score?score=' + score,
+      url: '../paper-score/paper-score?score=' + score_percentile,
     })
   },
+  //提交学生成绩
+  submitscore(score){
+    var url="https://fengyezhan.xyz/Interface/paper/updatetestgrade";
+    var data={
+      sno:this.data.loginuser.sno,
+      paperid:this.data.paperid,
+      grade:score
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      if (res.data.code != 200) {
+        wx.showToast({
+          title: res.data.message,
+          icon:'none'
+        })
+        return
+      }
+    })
+  },
+//获取登录用户信息
+isLogin() {
+  try {
+    var loginuser = wx.getStorageSync('loginuser');
+    console.log(loginuser)
+    if (loginuser) {
+      this.setData({
+        loginuser: loginuser
+      })
+    } else {
+      wx.showToast({
+        title: '未登录，请登录后重试',
+        icon: 'none',
+        duration: 3000
+      })
 
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '../../login/login',
+        })
+      }, 3000);
+
+    }
+  } catch (e) {}
+},
   /**
    * 生命周期函数--监听页面加载
    */

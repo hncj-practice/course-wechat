@@ -20,8 +20,8 @@
   <view wx:if="{{showGoing}}">
     <view class="cu-list menu shadow-lg radius padding-top padding-bottom">
 
-      <block wx:for="{{processing}}" wx:key="key">
-        <view wx:if="{{item.status==1}}" class="cu-item arrow paper" bindtap="jumpToPaper" data-paper="{{item}}">
+      <block wx:for="{{papers}}" wx:key="key">
+        <view wx:if="{{item.spstatus!=1}}" class="cu-item arrow paper" bindtap="jumpToPaper" data-paper="{{item}}">
           <image class="icon" src="../../../images/icon/paper.png"></image>
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>
@@ -54,8 +54,8 @@
     <view class="cu-list menu shadow-lg radius padding-top padding-bottom">
 
 
-      <block wx:for="{{finish}}" wx:key="key">
-        <view wx:if="{{item.status==2}}" class="cu-item arrow paper">
+      <block wx:for="{{papers}}" wx:key="key">
+        <view wx:if="{{item.spstatus==1}}" class="cu-item arrow paper">
           <image class="icon" src="../../../images/icon/paper.png"></image>
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>
