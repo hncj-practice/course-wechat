@@ -142,7 +142,7 @@ Page({
   getStatistic(){
     var that = this;
     //获取该课程的话题信息
-    var statistic_url = 'http://localhost:8080/Interface_war/student/statistic';
+    var statistic_url = 'https://fengyezhan.xyz/Interface/student/statistic';
     var statistic_data = {
       courseid: that.data.courseid
     }

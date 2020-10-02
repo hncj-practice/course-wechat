@@ -18,31 +18,31 @@ Page({
 
 
 
-//获取登录用户信息
-isLogin() {
-  try {
-    var loginuser = wx.getStorageSync('loginuser');
-    // console.log(loginuser)
-    if (loginuser) {
-      this.setData({
-        loginuser: loginuser
-      })
-    } else {
-      wx.showToast({
-        title: '未登录，请登录后重试',
-        icon: 'none',
-        duration: 3000
-      })
-
-      setTimeout(function () {
-        wx.navigateTo({
-          url: '../../login/login',
+  //获取登录用户信息
+  isLogin() {
+    try {
+      var loginuser = wx.getStorageSync('loginuser');
+      // console.log(loginuser)
+      if (loginuser) {
+        this.setData({
+          loginuser: loginuser
         })
-      }, 3000);
+      } else {
+        wx.showToast({
+          title: '未登录，请登录后重试',
+          icon: 'none',
+          duration: 3000
+        })
 
-    }
-  } catch (e) {}
-},
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../../login/login',
+          })
+        }, 3000);
+
+      }
+    } catch (e) {}
+  },
 
   //打开资料
   openData(event) {
@@ -102,24 +102,34 @@ isLogin() {
       // console.log("预期需要下载的数据总长度",res.totalBytesExpectedToWrite);
     })
   },
-//隐藏界面
-hideModel() {
-  this.setData({
-    imagePath: null,
-    videoPath: null
-  })
-},
+  //隐藏界面
+  hideModel() {
+    this.setData({
+      imagePath: null,
+      videoPath: null
+    })
+  },
   jumpToPaper(event) {
     var paper = event.currentTarget.dataset.paper;
-    var paperid=paper.paperid;
-    var papername=paper.papername;
-    var start=paper.start;
-    var end=paper.end;
-    var choicescore=paper.choicepoints;
-    var fillscore=paper.fillpoints;
-    var judgescore=paper.judgepoints
+    var currtime = new Date().getTime();
+    if (currtime < paper.starttime || currtime > paper.endtime) {
+      wx.showToast({
+        title: '考试暂未开放',
+        icon: 'none'
+      })
+      return
+    }
+    var paperid = paper.paperid;
+    var papername = paper.papername;
+    var starttime = paper.starttime;
+    var endtime = paper.endtime;
+    var start = paper.start;
+    var end = paper.end;
+    var choicescore = paper.choicepoints;
+    var fillscore = paper.fillpoints;
+    var judgescore = paper.judgepoints
     wx.navigateTo({
-      url: '../../student-msg/student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end+'&choicescore='+choicescore+'&fillscore='+fillscore+'&judgescore='+judgescore,
+      url: '../../student-msg/student-paper/student-paper?paperid=' + paperid + '&papername=' + papername + '&start=' + start + '&end=' + end + '&choicescore=' + choicescore + '&fillscore=' + fillscore + '&judgescore=' + judgescore + '&starttime=' + starttime + '&endtime=' + endtime,
     })
   },
 
@@ -133,32 +143,32 @@ hideModel() {
   jumpToTopic(event) {
     var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
-      url: './student-topic/student-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent+ '&time=' + topic.committime,
+      url: './student-topic/student-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent + '&time=' + topic.committime,
     })
   },
   //跳转到成绩页面
-  jumpToScore(event){
-    var score=0;
-    var paperid=event.currentTarget.dataset.paperid;
-    var url="https://fengyezhan.xyz/Interface/paper/findscorebysnoandpaperid";
-    var data={
-      studentid:this.data.loginuser.sno,
-      paperid:paperid
+  jumpToScore(event) {
+    var score = 0;
+    var paperid = event.currentTarget.dataset.paperid;
+    var url = "https://fengyezhan.xyz/Interface/paper/findscorebysnoandpaperid";
+    var data = {
+      studentid: this.data.loginuser.sno,
+      paperid: paperid
     }
-    util.myAjaxPost(url,data).then(res=>{
+    util.myAjaxPost(url, data).then(res => {
       if (res.data.code != 200) {
         wx.showToast({
           title: res.data.message,
-          icon:'none'
+          icon: 'none'
         })
         return
       }
-      score=res.data.data;
+      score = res.data.data;
       wx.navigateTo({
-        url: '../../student-msg/paper-score/paper-score?score='+score+'&paperid='+paperid,
+        url: '../../student-msg/paper-score/paper-score?score=' + score + '&paperid=' + paperid,
       })
     });
-    
+
   },
 
   getChapter() {
@@ -184,20 +194,20 @@ hideModel() {
     var paper_url = 'https://fengyezhan.xyz/Interface/paper/getpaperbycourseidandsno';
     var paper_data = {
       courseid: that.data.courseid,
-      studentid:that.data.loginuser.sno
+      studentid: that.data.loginuser.sno
     }
     util.myAjaxPost(paper_url, paper_data).then(res => {
       // console.log(res.data)
       if (res.data.code != 200) {
         return
       }
-      var data=res.data.data;
-      var len=data.length;
+      var data = res.data.data;
+      var len = data.length;
       //格式化时间
-      for(var i=0;i<len;i++){
+      for (var i = 0; i < len; i++) {
         // console.log(data[i].starttime)
-        data[i].start=util.formatTime(data[i].starttime,2);
-        data[i].end=util.formatTime(data[i].endtime,2);
+        data[i].start = util.formatTime(data[i].starttime, 2);
+        data[i].end = util.formatTime(data[i].endtime, 2);
       }
       that.setData({
         papers: data
@@ -326,7 +336,21 @@ hideModel() {
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    //显示顶部刷新图标
+    wx.showNavigationBarLoading();
 
+    var Tabcur=this.data.TabCur;
+    if(Tabcur==0){
+      this.getPaper();
+    }else if(Tabcur==1){
+      this.getData();
+    }else if(Tabcur==2){
+      this.getTopic();
+    }
+    //隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    //停止下拉事件
+    wx.stopPullDownRefresh();
   },
 
   /**

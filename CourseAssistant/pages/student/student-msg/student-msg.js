@@ -75,15 +75,25 @@ Page({
   //跳转到试卷详情页
   jumpToPaper(event) {
     var paper = event.currentTarget.dataset.paper;
+    var currtime=new Date().getTime();
+    if(currtime<paper.starttime||currtime>paper.endtime){
+      wx.showToast({
+        title: '考试暂未开放',
+        icon:'none'
+      })
+      return
+    }
     var paperid=paper.paperid;
     var papername=paper.papername;
+    var starttime=paper.starttime;
+    var endtime=paper.endtime;
     var start=paper.start;
     var end=paper.end;
     var choicescore=paper.choicepoints;
     var fillscore=paper.fillpoints;
     var judgescore=paper.judgepoints
     wx.navigateTo({
-      url: './student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end+'&choicescore='+choicescore+'&fillscore='+fillscore+'&judgescore='+judgescore,
+      url: './student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end+'&choicescore='+choicescore+'&fillscore='+fillscore+'&judgescore='+judgescore+'&starttime='+starttime+'&endtime='+endtime,
     })
   },
   //跳转到成绩页面

@@ -45,16 +45,15 @@
   </view> -->
 
 
-  <view class="comment">
+  <!-- <view class="comment">
 
 
-    <!-- <textarea class="content" placeholder="请输入评论" auto-height></textarea> -->
     <input class="content" placeholder="请输入评论" auto-height bindinput="getCommentValue" value="{{commentcontent}}"></input>
 
     <button class="cu-btn bg-blue shadow-blur round" style="width:18%" bindtap="sendComment">回复</button>
 
 
-  </view>
+  </view> -->
 
 
 </view>

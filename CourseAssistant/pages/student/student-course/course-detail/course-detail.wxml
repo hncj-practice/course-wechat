@@ -43,7 +43,7 @@
             <view class="desc">
               <text class="text-grey text-left text-sm"> {{item.start}} ~ {{item.end}} </text>
               <text class="text-gray text-sm" catchtap="releasePaper"
-                data-paperidx="{{index}}">{{item.spstatus==1?'已完成':'待完成'}}</text>
+                data-paperidx="{{index}}">待完成</text>
             </view>
 
           </view>

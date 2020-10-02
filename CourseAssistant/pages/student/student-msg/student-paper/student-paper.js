@@ -8,6 +8,10 @@ Page({
    */
   data: {
     score: 0,
+    problems: [],
+    choice: [],
+    fill: [],
+    judge: [],
     //选择的
     choices: [],
     //判断
@@ -19,6 +23,8 @@ Page({
   initdata(options) {
     var paperid = options.paperid;
     var papername = options.papername;
+    var starttime=options.starttime;
+    var endtime=options.endtime;
     var start = options.start;
     var end = options.end;
     var choicescore = options.choicescore;
@@ -27,6 +33,8 @@ Page({
     this.setData({
       paperid: paperid,
       papername: papername,
+      starttime:starttime,
+      endtime:endtime,
       start: start,
       end: end,
       choicescore: choicescore,
@@ -49,7 +57,6 @@ Page({
           // console.log('开始做题');
 
           // 请求数据
-          // ajax();
           that.getPaper();
 
         } else {
@@ -216,7 +223,14 @@ Page({
 
   // 交卷
   submitPaper() {
-    console.log('提交试卷');
+    // console.log('提交试卷');
+    if(this.data.problems.length<1){
+      wx.showToast({
+        title: '试卷题目为空无法交卷',
+        icon:'none'
+      })
+      return;
+    }
     var score = 0;
 
     var choicescore = parseInt(this.data.choicescore);
@@ -229,37 +243,41 @@ Page({
     var choiceslen = choices.length;
     var judgeslen = this.data.judges.length;
     var fillslen = this.data.fills.length;
-    if (choiceslen < 1 || judgeslen < 1 || fillslen < 1) {
-      wx.showToast({
-        title: '试卷未完成，请检查',
-        icon: 'none'
-      })
-      return;
-    }
+    // if (choiceslen < 1 || judgeslen < 1 || fillslen < 1) {
+    //   wx.showToast({
+    //     title: '试卷未完成，请检查',
+    //     icon: 'none'
+    //   })
+    //   return;
+    // }
     var choice = this.data.choice;
     var judge = this.data.judge;
     var fill = this.data.fill;
-    var choicelen = choice.length;
-    var judgelen = judge.length;
-    var filllen = fill.length;
-    choices.forEach(item => {
-      if (item == null || choiceslen < choicelen) {
-        wx.showToast({
-          title: '选择题未完成，请检查',
-          icon: 'none'
-        })
-        return;
-      }
-    });
-    judges.forEach(item => {
-      if (item == null || judgeslen < judgelen) {
-        wx.showToast({
-          title: '判断题未完成，请检查',
-          icon: 'none'
-        })
-        return;
-      }
-    });
+    var choicelen=0,judgelen=0,filllen=0;
+    if(choice)
+    choicelen = choice.length;
+    if(judge)
+    judgelen = judge.length;
+    if(fill)
+    filllen = fill.length;
+    // choices.forEach(item => {
+    //   if (item == null || choiceslen < choicelen) {
+    //     wx.showToast({
+    //       title: '选择题未完成，请检查',
+    //       icon: 'none'
+    //     })
+    //     return;
+    //   }
+    // });
+    // judges.forEach(item => {
+    //   if (item == null || judgeslen < judgelen) {
+    //     wx.showToast({
+    //       title: '判断题未完成，请检查',
+    //       icon: 'none'
+    //     })
+    //     return;
+    //   }
+    // });
     for (var i = 0; i < filllen; i++) {
       for (var j = 0; j < 6; j++) {
         if (fill[i].panswer[j]&&fills[i][j] != null && fills[i][j] == fill[i].panswer[j]) {
@@ -269,14 +287,16 @@ Page({
     }
     //获取填空题的空数
     var count=0;
-    fill.forEach(item => {
-      item.panswer.forEach(it => {
-        if (it != null) {
-          count=count+1;
-        }
+    if(fill){
+      fill.forEach(item => {
+        item.panswer.forEach(it => {
+          if (it != null) {
+            count=count+1;
+          }
+        })
       })
-    })
-
+    }
+    
     choices.forEach(item => {
       if (item) {
         score = score + choicescore;
@@ -290,6 +310,7 @@ Page({
 
     var all=choicelen*choicescore+judgelen*judgescore+count*fillscore;
     var score_percentile=((score/all)*100).toFixed(0);//四舍五入取整数
+    var paperid=this.data.paperid;
 
     // console.log("count:"+count);
     // console.log("score:"+score);
@@ -305,7 +326,7 @@ Page({
 
     //跳转到成绩页面
     wx.redirectTo({
-      url: '../paper-score/paper-score?score=' + score_percentile,
+      url: '../paper-score/paper-score?score=' + score_percentile+"&paperid="+paperid,
     })
   },
   //提交学生成绩
@@ -356,7 +377,12 @@ isLogin() {
    */
   onLoad: function (options) {
     this.initdata(options);
+    var timeout=parseInt(this.data.endtime)-parseInt(this.data.starttime);
+    console.log("time:"+timeout);
     this.showWarning();
+    setTimeout(() => {
+      this.submitPaper();
+    }, timeout);
   },
 
   /**
