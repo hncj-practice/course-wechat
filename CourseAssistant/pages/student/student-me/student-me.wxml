@@ -29,6 +29,13 @@
       </navigator>
     </view>
 
+    <view class="cu-item arrow" bindtap="">
+      <navigator class="content" url="" hover-class="none">
+        <text class="cuIcon-rankfill text-blue"></text>
+        <text class="text-grey">我的成绩</text>
+      </navigator>
+    </view>
+
     <view class="cu-item arrow" bindtap="jumpToSetting">
       <navigator class="content" url="/pages/about/log/log" hover-class="none">
         <text class="cuIcon-settingsfill text-grey"></text>

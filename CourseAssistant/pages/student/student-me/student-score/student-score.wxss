@@ -1,0 +1,46 @@
+/* pages/student/student-me/student-score/student-score.wxss */
+
+
+
+.pick-s .btn {
+  margin-left: 20rpx !important;
+  padding: 10rpx;
+  width: 60rpx !important;
+  border-radius: 5rpx;
+  background: #f8f8f8;
+}
+
+.pick-s .btn:active {
+  background: #dedede;
+}
+
+.subjects {
+  margin-top: 20rpx;
+  width: 100%;
+  background: #fff;
+}
+
+.subjects .subject {
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subjects .subject .name {
+  margin-left: 30rpx;
+}
+
+.subjects .subject .score {
+  margin-right: 30rpx;
+}
+
+.subjects .subject .line {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #f1f1f1;
+}

@@ -19,7 +19,8 @@
     "pages/teacher/teacher-course/course-statistics/course-statistics",
     "pages/student/student-course/course-detail/course-detail",
     "pages/student/student-msg/student-paper/student-paper",
-    "pages/student/student-msg/paper-score/paper-score"
+    "pages/student/student-msg/paper-score/paper-score",
+    "pages/student/student-me/student-score/student-score"
   ],
   "window": {
     "backgroundTextStyle": "dark",
