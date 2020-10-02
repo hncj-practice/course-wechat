@@ -86,6 +86,30 @@ Page({
       url: './student-paper/student-paper?paperid=' + paperid+'&papername='+papername+'&start='+start+'&end='+end+'&choicescore='+choicescore+'&fillscore='+fillscore+'&judgescore='+judgescore,
     })
   },
+  //跳转到成绩页面
+  jumpToScore(event){
+    var score=0;
+    var paperid=event.currentTarget.dataset.paperid;
+    var url="https://fengyezhan.xyz/Interface/paper/findscorebysnoandpaperid";
+    var data={
+      studentid:this.data.loginuser.sno,
+      paperid:paperid
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      if (res.data.code != 200) {
+        wx.showToast({
+          title: res.data.message,
+          icon:'none'
+        })
+        return
+      }
+      score=res.data.data;
+      wx.navigateTo({
+        url: './paper-score/paper-score?score='+score,
+      })
+    });
+    
+  },
 
 
   // 切换折叠菜单

@@ -32,7 +32,7 @@
       </block>
     </view>
 
-    <view class="cu-bar bg-white">
+    <!-- <view class="cu-bar bg-white">
       <view class="action"> 
         <text class="cuIcon-title text-green"></text>
         <text>最近使用</text>
@@ -51,7 +51,7 @@
           </view>
         </view>
       </block>
-    </view>
+    </view> -->
 
   </main>
 

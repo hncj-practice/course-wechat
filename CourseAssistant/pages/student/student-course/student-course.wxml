@@ -6,7 +6,7 @@
   <view class="cu-list menu-avatar" style="padding-top:10px;">
 
     <block wx:for="{{courses}}" wx:key="key" wx:for-item="item">
-      <view class="cu-item" bindtap="gotocourse" style="margin:0 10px 10px 10px;border-radius:15rpx;">
+      <view class="cu-item" bindtap="gotocourse" data-courseid="{{item.cid}}" style="margin:0 10px 10px 10px;border-radius:15rpx;">
         <view class="cu-avatar radius lg" style="background-image:url({{item.coverimg}});"></view>
         <view class="content">
           <view class="text-cut">

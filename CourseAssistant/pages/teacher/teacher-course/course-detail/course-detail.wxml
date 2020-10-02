@@ -323,7 +323,8 @@
           <view class="td">{{item.sname}}</view>
           <view class="td">{{item.finpapernum}}/{{item.totalpapernum}}</view>
           <view class="td">{{item.commentnum}}</view>
-          <view class="td">95.0</view>
+          <view wx:if="{{item.average}}" class="td">{{item.average}}</view>
+          <view wx:if="{{!item.average}}" class="td">0</view>
         </view>
 
         <view class="tr bg-w text-sm" wx:else>
@@ -331,7 +332,8 @@
           <view class="td">{{item.sname}}</view>
           <view class="td">{{item.finpapernum}}/{{item.totalpapernum}}</view>
           <view class="td">{{item.commentnum}}</view>
-          <view class="td">95.0</view>
+          <view wx:if="{{item.average}}" class="td">{{item.average}}</view>
+          <view wx:if="{{!item.average}}" class="td">0</view>
         </view>
 
       </block>

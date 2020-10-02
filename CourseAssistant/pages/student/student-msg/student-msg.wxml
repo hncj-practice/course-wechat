@@ -55,7 +55,7 @@
 
 
       <block wx:for="{{papers}}" wx:key="key">
-        <view wx:if="{{item.spstatus==1}}" class="cu-item arrow paper">
+        <view wx:if="{{item.spstatus==1}}" class="cu-item arrow paper" bindtap="jumpToScore" data-paperid="{{item.paperid}}">
           <image class="icon" src="../../../images/icon/paper.png"></image>
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>

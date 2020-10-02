@@ -12,7 +12,7 @@
   </scroll-view>
 
   <!-- 章节 -->
-  <view wx:if="{{TabCur==0}}">
+  <!-- <view wx:if="{{TabCur==0}}">
 
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{chapters}}" wx:key="key" wx:for-item="item">
@@ -26,16 +26,16 @@
       </block>
     </view>
 
-  </view>
+  </view> -->
 
 
   <!-- 试卷 -->
-  <view wx:if="{{TabCur==1}}">
+  <view wx:if="{{TabCur==0}}">
     <view class="cu-list menu sm-border card-menu margin-top">
 
       <block wx:for="{{papers}}" wx:key="key" wx:for-item="item" wx:for-index="index">
-        <view wx:if="{{item.status==1}}" class="cu-item arrow paper" catchtap="jumpToPaper" bindlongpress="longPressPaper"
-          data-paper="{{item}}">
+        <!-- 待完成 -->
+        <view wx:if="{{item.spstatus!=1}}" class="cu-item arrow paper" catchtap="jumpToPaper" data-paper="{{item}}">
           <image class="icon" src="../../../../images/icon/paper.png"></image>
           <view class="content text">
             <text class="text-grey text-left text-lg">{{item.papername}}</text>
@@ -43,7 +43,22 @@
             <view class="desc">
               <text class="text-grey text-left text-sm"> {{item.start}} ~ {{item.end}} </text>
               <text class="text-gray text-sm" catchtap="releasePaper"
-                data-paperidx="{{index}}">已发布 </text>
+                data-paperidx="{{index}}">{{item.spstatus==1?'已完成':'待完成'}}</text>
+            </view>
+
+          </view>
+        </view>
+
+        <!-- 已完成 -->
+        <view wx:if="{{item.spstatus==1}}" class="cu-item arrow paper" catchtap="jumpToScore" data-paperid="{{item.paperid}}">
+          <image class="icon" src="../../../../images/icon/paper.png"></image>
+          <view class="content text">
+            <text class="text-grey text-left text-lg">{{item.papername}}</text>
+
+            <view class="desc">
+              <text class="text-grey text-left text-sm"> {{item.start}} ~ {{item.end}} </text>
+              <text class="text-gray text-sm" catchtap="releasePaper"
+                data-paperidx="{{index}}">已完成</text>
             </view>
 
           </view>
@@ -56,10 +71,10 @@
   </view>
 
   <!-- 资料 -->
-  <view wx:if="{{TabCur==2}}">
+  <view wx:if="{{TabCur==1}}">
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{datas}}" wx:key="key" wx:for-item="item">
-        <view class="cu-item" bindtap="openData" bindlongpress="longPressData" data-id="{{item.dataid}}"
+        <view class="cu-item" bindtap="openData" data-id="{{item.dataid}}"
           data-datalink="{{item.datalink}}" data-datatype="{{item.datatype}}">
           <view class="content">
             <text
@@ -102,11 +117,11 @@
 
 
   <!-- 话题 -->
-  <view wx:if="{{TabCur==3}}">
+  <view wx:if="{{TabCur==2}}">
 
     <view class="cu-list menu sm-border card-menu margin-top">
       <block wx:for="{{topics}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
-        <view wx:if="{{item.topicstatus==1}}" class="cu-item arrow" bindtap="jumpToTopic" bindlongpress="longPressTopic" data-topic="{{item}}">
+        <view wx:if="{{item.topicstatus==1}}" class="cu-item arrow" bindtap="jumpToTopic" data-topic="{{item}}">
           <view class="content">
             <text class="cuIcon-communityfill text-blue"></text>
             <text class="text-grey text-center">{{item.topictitle}}</text>

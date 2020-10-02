@@ -18,12 +18,6 @@ Page({
     PageJumpUtil.jump(true, page);
   },
 
-  /**
-   * 从当前登录教师所教授的所有课程中筛选出需要的
-   */
-  searchcourse() {
-
-  },
 
   /**
    * 跳转到课程详情页面

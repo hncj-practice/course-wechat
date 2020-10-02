@@ -9,7 +9,7 @@ Page({
     TabCur: 0,
     scrollLeft: 0,
     tab: [
-      "章节",
+      // "章节",
       "试卷",
       "资料",
       "话题"
@@ -18,7 +18,31 @@ Page({
 
 
 
+//获取登录用户信息
+isLogin() {
+  try {
+    var loginuser = wx.getStorageSync('loginuser');
+    console.log(loginuser)
+    if (loginuser) {
+      this.setData({
+        loginuser: loginuser
+      })
+    } else {
+      wx.showToast({
+        title: '未登录，请登录后重试',
+        icon: 'none',
+        duration: 3000
+      })
 
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '../../login/login',
+        })
+      }, 3000);
+
+    }
+  } catch (e) {}
+},
 
   //打开资料
   openData(event) {
@@ -112,6 +136,30 @@ hideModel() {
       url: './student-topic/student-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent+ '&time=' + topic.committime,
     })
   },
+  //跳转到成绩页面
+  jumpToScore(event){
+    var score=0;
+    var paperid=event.currentTarget.dataset.paperid;
+    var url="https://fengyezhan.xyz/Interface/paper/findscorebysnoandpaperid";
+    var data={
+      studentid:this.data.loginuser.sno,
+      paperid:paperid
+    }
+    util.myAjaxPost(url,data).then(res=>{
+      if (res.data.code != 200) {
+        wx.showToast({
+          title: res.data.message,
+          icon:'none'
+        })
+        return
+      }
+      score=res.data.data;
+      wx.navigateTo({
+        url: '../../student-msg/paper-score/paper-score?score='+score,
+      })
+    });
+    
+  },
 
   getChapter() {
     //获取该课程的章节信息
@@ -133,9 +181,10 @@ hideModel() {
   getPaper() {
     var that = this;
     //获取该课程的试卷信息
-    var paper_url = 'https://fengyezhan.xyz/Interface/paper/getpaperbycourseid';
+    var paper_url = 'https://fengyezhan.xyz/Interface/paper/getpaperbycourseidandsno';
     var paper_data = {
-      courseid: that.data.courseid
+      courseid: that.data.courseid,
+      studentid:that.data.loginuser.sno
     }
     util.myAjaxPost(paper_url, paper_data).then(res => {
       console.log(res.data)
@@ -210,21 +259,21 @@ hideModel() {
   },
 
 
-  longPressChapter() { 
-    console.log('长按章节');
-  },
+  // longPressChapter() { 
+  //   console.log('长按章节');
+  // },
 
-  longPressPaper() {
-    console.log('长按试卷');
-  },
+  // longPressPaper() {
+  //   console.log('长按试卷');
+  // },
 
-  longPressData() {
-    console.log('长按资料');
-  },
+  // longPressData() {
+  //   console.log('长按资料');
+  // },
 
-  longPressTopic() {
-    console.log('长按话题');
-  },
+  // longPressTopic() {
+  //   console.log('长按话题');
+  // },
 
   // 切换导航栏
   tabSelect(e) {
@@ -241,6 +290,7 @@ hideModel() {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.isLogin();
     this.getAllData(options);
   },
 
