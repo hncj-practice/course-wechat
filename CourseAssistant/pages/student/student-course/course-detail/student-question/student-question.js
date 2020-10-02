@@ -33,12 +33,12 @@ Page({
       var choice=[],fill=[],judge=[];
       data.forEach(item => {
         if(item.ptype=="1"){//选择题
-          item.question = questionUtil.question(item.question);
+          item.question = questionUtil.question(item.question,0);
           choice.push(item);
         }else if(item.ptype=="2"){//填空
           fill.push(item);
         }else if(item.ptype=="3"){//判断
-          item.question = questionUtil.question(item.question);
+          item.question = questionUtil.question(item.question,0);
           judge.push(item);
         }
       });

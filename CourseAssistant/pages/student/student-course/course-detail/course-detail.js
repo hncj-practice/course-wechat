@@ -155,7 +155,7 @@ hideModel() {
       }
       score=res.data.data;
       wx.navigateTo({
-        url: '../../student-msg/paper-score/paper-score?score='+score,
+        url: '../../student-msg/paper-score/paper-score?score='+score+'&paperid='+paperid,
       })
     });
     

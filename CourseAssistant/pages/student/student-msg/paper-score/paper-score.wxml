@@ -9,5 +9,103 @@
   </view>
 
 
+  <view class="question">
+    <!-- 选择 -->
+    <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="xz">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        选择题
+      </view>
+      <view wx:if="{{showXZ==true}}" class="action">
+        <text class="cuIcon-unfold text-gray"></text>
+      </view>
+      <view wx:if="{{showXZ==false}}" class="action">
+        <text class="cuIcon-right text-gray"></text>
+      </view>
+    </view>
+    <!-- 循环生成选择题 -->
+    <view wx:if="{{showXZ==true}}" class="cu-list menu margin-top margin-bottom">
+      <block wx:for="{{choice}}" wx:key="key" wx:for-item="item">
+        <view class="question">
+          <!-- 题目 -->
+          <text class="text-black text-lg main">{{item.question.question}}
+          </text>
+          <!-- 选项 -->
+          <block wx:for="{{item.question.options}}" wx:key="key" wx:for-item="opt">
+            <text class="text-black text-df opts">{{opt}}</text>
+          </block>
+          <!-- 答案 -->
+          <text class="text-gray text-df">答案：{{item.panswer}}</text>
+          <view class="line"></view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 填空 -->
+    <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="tk">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        填空题
+      </view>
+      <view wx:if="{{showTK==true}}" class="action">
+        <text class="cuIcon-unfold text-gray"></text>
+      </view>
+      <view wx:if="{{showTK==false}}" class="action">
+        <text class="cuIcon-right text-gray"></text>
+      </view>
+    </view>
+
+    <!-- 循环生成填空题 -->
+    <view wx:if="{{showTK==true}}" class="cu-list menu margin-top margin-bottom">
+      <block wx:for="{{fill}}" wx:key="key" wx:for-item="item">
+        <view class="question">
+          <!-- 题目 -->
+          <text class="text-black text-lg main">{{item.question}}
+          </text>
+          <!-- 答案 -->
+          <text class="text-gray text-df">答案：{{item.panswer}}</text>
+          <view class="line"></view>
+        </view>
+      </block>
+
+    </view>
+
+
+    <!-- 判断 -->
+    <view class="cu-bar bg-white solid-bottom" bindtap="trigger" data-q="pd">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        判断题
+      </view>
+      <view wx:if="{{showPD==true}}" class="action">
+        <text class="cuIcon-unfold text-gray"></text>
+      </view>
+      <view wx:if="{{showPD==false}}" class="action">
+        <text class="cuIcon-right text-gray"></text>
+      </view>
+    </view>
+
+    <!-- 循环生成填空题 -->
+    <view wx:if="{{showPD==true}}" class="cu-list menu margin-top margin-bottom">
+      <block wx:for="{{judge}}" wx:key="key" wx:for-item="item">
+        <view class=" question">
+          <!-- 题目 -->
+          <text class="text-black text-lg main">{{item.question.question}}
+          </text>
+          <!-- 选项 -->
+          <block wx:for="{{item.question.options}}" wx:key="key" wx:for-item="opt">
+            <text class="text-black text-df opts">{{opt}}</text>
+          </block>
+
+          <!-- 答案 -->
+          <text class="text-gray text-df answer">答案：{{item.panswer}}</text>
+          <view class="line"></view>
+        </view>
+      </block>
+
+    </view>
+  </view>
+
+
 
 </view>

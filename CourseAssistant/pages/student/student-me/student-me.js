@@ -43,9 +43,23 @@ Page({
       url: './student-data/student-data',
     })
   },
+  jumpToScore(){
+    wx.navigateTo({
+      url: './student-score/student-score',
+    })
+  },
   jumpToSetting(){
     wx.navigateTo({
       url: './student-setting/student-setting',
+    })
+  },
+  //实现图片预览
+  previewImg(event) {
+    var img = event.currentTarget.dataset.imagepath;
+    var imgs = [img, ]
+    wx.previewImage({
+      current: img,
+      urls: imgs,
     })
   },
   // tabbar跳转

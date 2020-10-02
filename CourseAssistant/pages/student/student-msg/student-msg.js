@@ -105,7 +105,7 @@ Page({
       }
       score=res.data.data;
       wx.navigateTo({
-        url: './paper-score/paper-score?score='+score,
+        url: './paper-score/paper-score?score='+score+'&paperid='+paperid,
       })
     });
     

@@ -6,7 +6,7 @@
 
     <view class="cu-item">
       <view class="cu-avatar round lg"
-        style="background-image:url({{loginuser.avatar}});"></view>
+        style="background-image:url({{loginuser.avatar}});" catchtap="previewImg" data-imagePath="{{loginuser.avatar}}"></view>
       <view class="content">
         <view class="text-grey">{{loginuser.name}}</view>
         <view class="text-gray text-sm flex">
@@ -29,7 +29,7 @@
       </navigator>
     </view>
 
-    <view class="cu-item arrow" bindtap="">
+    <view class="cu-item arrow" bindtap="jumpToScore">
       <navigator class="content" url="" hover-class="none">
         <text class="cuIcon-rankfill text-blue"></text>
         <text class="text-grey">我的成绩</text>

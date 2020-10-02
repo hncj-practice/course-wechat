@@ -1,7 +1,7 @@
 <!--pages/student/student-me/student-score/student-score.wxml-->
 <view class="root">
 
-  <!-- 选择学期 -->
+  <!-- 选择学期 --> 
   <view class="cu-form-group margin-top pick-s">
     <view class="title">选择学期</view>
     <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
@@ -9,23 +9,20 @@
         {{index?picker[index]:'请选择学期'}}
       </view>
     </picker>
-    <text class="btn">检索</text>
+    <text class="btn" bindtap="getFinalGrade">检索</text>
   </view>
 
   <!-- 成绩表 -->
   <view class="subjects">
 
-    <view class="subject">
-      <text class="name">数据可视化</text>
-      <text class="score text-green">95.00</text>
+    <block wx:for="{{finalgrade}}" wx:key="key">
+      <view class="subject">
+      <text class="name">{{item.coursename}}</text>
+      <text class="score text-green">{{item.grade?item.grade:'暂无成绩'}}</text>
       <view class="line"></view>
     </view>
-
-    <view class="subject">
-      <text class="name">Java高级应用</text>
-      <text class="score text-green">85.00</text>
-      <view class="line"></view>
-    </view>
+    </block>
+    
 
   </view>
 

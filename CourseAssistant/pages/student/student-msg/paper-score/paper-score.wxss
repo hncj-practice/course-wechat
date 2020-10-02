@@ -9,11 +9,11 @@ page {
 
 .score {
   position: absolute;
-  top: 263rpx;
+  top: 363rpx;
   left: 50%;
   transform: translateX(-50%);
   width: 360rpx;
-  height: 300rpx;
+  height: 400rpx;
   /* background: pink; */
 
   display: flex;
@@ -37,4 +37,45 @@ page {
 
 .score .s{
   font-size: 35rpx;
+}
+
+
+
+
+
+/* 题目 */
+.question {
+  width: 100%;
+  background: #fff;
+  padding: 20rpx 40rpx 0 40rpx;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* 题目下面的分割线 */
+.question .line {
+  margin: 0 auto;
+  margin-top: 20rpx;
+  width: 100%;
+  height: 1px;
+  background: #f4f4f4;
+}
+
+
+
+/* 题干 */
+.question .main{
+  margin: 0 0 10rpx 0;
+}
+
+/* 选项 */
+.question .opts{
+  margin: 10rpx 0;
+}
+
+/* 答案 */
+.question .answer{
+  margin: 10rpx 0;
 }
