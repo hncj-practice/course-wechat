@@ -22,7 +22,7 @@ Page({
 isLogin() {
   try {
     var loginuser = wx.getStorageSync('loginuser');
-    console.log(loginuser)
+    // console.log(loginuser)
     if (loginuser) {
       this.setData({
         loginuser: loginuser
@@ -49,7 +49,7 @@ isLogin() {
     var that = this;
     var datalink = event.currentTarget.dataset.datalink;
     var datatype = event.currentTarget.dataset.datatype;
-    console.log(datalink, datatype);
+    // console.log(datalink, datatype);
     if (datatype == 1) { //图片
       that.setData({
         imagePath: datalink
@@ -169,7 +169,7 @@ hideModel() {
       courseid: that.data.courseid
     }
     util.myAjaxPost(chapter_url, chapter_data).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.code != 200) {
         return
       }
@@ -187,7 +187,7 @@ hideModel() {
       studentid:that.data.loginuser.sno
     }
     util.myAjaxPost(paper_url, paper_data).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.code != 200) {
         return
       }
@@ -195,7 +195,7 @@ hideModel() {
       var len=data.length;
       //格式化时间
       for(var i=0;i<len;i++){
-        console.log(data[i].starttime)
+        // console.log(data[i].starttime)
         data[i].start=util.formatTime(data[i].starttime,2);
         data[i].end=util.formatTime(data[i].endtime,2);
       }
@@ -212,7 +212,7 @@ hideModel() {
       courseid: that.data.courseid
     }
     util.myAjaxPost(data_url, data_data).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.code != 200) {
         return
       }
@@ -229,7 +229,7 @@ hideModel() {
       courseid: that.data.courseid
     }
     util.myAjaxPost(topic_url, topic_data).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.code != 200) {
         return
       }
@@ -242,7 +242,7 @@ hideModel() {
   getAllData(options) {
     var that = this;
     var courseid = options.courseid;
-    console.log('courseid:' + courseid);
+    // console.log('courseid:' + courseid);
     this.setData({
       courseid: courseid
     })
@@ -282,7 +282,7 @@ hideModel() {
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
 
-    console.log('当前页面：' + this.data.tab[this.data.TabCur]);
+    // console.log('当前页面：' + this.data.tab[this.data.TabCur]);
 
   },
 

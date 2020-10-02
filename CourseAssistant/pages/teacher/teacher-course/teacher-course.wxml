@@ -46,12 +46,12 @@
       <view class="text-gray">首页</view>
     </view>
 
-    <view class="action" bindtap="jump" data-page="msg">
+    <!-- <view class="action" bindtap="jump" data-page="msg">
       <view class="cuIcon-cu-image">
         <image src="/images/bar/msg.png"></image>
       </view>
       <view class="text-gray">消息</view>
-    </view>
+    </view> -->
 
     <view class="action" bindtap="jump" data-page="course">
       <view class="cuIcon-cu-image">

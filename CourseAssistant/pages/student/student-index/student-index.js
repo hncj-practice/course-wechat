@@ -37,7 +37,7 @@ Page({
   isLogin() {
     try {
       var loginuser = wx.getStorageSync('loginuser');
-      console.log(loginuser)
+      // console.log(loginuser)
       if (loginuser) {
         this.setData({
           sno: loginuser.sno
@@ -107,7 +107,7 @@ Page({
         archivenum: archiveNum,
       }
       app.globalData.courses = list;
-      console.log(app.globalData.courses)
+      // console.log(app.globalData.courses)
 
       that.setData({
         recently: res.data.data
@@ -117,11 +117,11 @@ Page({
   //跳转到课程页面
   gotocourse(event) {
     var courseid = event.currentTarget.dataset.courseid;
-    wx.showToast({
-      title: '跳转到课程页面',
-      icon: 'none'
-    })
-    console.log("跳转到课程页面");
+    // wx.showToast({
+    //   title: '跳转到课程页面',
+    //   icon: 'none'
+    // })
+    // console.log("跳转到课程页面");
     wx.navigateTo({
       url: '../student-course/course-detail/course-detail?courseid=' + courseid
     })

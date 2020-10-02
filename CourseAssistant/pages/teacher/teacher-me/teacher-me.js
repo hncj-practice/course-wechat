@@ -39,6 +39,12 @@ Page({
       url: './teacher-setting/teacher-setting',
     })
   },
+  jumpToCourse(event){
+    var status=event.currentTarget.dataset.status;
+    wx.navigateTo({
+      url: '../teacher-course/teacher-course?status='+status,
+    })
+  },
   
 
   /**

@@ -19,7 +19,7 @@ Page({
     var data = {
       paperid: paperid
     }
-    console.log(data)
+    // console.log(data)
     util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,

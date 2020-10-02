@@ -62,18 +62,7 @@
           </view>
         </view>
         <scroll-view scroll-y="true" style="height:250px;">
-          <text>
-                        锦瑟
-                    朝代：唐朝
-                    作者：李商隐
-
-            锦瑟无端五十弦，一弦一柱思华年。
-
-            庄生晓梦迷蝴蝶，望帝春心托杜鹃。
-
-            沧海月明珠有泪，蓝田日暖玉生烟。
-
-            此情可待成追忆，只是当时已惘然。</text>
+          <text>这里什么都没有</text>
         </scroll-view>
 
       </view>

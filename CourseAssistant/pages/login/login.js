@@ -8,7 +8,7 @@ Page({
    */
   data: {
     index: 1,
-    picker: ['请选择账号类型', '学生', '教师', '管理员'],
+    picker: ['请选择账号类型', '学生', '教师'],
   },
   /**
    * 登录操作
@@ -28,10 +28,10 @@ Page({
     };
 
     util.myAjaxPost(url, data).then(res => {
-      var d = res.data;
-      console.log(d.code);
+      // var d = res.data;
+      // console.log(d.code);
       wx.showToast({
-        title: d.message,
+        title: res.data.message,
         icon: 'none'
       })
       if (res.data.code != 200) {
@@ -62,7 +62,7 @@ Page({
     })
   },
   PickerChange(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       index: e.detail.value
     })

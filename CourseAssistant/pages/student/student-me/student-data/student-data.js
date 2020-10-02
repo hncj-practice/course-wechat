@@ -14,7 +14,7 @@ Page({
   isLogin(){
     try{
       var loginuser=wx.getStorageSync('loginuser');
-      console.log(loginuser)
+      // console.log(loginuser)
       if(loginuser){
         this.setData({
           loginuser: loginuser

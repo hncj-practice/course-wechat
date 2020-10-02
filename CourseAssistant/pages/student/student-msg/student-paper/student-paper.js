@@ -46,14 +46,14 @@ Page({
       content: '请不要再答题过程中离开此页面！！',
       success: (res) => {
         if (res.confirm) {
-          console.log('开始做题');
+          // console.log('开始做题');
 
           // 请求数据
           // ajax();
           that.getPaper();
 
         } else {
-          console.log('返回');
+          // console.log('返回');
           wx.navigateBack();
         }
       }
@@ -66,7 +66,7 @@ Page({
     var data = {
       paperid: paperid
     }
-    console.log(data)
+    // console.log(data)
     util.myAjaxPost(url, data).then(res => {
       wx.showToast({
         title: res.data.message,
@@ -122,7 +122,7 @@ Page({
 
   // 点击交卷
   onSubmitPaper() {
-    console.log('点击交卷');
+    // console.log('点击交卷');
     wx.showModal({
       title: '警告',
       content: '请确认答题完毕再点击交卷！！',
@@ -130,7 +130,7 @@ Page({
         if (res.confirm) {
           this.submitPaper();
         } else {
-          console.log('取消');
+          // console.log('取消');
         }
       }
     })
@@ -144,9 +144,9 @@ Page({
     var id = event.currentTarget.dataset.id;
     var answer = event.currentTarget.dataset.answer;
     // var score=parseInt(event.currentTarget.dataset.score);
-    console.log("choice:" + choice);
-    console.log("id:" + id)
-    console.log("answer:" + answer);
+    // console.log("choice:" + choice);
+    // console.log("id:" + id)
+    // console.log("answer:" + answer);
     // console.log("score:"+score)
     if (choice == 0 && answer == "A") {
       status = true;
@@ -175,9 +175,9 @@ Page({
     var judge = event.detail.value;
     var id = event.currentTarget.dataset.id;
     var answer = event.currentTarget.dataset.answer;
-    console.log("judge:" + judge);
-    console.log("id:" + id)
-    console.log("answer:" + answer);
+    // console.log("judge:" + judge);
+    // console.log("id:" + id)
+    // console.log("answer:" + answer);
     // console.log("score:"+score)
     if (judge == 0 && answer == "A") {
       status = true;
@@ -201,9 +201,9 @@ Page({
     var id = parseInt(event.currentTarget.dataset.id);
     var inputvalue = event.detail.value;
     var num = parseInt(event.currentTarget.dataset.num);
-    console.log("id:" + id);
-    console.log("input:" + inputvalue);
-    console.log("num:" + num);
+    // console.log("id:" + id);
+    // console.log("input:" + inputvalue);
+    // console.log("num:" + num);
 
     var fills = this.data.fills;
 
@@ -291,10 +291,10 @@ Page({
     var all=choicelen*choicescore+judgelen*judgescore+count*fillscore;
     var score_percentile=((score/all)*100).toFixed(0);//四舍五入取整数
 
-    console.log("count:"+count);
-    console.log("score:"+score);
-    console.log("all:"+all);
-    console.log("percentile:"+score_percentile);
+    // console.log("count:"+count);
+    // console.log("score:"+score);
+    // console.log("all:"+all);
+    // console.log("percentile:"+score_percentile);
 
     // this.setData({
     //   score: score_percentile
@@ -330,7 +330,7 @@ Page({
 isLogin() {
   try {
     var loginuser = wx.getStorageSync('loginuser');
-    console.log(loginuser)
+    // console.log(loginuser)
     if (loginuser) {
       this.setData({
         loginuser: loginuser

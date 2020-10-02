@@ -7,10 +7,10 @@ Page({
    */
   data: {
     picker: [
-      '2019-2020学年第二学期',
-      '2019-2020学年第一学期',
-      '2018-2019学年第二学期',
-      '2018-2019学年第一学期',
+      // '2019-2020学年第二学期',
+      // '2019-2020学年第一学期',
+      // '2018-2019学年第二学期',
+      // '2018-2019学年第一学期',
     ],
   },
 
@@ -61,7 +61,7 @@ Page({
   isLogin() {
     try {
       var loginuser = wx.getStorageSync('loginuser');
-      console.log(loginuser)
+      // console.log(loginuser)
       if (loginuser) {
         this.setData({
           loginuser: loginuser
@@ -85,7 +85,7 @@ Page({
 
 
   PickerChange(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       index: e.detail.value,
       semesterid:this.data.semester[e.detail.value].semesterid

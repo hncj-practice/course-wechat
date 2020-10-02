@@ -27,7 +27,7 @@ Page({
   isLogin() {
     try {
       var loginuser = wx.getStorageSync('loginuser');
-      console.log(loginuser)
+      // console.log(loginuser)
       if (loginuser) {
         this.setData({
           loginuser: loginuser
@@ -67,7 +67,7 @@ Page({
       var len=data.length;
       //格式化时间
       for(var i=0;i<len;i++){
-        console.log(data[i].commenttime)
+        // console.log(data[i].commenttime)
         data[i].time=util.formatTime(data[i].commenttime,1);
       }
 
@@ -100,7 +100,7 @@ Page({
   sendComment(event){
     var that=this;
     var content=that.data.commentcontent;
-    console.log(content);
+    // console.log(content);
 
     var sno=that.data.loginuser.sno;
     var time=new Date().getTime();

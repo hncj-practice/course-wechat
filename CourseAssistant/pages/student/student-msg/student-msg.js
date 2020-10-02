@@ -16,7 +16,7 @@ Page({
   isLogin() {
     try {
       var loginuser = wx.getStorageSync('loginuser');
-      console.log(loginuser)
+      // console.log(loginuser)
       if (loginuser) {
         this.setData({
           loginuser: loginuser
@@ -53,20 +53,20 @@ Page({
       if (res.data.code != 200) {
         return;
       }
-      // var data=res.data.data;
-      // var len=data.length;
+      var data=res.data.data;
+      var len=data.length;
       // var processing=[],finish=[];
-      // for(var i=0;i<len;i++){
-      //   data[i].start=util.formatTime(data[i].starttime,2);
-      //   data[i].end=util.formatTime(data[i].endtime,2);
+      for(var i=0;i<len;i++){
+        data[i].start=util.formatTime(data[i].starttime,2);
+        data[i].end=util.formatTime(data[i].endtime,2);
       //   if(data[i].status==1){
       //     processing.push(data[i]);
       //   }else if(data[i].status==2){
       //     finish.push(data[i])
       //   }
-      // }
+      }
       this.setData({
-        papers:res.data.data,
+        papers:data,
         // processing:processing,
         // finish,finish
       })

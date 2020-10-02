@@ -1,5 +1,0 @@
-/* pages/teacher-msg/teacher-msg.wxss */
-page {
-  /* padding-bottom: 1000px; */
-  padding-bottom: calc(100rpx + env(safe-area-inset-bottom) / 2);
-}
