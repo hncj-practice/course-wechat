@@ -24,14 +24,15 @@
     <block wx:for="{{choice}}" wx:key="key" wx:for-index="idx">
       <view class="question">
         <!-- 题目 -->
-        <text class="text-black text-lg main">{{idx+1}}.{{item.question.question}}</text>
+        <text class="text-black text-lg main">{{idx+1}}.【单选题】{{item.question.question}}</text>
         <!-- 选项 -->
         <block wx:for="{{item.question.options}}" wx:for-item="it">
           <text class="text-black text-df opt">{{it}}</text>
         </block>
 
         <!-- 选择答案 -->
-        <radio-group class="block" bindchange="choicechange" data-answer="{{item.panswer}}" data-score="{{choicescore}}" data-id="{{idx}}">
+        <radio-group class="block" bindchange="choicechange" data-answer="{{item.panswer}}" data-score="{{choicescore}}"
+          data-id="{{idx}}">
           <view class="cu-form-group">
             <view style="display:flex">
               <view>
@@ -75,14 +76,15 @@
     <block wx:for="{{judge}}" wx:key="key" wx:for-index="idx">
       <view class=" question">
         <!-- 题目 -->
-        <text class="text-black text-lg main">{{idx+1}}.{{item.question.question}}</text>
+        <text class="text-black text-lg main">{{idx+1}}.【判断题】{{item.question.question}}</text>
         <!-- 选项 -->
         <block wx:for="{{item.question.options}}" wx:for-item="it" wx:key="key">
           <text class="text-black text-df opts">{{it}}</text>
         </block>
 
         <!-- 选择答案 -->
-        <radio-group class="block" bindchange="judgechange" data-answer="{{item.panswer}}" data-score="{{judgescore}}" data-id="{{idx}}">
+        <radio-group class="block" bindchange="judgechange" data-answer="{{item.panswer}}" data-score="{{judgescore}}"
+          data-id="{{idx}}">
           <view class="cu-form-group">
             <view style="display:flex">
               <view>
@@ -114,7 +116,7 @@
     <block wx:for="{{fill}}" wx:key="key">
       <view class="question">
         <!-- 题目 -->
-        <text class="text-black text-lg main">{{index+1}}.{{item.question}}
+        <text class="text-black text-lg main"> {{index+1}}.【填空题】{{item.question}}
         </text>
 
         <view class="text-sm text-gray">填写答案：</view>
@@ -122,11 +124,11 @@
         <view class="input-answer">
           <view class="input-line">
             <text>（1）</text>
-            <input type="text" bindinput="fillchange" data-id="{{index}}" data-num="0"/>
+            <input type="text" bindinput="fillchange" data-id="{{index}}" data-num="0" />
           </view>
           <view class="input-line">
             <text>（2）</text>
-            <input type="text" bindinput="fillchange" data-id="{{index}}" data-num="1"/>
+            <input type="text" bindinput="fillchange" data-id="{{index}}" data-num="1" />
           </view>
         </view>
         <view class="line"></view>

@@ -3,11 +3,12 @@
 <view class="root">
 
 
-
-  <view class="score">
-    <text class="num pass">{{score}}</text>
+  <view class="cu-bar bg-white solid-bottom score">
+    <view class="action">
+      <text class="cuIcon-rankfill text-blue"></text>
+      <text class="text-xxl"> 你的分数：{{score}}</text>
+    </view>
   </view>
-
 
   <view class="question">
     <!-- 选择 -->
