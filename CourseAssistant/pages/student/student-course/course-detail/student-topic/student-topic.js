@@ -11,10 +11,10 @@ Page({
   },
 
   initdata(options){
-    var topicid = options.topicid;
-    var title=options.title;
-    var content=options.content;
-    var time=options.time;
+    var topicid = decodeURIComponent(options.topicid) ;
+    var title=decodeURIComponent(options.title);
+    var content=decodeURIComponent(options.content);
+    var time=decodeURIComponent(options.time);
     time=util.formatTime(time,1);
     this.setData({
       title:title,

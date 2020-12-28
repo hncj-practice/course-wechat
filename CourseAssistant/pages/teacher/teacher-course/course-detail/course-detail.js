@@ -196,7 +196,7 @@ Page({
   jumpToTopic(event) {
     var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
-      url: './teacher-topic/teacher-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent+ '&time=' + topic.committime,
+      url: './teacher-topic/teacher-topic?topicid=' + encodeURIComponent(topic.topicid) + '&title=' + encodeURIComponent(topic.topictitle) + '&content=' + encodeURIComponent(topic.topiccontent)+ '&time=' + encodeURIComponent(topic.committime),
     })
   },
 

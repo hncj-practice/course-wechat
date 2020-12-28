@@ -15,7 +15,7 @@ Page({
 
   //获取试卷详情信息
   getPaperDetail(options) {
-    var paperid = options.paperid;
+    var paperid = decodeURIComponent(options.paperid) ;
     var url = "https://fengyezhan.xyz/Interface/problem/getproblembypaperid";
     var data = {
       paperid: paperid

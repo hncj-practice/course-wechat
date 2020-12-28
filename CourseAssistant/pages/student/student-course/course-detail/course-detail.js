@@ -129,7 +129,7 @@ Page({
     var fillscore = paper.fillpoints;
     var judgescore = paper.judgepoints
     wx.navigateTo({
-      url: '../../student-msg/student-paper/student-paper?paperid=' + paperid + '&papername=' + papername + '&start=' + start + '&end=' + end + '&choicescore=' + choicescore + '&fillscore=' + fillscore + '&judgescore=' + judgescore + '&starttime=' + starttime + '&endtime=' + endtime,
+      url: '../../student-msg/student-paper/student-paper?paperid=' + encodeURIComponent(paperid) + '&papername=' + encodeURIComponent(papername)  + '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end) + '&choicescore=' + encodeURIComponent(choicescore) + '&fillscore=' + encodeURIComponent(fillscore) + '&judgescore=' + encodeURIComponent(judgescore) + '&starttime=' + encodeURIComponent(starttime) + '&endtime=' + encodeURIComponent(endtime),
     })
   },
 
@@ -143,7 +143,7 @@ Page({
   jumpToTopic(event) {
     var topic = event.currentTarget.dataset.topic;
     wx.navigateTo({
-      url: './student-topic/student-topic?topicid=' + topic.topicid + '&title=' + topic.topictitle + '&content=' + topic.topiccontent + '&time=' + topic.committime,
+      url: './student-topic/student-topic?topicid=' + encodeURIComponent(topic.topicid)  + '&title=' + encodeURIComponent(topic.topictitle)  + '&content=' + encodeURIComponent(topic.topiccontent)  + '&time=' + encodeURIComponent(topic.committime) ,
     })
   },
   //跳转到成绩页面
