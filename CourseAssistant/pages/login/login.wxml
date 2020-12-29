@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
-<view>
 
-  <form bindsubmit="loginBox" class="form">
+
+<!-- <form bindsubmit="loginBox" class="form">
     <view class="text-center">
       <view class="cu-form-group margin-top" style="background: #ffffff00">
         <view class="title">用户类型</view>
@@ -22,7 +22,31 @@
     <view class="cu-form-group" style="background: #ffffff00">
       <button class="cu-btn bg-green shadow round" form-type="submit">登录</button>
     </view>
-  </form>
+  </form> -->
 
+
+<view class="root">
+
+  <image class="bg" src="https://fyz1522426323.oss-cn-beijing.aliyuncs.com/login2.png"></image>
+
+  <view class="login-view">
+    <form class="login">
+      <picker class="input-picker" bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+        <text class="picker">{{picker[index]}}</text>
+      </picker>
+
+      <!-- 账号 -->
+      <input class="input-text" type="text" name="username" placeholder="Please input Account"
+        value="888888888"></input>
+
+      <!-- 密码 -->
+      <input class="input-text" type="password" name="pwd" placeholder="Please input password" value="000000"></input>
+
+      <!-- 登录按钮 -->
+      <view class="input-btn" form-type="submit">
+        <text>登录</text>
+      </view>
+    </form>
+  </view>
 
 </view>
