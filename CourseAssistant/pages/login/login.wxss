@@ -55,15 +55,8 @@ Page {
 .login .input-btn {
   margin: 0 auto;
   width: 35%;
-  height: 90rpx;
   border-radius: 44rpx;
-  background: #38a4ff;
+  background: rgba(53, 154, 240, .98);
   color: #fff;
-  text-align: center;
-}
-
-.login .input-btn text {
-  height: 90rpx;
-  line-height: 90rpx;
   text-align: center;
 }

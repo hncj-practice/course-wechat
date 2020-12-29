@@ -56,11 +56,13 @@ page{
 }
 
 .topic-item .right .info .name {
+  width: 550rpx;
   position: absolute;
   top: 5rpx;
 }
 
 .topic-item .right .info .time {
+  width: 550rpx;
   position: absolute;
   bottom: 0;
 }

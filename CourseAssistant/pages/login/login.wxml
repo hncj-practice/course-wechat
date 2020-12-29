@@ -1,36 +1,12 @@
 <!--pages/login/login.wxml-->
-
-
-<!-- <form bindsubmit="loginBox" class="form">
-    <view class="text-center">
-      <view class="cu-form-group margin-top" style="background: #ffffff00">
-        <view class="title">用户类型</view>
-        <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-          <view class="picker">{{picker[index]}}</view>
-        </picker>
-      </view>
-      <view class=" cu-form-group" style="background: #ffffff00">
-        <view class="title">账号</view>
-        <input type="text" name="username" placeholder="Please input Account" value="888888888"></input>
-      </view>
-      <view class="cu-form-group" style="background: #ffffff00">
-        <view class="title">密码</view>
-        <input type="password" name="pwd" placeholder="Please input password" value="000000"></input>
-      </view>
-    </view>
-
-    <view class="cu-form-group" style="background: #ffffff00">
-      <button class="cu-btn bg-green shadow round" form-type="submit">登录</button>
-    </view>
-  </form> -->
-
-
 <view class="root">
 
+  <!-- 背景图片 -->
   <image class="bg" src="https://fyz1522426323.oss-cn-beijing.aliyuncs.com/login2.png"></image>
 
   <view class="login-view">
-    <form class="login">
+    <form bindsubmit="loginBox" class="login">
+      <!-- 选择用户类型 -->
       <picker class="input-picker" bindchange="PickerChange" value="{{index}}" range="{{picker}}">
         <text class="picker">{{picker[index]}}</text>
       </picker>
@@ -43,9 +19,8 @@
       <input class="input-text" type="password" name="pwd" placeholder="Please input password" value="000000"></input>
 
       <!-- 登录按钮 -->
-      <view class="input-btn" form-type="submit">
-        <text>登录</text>
-      </view>
+      <button class="input-btn" form-type="submit">登录</button>
+
     </form>
   </view>
 
