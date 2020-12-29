@@ -18,7 +18,8 @@
     "pages/student/student-course/course-detail/course-detail",
     "pages/student/student-msg/student-paper/student-paper",
     "pages/student/student-msg/paper-score/paper-score",
-    "pages/student/student-me/student-score/student-score"
+    "pages/student/student-me/student-score/student-score",
+    "pages/student/student-course/course-detail/student-topic/student-topic"
   ],
   "window": {
     "backgroundTextStyle": "dark",
